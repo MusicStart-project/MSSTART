@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="album">
+
+
+	<select id="count" parameterType="album.albumVo" resultType="int">
+		select count(*) as cnt from album
+	</select>
+	
+	<select id="selectList" parameterType="album.albumVo" resultType="album.albumVo">
+		select * from album
+	</select>
+	
+	<select id="selectOne" parameterType="album.albumVo" resultType="album.albumVo">
+		select * from album where no=${no}
+	</select>
+	
+	<insert id="insertalbum" parameterType="album.albumVo">
+		INSERT INTO album (
+			 title, lyrics, Mname, Mname_org, A_no
+		) VALUES (
+			#{title},
+			#{lyrics}
+			#{Mname},
+			#{Mname_org},
+			#{A_no}
+		)
+	</insert>
+	<update id="updatealbum" parameterType="album.albumVo">
+		UPDATE album SET
+			title = #{title}
+			, content = #{lyrics},
+			<if test="Mname != null">
+			 filename=#{filename}
+			, filename_org=#{filename_org}
+			</if>
+			A_no = #{A_no}
+		WHERE
+			no = #{no}
+	</update>
+	<delete id="deletealbum" parameterType="album.albumVo">
+		DELETE FROM album WHERE no = #{no}
+	</delete>
+</mapper>

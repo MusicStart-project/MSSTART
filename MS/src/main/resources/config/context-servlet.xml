@@ -9,6 +9,7 @@
 	
 	<!-- 컴퍼넌트 스캔:해당패키지부터 하위패키지의 모든 클래스를 스캔 -->
 	<context:component-scan base-package="user"/>
+	<context:component-scan base-package="album"/>
 	
 	<!-- 어노테이션 활성화 -->
 	<mvc:annotation-driven/>
@@ -56,7 +57,7 @@
 			<mvc:mapping path="/user/edit.do"/>
 			<mvc:mapping path="/user/update.do"/>
 			<mvc:mapping path="/user/delete.do"/>
-			<mvc:mapping path="/board/**"/>
+			<mvc:mapping path="/album/**"/>
 			<mvc:exclude-mapping path="/board/index.do"/>
 			<!-- 
 			한꺼번에 url 매핑

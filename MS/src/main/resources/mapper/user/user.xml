@@ -36,7 +36,6 @@
 	<select id="isDuplicateId" parameterType="String" resultType="int">
 		select count(*) from user where id=#{id}
 	</select>
-	
 	<insert id="insertUser" parameterType="user.UserVo">
 		INSERT INTO user (
 			id,
@@ -80,19 +79,6 @@
 	
 	<select id="login" parameterType="user.UserVo" resultType="user.UserVo">
 		SELECT * FROM user WHERE id=#{id} AND pwd=password(#{pwd})
-	</select>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	</select>	
 	
 </mapper>

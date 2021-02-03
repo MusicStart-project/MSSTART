@@ -13,9 +13,9 @@
     <logger name="com.bccc.web" level="DEBUG"></logger> -->
     <!-- MyBatis의 Mapper.xml에 선언된 namespace명을 넣어주면 해당 쿼리가 로그에 남는다. -->
     <!-- ex> namespase가 "sql.testMapper.my" 인 경우 맨 앞에 sql만 사용하면 sql로 시작되는 모든 namespace mapper 쿼리가 표시됨  -->
-    <logger name="student" level="DEBUG"></logger>
+    <logger name="MS" level="DEBUG"></logger>
     <!-- 
-    <logger name="mapper.student" level="DEBUG"></logger>
+    <logger name="mapper.MS" level="DEBUG"></logger>
  
     <logger name="org.springframework.context" level="INFO"></logger>
      -->
