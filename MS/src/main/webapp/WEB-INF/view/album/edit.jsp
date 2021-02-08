@@ -34,8 +34,8 @@ function formCheck() {
 		<td><input type="text" name="title" id="title" value="${vo.title }"></td>
 	</tr>
 	<tr>
-		<td>내용</td>
-		<td><textarea name="lyrics" id="Lyrics" style="width:100%">${vo.Lyrics }</textarea></td>
+		<td>가사</td>
+		<td><textarea name="lyrics" id="Lyrics" style="width:100%">${vo.lyrics }</textarea></td>
 	</tr>
 	<tr>
 		<td>앨범 번호</td>

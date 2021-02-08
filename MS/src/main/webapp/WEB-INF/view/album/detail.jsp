@@ -11,7 +11,7 @@
 <body>
 <table border="1">
 	<tr>
-		<td>글번호</td>
+		<td>노래 번호</td>
 		<td>${vo.no }</td>
 	</tr>
 	<tr>
@@ -19,12 +19,12 @@
 		<td>${vo.title}</td>
 	</tr>
 	<tr>
-		<td>내용</td>
-		<td>${vo.Lyrics}</td>
+		<td>가사</td>
+		<td>${vo.lyrics}</td>
 	</tr>
 	<tr>
 		<td>앨범 번호</td>
-		<td>${vo.A_no}</td>
+		<td>${vo.a_no}</td>
 	</tr>
 	
 	<tr>

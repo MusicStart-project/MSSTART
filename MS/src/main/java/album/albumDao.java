@@ -36,10 +36,7 @@ public class albumDao {
 		return sqlSession.delete("album.deletealbum", vo);
 	}
 	
-	public void updateReadcount(int no) {
-		sqlSession.update("album.updateReadcount",no);
 
-	}
 	
 	
 	

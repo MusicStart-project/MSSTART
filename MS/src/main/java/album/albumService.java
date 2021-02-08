@@ -41,7 +41,7 @@ public class albumService {
 		return boardDao.selectList(vo);
 	}
 	public albumVo selectOne(albumVo uv, boolean isUser) {
-		if (isUser) boardDao.updateReadcount(uv.getNo());
+		
 		return boardDao.selectOne(uv);
 	}
 	public boolean insert(albumVo vo) {
