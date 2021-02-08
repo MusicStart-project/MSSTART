@@ -38,7 +38,7 @@ function formCheck() {
 	var con = true;
 	if ($("#id").val().length >= 3) { // 아이디 값이 3자 이상인 경우
 		$.ajax({
-			url:'/user/user/isDuplicateId.do',
+			url:'/MS/user/isDuplicateId.do',
 			data:{id:$("#id").val()},
 			type:'HTML',
 			method:'GET',
@@ -73,7 +73,7 @@ function formCheck() {
 	var data = $("#frm").serialize();
 	//console.log(data);
 	$.ajax({
-		url:'/user/user/insert.do',
+		url:'/MS/user/insert.do',
 		data:data,
 		type:'HTML',
 		method:'POST',
@@ -102,7 +102,7 @@ $(function() {
 		//console.log($(this).val().length);
 		if ($(this).val().length >= 3) { // 아이디 값이 3자 이상인 경우
 			$.ajax({
-				url:'/user/user/isDuplicateId.do',
+				url:'/MS/user/isDuplicateId.do',
 				data:{id:$(this).val()},
 				type:'HTML',
 				method:'GET',

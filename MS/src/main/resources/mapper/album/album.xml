@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="album">
+<mapper namespace="album">	
 
 
 	<select id="count" parameterType="album.albumVo" resultType="int">
-		select count(*) as cnt from album
+		select count(*) as cnt from album 
 	</select>
 	
 	<select id="selectList" parameterType="album.albumVo" resultType="album.albumVo">
@@ -17,22 +17,24 @@
 	
 	<insert id="insertalbum" parameterType="album.albumVo">
 		INSERT INTO album (
-			 title, lyrics, Mname, Mname_org, A_no
+			user_no, title, lyrics, filename, filename_org, A_no
 		) VALUES (
+			#{user_no},
 			#{title},
-			#{lyrics}
-			#{Mname},
-			#{Mname_org},
+			#{lyrics},
+			#{filename},
+			#{filename_org},
 			#{A_no}
+			
 		)
 	</insert>
 	<update id="updatealbum" parameterType="album.albumVo">
 		UPDATE album SET
 			title = #{title}
 			, content = #{lyrics},
-			<if test="Mname != null">
+			<if test="filename != null">
 			 filename=#{filename}
-			, filename_org=#{filename_org}
+			, filename_org=#{filename_org},
 			</if>
 			A_no = #{A_no}
 		WHERE

@@ -52,12 +52,7 @@ function getOrderby() {
 	$("input[name='direct']").val($("#direct").val());
 }
 function moveWrite() {
-	<c:if test="${!empty authUser}">
 	location.href='write.do';
-	</c:if>
-	<c:if test="${empty authUser}">
-	alert('로그인 후 이용가능합니다.');
-	</c:if>
 	
 }
 </script>

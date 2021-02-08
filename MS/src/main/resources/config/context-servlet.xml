@@ -52,13 +52,11 @@
 	<!-- 인터셉터 설정 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/user/write.do"/>
-			<mvc:mapping path="/user/insert.do"/>
 			<mvc:mapping path="/user/edit.do"/>
 			<mvc:mapping path="/user/update.do"/>
 			<mvc:mapping path="/user/delete.do"/>
 			<mvc:mapping path="/album/**"/>
-			<mvc:exclude-mapping path="/board/index.do"/>
+			<mvc:exclude-mapping path="/album/index.do"/>
 			<!-- 
 			한꺼번에 url 매핑
 			예) /user/로 시작하는 모든 url 매핑

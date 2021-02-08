@@ -149,7 +149,7 @@ public class UserController {
 			
 			// 위 코드와 동일하게
 			//req.getSession().setAttribute("authUser", uv);
-			String url = "/";
+			String url = "/user/index.do";
 			if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
 				url = req.getParameter("url"); // /user/board/index.do
 			}
@@ -172,7 +172,7 @@ public class UserController {
 		PrintWriter out = res.getWriter();
 		out.print("<script>");
 		out.print("alert('로그아웃되었습니다.');");
-		out.print("location.href='/user/user/index.do';");
+		out.print("location.href='/MS/user/index.do';");
 		out.print("</script>");
 		out.flush();
 	}
