@@ -170,7 +170,7 @@ public class albumController {
 		res.getWriter().print(albumService.delete(vo));
 	}
 	
-	@RequestMapping("/album/main.do")
+	@RequestMapping("/main.do")
 	public String webgl(HttpServletRequest req, albumVo vo) {
 		
 		return "album/main";

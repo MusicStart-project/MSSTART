@@ -8,7 +8,7 @@
 ${authUser.name }님 반갑습니다.
 <input type="button" value="로그아웃" onclick="location.href='/MS/user/logout.do'">
 </c:if>
-<input type="button" value="main" onclick="location.href='/MS/';">
+<input type="button" value="main" onclick="location.href='/MS/main.do';">
 <input type="button" value="user" onclick="location.href='/MS/user/index.do';">
 <input type="button" value="album" onclick="location.href='/MS/album/index.do';">
 <input type="button" value="album1" onclick="location.href='/MS/album/index.do?A_no=1';">
