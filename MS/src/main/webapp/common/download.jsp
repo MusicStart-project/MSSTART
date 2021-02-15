@@ -11,7 +11,9 @@ String r_file = request.getParameter("r_file"); // 실제파일명
 String o_file = java.net.URLEncoder.encode(request.getParameter("o_file"),"UTF-8"); // 원본파일명
 
 // 웹상의 실제경로
-path = request.getRealPath(path+r_file);
+
+	path = "C:\\git\\MS\\MS\\src\\main\\webapp\\upload\\" + r_file;
+
 try {
 	// File객체를 생성
 	File f = new File(path);

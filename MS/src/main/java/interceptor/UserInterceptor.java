@@ -25,7 +25,6 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 			out.flush();
 			return false;
 		}
-		
 		return true; // 기존 매핑된 URL의 컨트롤러로 전달 
 	}
 }

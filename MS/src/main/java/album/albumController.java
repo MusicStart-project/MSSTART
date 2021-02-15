@@ -4,6 +4,7 @@ import java.io.File;
 
 
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -90,7 +91,7 @@ public class albumController {
 				// request.getRealPath() -> 실제 경로를 리턴
 				String path = req.getRealPath("/upload/");
 				System.out.println(path);
-				//path = "D:\\AI\\workspace\\user\\src\\main\\webapp\\upload\\";
+				path = "C:\\git\\MS\\MS\\src\\main\\webapp\\upload\\";
 				file.transferTo(new File(path+filename));
 				// 파일명을 vo에 저장
 				vo.setfilename(filename);
