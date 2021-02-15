@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 목록</title>
+<title>앨범 목록</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script>
 function moveWrite() {
@@ -19,6 +19,7 @@ function moveWrite() {
 </head>
 <body>
 <h2>앨범목록</h2>
+
 <%@ include file="/WEB-INF/view/include/common.jsp" %>
 ${reqPage }/${totalPage } 
 

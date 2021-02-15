@@ -169,6 +169,13 @@ public class albumController {
 	public void delete(albumVo vo, HttpServletResponse res) throws IOException {
 		res.getWriter().print(albumService.delete(vo));
 	}
+	
+	@RequestMapping("/album/main.do")
+	public String webgl(HttpServletRequest req, albumVo vo) {
+		
+		return "album/main";
+	}
+	
 /*	
 	@RequestMapping("/album/commentInsert.do")
 	public void commentInsert(CommentVo vo, HttpServletRequest req, HttpServletResponse res, MultipartFile file) throws Exception {
