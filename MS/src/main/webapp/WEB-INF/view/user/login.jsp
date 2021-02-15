@@ -68,11 +68,13 @@ $(function() {
 				 	},
 				 	fail: function(error) {
 						alert(JSON.stringify(error));
+						console.log("1");
 				 	}
 				});
 			},
 			fail: function(err) {
 			  alert(JSON.stringify(err));
+			  console.log("2");
 			}
         });
     });
