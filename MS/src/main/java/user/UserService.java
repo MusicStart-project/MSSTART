@@ -62,6 +62,14 @@ public class UserService {
 			return false;
 		}
 	}
+	public boolean insertKakao(UserVo vo) {
+		int r = userDao.insertKakao(vo);
+		if (r > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	public boolean update(UserVo vo) {
 		int r = userDao.update(vo);

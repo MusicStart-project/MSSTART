@@ -59,6 +59,18 @@
 			NOW()
 		)
 	</insert>
+	<insert id="insertKakao" parameterType ="user.UserVo">
+		INSERT INTO user(
+			id,
+			kakao_id,
+			email
+		) VALUES(
+			#{id},
+			#{kakao_id},
+			#{email}
+		)
+		
+	</insert>
 	
 	<update id="updateUser" parameterType="user.UserVo">
 		UPDATE user SET

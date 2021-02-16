@@ -89,6 +89,12 @@ public class UserController {
 		res.getWriter().print(userService.insert(vo));
 	}
 	
+	@RequestMapping("/user/insertkakao.do")
+	public void insertkakao(UserVo vo, HttpServletResponse res) throws Exception {
+		// 등록처리
+		res.getWriter().print(userService.insertKakao(vo));
+	}
+	
 	//@RequestMapping("/user/isDuplicateId.do")
 	//@GetMapping("/user/isDuplicateId.do")
 	@RequestMapping(value="/user/isDuplicateId.do", method=RequestMethod.GET)

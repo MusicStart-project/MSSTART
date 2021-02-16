@@ -32,6 +32,10 @@ public class UserDao {
 		return sqlSession.insert("user.insertUser",vo);
 	}
 	
+	public int insertKakao(UserVo vo) {
+		return sqlSession.insert("user.insertKakao",vo);
+	}
+	
 	public int update(UserVo vo) {
 		return sqlSession.update("user.updateUser", vo);
 	}

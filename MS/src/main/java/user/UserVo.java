@@ -16,7 +16,14 @@ public class UserVo extends CommonVo{
 	private String addr1;
 	private String addr2;
 	private Timestamp regdate;
+	private int kakao_id;
 	
+	public int getKakao_id() {
+		return kakao_id;
+	}
+	public void setKakao_id(int kakao_id) {
+		this.kakao_id = kakao_id;
+	}
 	public int getNo() {
 		return no;
 	}
