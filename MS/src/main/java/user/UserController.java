@@ -82,6 +82,10 @@ public class UserController {
 		System.out.println("여기는 write.do");
 		return "user/write";
 	}
+	@GetMapping("/user/write2.do")
+	public String write2() {
+		return "user/write2";
+	}
 	
 	@RequestMapping("/user/insert.do")
 	public void insert(UserVo vo, HttpServletResponse res) throws Exception {

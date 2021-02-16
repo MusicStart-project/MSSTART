@@ -58,27 +58,7 @@ $(function() {
 				Kakao.API.request({
 					url: '/user/insertkakao.do',
 					success: function(res) {
-						/*
-						$.ajax({
-							url:'/MS/user/insertkakao.do',
-							data:data,
-							type:'HTML',
-							method:'POST',
-							cache:false,
-							success:function(data) {
-								//console.log(data);
-								if (data == 'true') {
-									alert("정상적으로 등록되었습니다.");
-									// 모든 입력란을 초기화
-									//$("input[type='text'], input[type='password']").val("");
-									//$("#frm")[0].reset();
-									location.href="index.do";
-								} else {
-									alert("등록 실패");
-								}
-							}
-						});
-						*/
+
 						console.log('kakao id : '+res.id);
 						console.log('kakao email : '+res.kakao_account.email);
 						console.log('kakao birthday : '+res.kakao_account.birthday);
@@ -125,7 +105,7 @@ $(function() {
 		</td>
 	</tr>
 </table>
-<a href="/MS/login2.jsp" id="kakaoBtn">카카오 로그인</a>
+<a href="/MS/user/write2.do" id="kakaoBtn">카카오 로그인</a>
 </form>
 </body>
 </html>
