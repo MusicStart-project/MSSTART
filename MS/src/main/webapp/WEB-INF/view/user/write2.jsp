@@ -21,7 +21,7 @@ Kakao.Auth.login({
 				var id = res.id;
 				var email = res.kakao_account.email;
 				var html = id + '<BR>' + email ;
-				document.getElementById("kakaoid").value = id;
+				document.getElementById("kakao_id").value = id;
 				document.getElementById("email").value = email;
 		
 			}
@@ -102,7 +102,7 @@ function formCheck() {
 	var data = $("#frm").serialize();
 	//console.log(data);
 	$.ajax({
-		url:'/MS/user/insert.do',
+		url:'/MS/user/insertKakao.do',
 		data:data,
 		type:'HTML',
 		method:'POST',
@@ -206,12 +206,12 @@ $(function() {
 </script>
 </head>
 <body>
-<form action="insert.do" method="post" id="frm" onsubmit="return false;">
+<form action="insertKakao.do" method="post" id="frm" onsubmit="return false;">
 <table border="1">
 	<tr>
 		<td>카카오아이디</td>
 		<td>
-			<input type="text" name="kakaoid" id="kakaoid"><br>
+			<input type="text" name="kakao_id" id="kakao_id" readonly><br>
 		</td>
 	</tr>
 	<tr>
@@ -231,7 +231,7 @@ $(function() {
 	</tr>
 	<tr>
 		<td>이메일</td>
-		<td><input type="text" name="email" id="email"></td>
+		<td><input type="text" name="email" id="email" readonly></td>
 	</tr>
 	<tr>
 		<td>연락처</td>

@@ -93,7 +93,7 @@ public class UserController {
 		res.getWriter().print(userService.insert(vo));
 	}
 	
-	@RequestMapping("/user/insertkakao.do")
+	@RequestMapping("/user/insertKakao.do")
 	public void insertkakao(UserVo vo, HttpServletResponse res) throws Exception {
 		// 등록처리
 		res.getWriter().print(userService.insertKakao(vo));

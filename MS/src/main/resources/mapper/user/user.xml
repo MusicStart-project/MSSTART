@@ -61,13 +61,27 @@
 	</insert>
 	<insert id="insertKakao" parameterType ="user.UserVo">
 		INSERT INTO user(
-			id,
 			kakao_id,
-			email
+			id,
+			pwd,
+			name,
+			email,
+			tel,
+			zipcode,
+			addr1,
+			addr2,
+			regdate
 		) VALUES(
-			#{id},
 			#{kakao_id},
-			#{email}
+			#{id},
+			password(#{pwd}),
+			#{name},
+			#{email},
+			#{tel},
+			#{zipcode},
+			#{addr1},
+			#{addr2},
+			NOW()
 		)
 		
 	</insert>

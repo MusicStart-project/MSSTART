@@ -56,7 +56,7 @@ $(function() {
            		console.log(JSON.stringify(authObj));
 
 				Kakao.API.request({
-					url: '/user/insertkakao.do',
+					url: '/user/write2.do',
 					success: function(res) {
 
 						console.log('kakao id : '+res.id);
