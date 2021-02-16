@@ -47,7 +47,6 @@ a, button, input, select {
 <source src="./video/background.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
 </video> 
 
-
 <script type="text/javascript">
 
 //변수선언
@@ -74,9 +73,6 @@ renderer.shadowMapEnabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	
 
-	
-	
-	
 	//렌더링시 자연스러운 효과 추가
 	  
 	//camera controler
@@ -111,7 +107,6 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	const listener = new THREE.AudioListener();
 	camera.add( listener );
 	
-
 	
 	//배경 비디오 호출
 	var video = document.getElementById( 'video' );
@@ -129,8 +124,6 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	// 전체 밝기(텍스쳐가 Basic이 아닌 경우)
 	var ambientLight = new THREE.AmbientLight( 0xFFFFFF, 1 );    
 	scene.add(ambientLight);    
-
-
 
 
 // 윈도우 크기에 따른 화면 조정 함수
@@ -162,7 +155,6 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
        if ( intersect[i].length > 0 ) {
              box[i].material.transparent = false;
              }
-     
       if ( scenein.length == 0 ) {
          box[i].material.transparent = true;
      	 const audioElement = document.getElementById( 'music' );    	

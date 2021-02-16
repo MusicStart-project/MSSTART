@@ -24,10 +24,11 @@ Kakao.Auth.login({
 				var id = res.id;
 				var email = res.kakao_account.email;
 				var html = id + '<BR>' + email ;
-				document.log.id=id;
-				document.log.email=email;
-				$('body').append(html);
+				$("#id").val(id);
+				$("#email").val(email);
+				//$('body').append(html);
 			}
+		
 		})
 		 console.log(authObj);
 		 var token = authObj.access_token;
@@ -36,12 +37,13 @@ Kakao.Auth.login({
 			alert(JSON.stringify(err));
 		}
 	});
-						
+	//$("#id").val('안녕하세요');			
 </script>
-<form method="post"name="log">
-<input type="text" name="id" id="id">
-<input type="text" name="email" id="email">
 
-</form>
+
+<input type="text" name="id" id="id" readonly>
+<input type="text" name="email" id="email" readonly>
+
+
 </body>
 </html>
