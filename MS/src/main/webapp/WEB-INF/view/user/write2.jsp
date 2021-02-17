@@ -44,10 +44,14 @@ Kakao.Auth.login({
 					success:function(data) {
 						//console.log(data);
 						if (data == 'true') {
-							alert('아이디가 중복되었습니다.');
+							
+							location.href="index.do";
+						
 						}
 					}
 				});
+				
+				
 				$("#frm").css('visibility', 'visible')
 
 			}
