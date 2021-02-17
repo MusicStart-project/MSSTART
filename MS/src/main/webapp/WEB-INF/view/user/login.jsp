@@ -64,7 +64,6 @@ $(function() {
 						console.log('kakao birthday : '+res.kakao_account.birthday);
 						console.log('kakao gender : '+res.kakao_account.gender);
 						console.log('kakao nickname : ' +res.properties['nickname']);
-						location.href="/MS/user/write2.do";
 				 	},
 				 	fail: function(error) {
 						alert(JSON.stringify(error));
@@ -106,7 +105,7 @@ $(function() {
 		</td>
 	</tr>
 </table>
-<button type="button" id="kakaoBtn"><img src="../img/kakao_loginform.png"></button>
+<a href="write2.do" id="kakaoBtn"><img src="../img/kakao_loginform.png"></a>
 </form>
 </body>
 </html>

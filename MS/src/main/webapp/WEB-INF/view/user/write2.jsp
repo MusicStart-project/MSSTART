@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<style>
+	#frm{
+		visibility : hidden
+	}
+</style>
 
 <script type='text/javascript'>
 Kakao.init('f6434329e433f642218a332bfb4f5b48');
@@ -20,9 +25,31 @@ Kakao.Auth.login({
 				console.log(res);
 				var id = res.id;
 				var email = res.kakao_account.email;
+				var nickname = res.properties['nickname'];
 				document.getElementById("kakao_id").value = id;
 				document.getElementById("email").value = email;
-		
+				document.getElementById("name").value = nickname;
+			
+				
+				document.getElementById("id").value = email;
+				document.getElementById("pwd").value = 11111111;
+				
+				$.ajax({
+					url:'/MS/user/isDuplicateId.do',
+					data:{id:$("#id").val()},
+					type:'HTML',
+					method:'GET',
+					cache:false,
+					async:false,
+					success:function(data) {
+						//console.log(data);
+						if (data == 'true') {
+							alert('아이디가 중복되었습니다.');
+						}
+					}
+				});
+				$("#frm").css('visibility', 'visible')
+
 			}
 		})
 		 console.log(authObj);
@@ -55,6 +82,7 @@ $(function() {
 	});
 });
 */
+
 // submit(image) 버튼인 경우
 // form에 onsubmit 속성 부여
 function formCheck() {
@@ -213,20 +241,11 @@ $(function() {
 			<input type="text" name="kakao_id" id="kakao_id" readonly><br>
 		</td>
 	</tr>
-	<tr>
-		<td>아이디</td>
-		<td>
-			<input type="text" name="id" id="id"><br>
-			<span id="idMsg">아이디를 입력하세요</span>
-		</td>
-	</tr>
-	<tr>
-		<td>비밀번호</td>
-		<td><input type="password" name="pwd" id="pwd"></td>
-	</tr>
+		<input type="hidden" name="id" id="id">
+		<input type="hidden" name="pwd" id="pwd">
 	<tr>
 		<td>이름</td>
-		<td><input type="text" name="name" id="name"></td>
+		<td><input type="text" name="name" id="name" readonly></td>
 	</tr>
 	<tr>
 		<td>이메일</td>
