@@ -20,7 +20,6 @@ Kakao.Auth.login({
 				console.log(res);
 				var id = res.id;
 				var email = res.kakao_account.email;
-				var html = id + '<BR>' + email ;
 				document.getElementById("kakao_id").value = id;
 				document.getElementById("email").value = email;
 		

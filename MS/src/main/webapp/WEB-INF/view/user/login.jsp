@@ -64,7 +64,7 @@ $(function() {
 						console.log('kakao birthday : '+res.kakao_account.birthday);
 						console.log('kakao gender : '+res.kakao_account.gender);
 						console.log('kakao nickname : ' +res.properties['nickname']);
-				
+						location.href="/MS/user/write2.do";
 				 	},
 				 	fail: function(error) {
 						alert(JSON.stringify(error));
@@ -77,6 +77,7 @@ $(function() {
 			  console.log("2");
 			}
         });
+        
     });
   //]]>
 });
@@ -105,7 +106,7 @@ $(function() {
 		</td>
 	</tr>
 </table>
-<a href="/MS/user/write2.do" id="kakaoBtn">카카오 로그인</a>
+<button type="button" id="kakaoBtn"><img src="../img/kakao_loginform.png"></button>
 </form>
 </body>
 </html>
