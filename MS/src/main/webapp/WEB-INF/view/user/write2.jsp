@@ -30,7 +30,6 @@ Kakao.Auth.login({
 				document.getElementById("email").value = email;
 				document.getElementById("name").value = nickname;
 			
-				
 				document.getElementById("id").value = email;
 				document.getElementById("pwd").value = 11111111;
 				
@@ -46,9 +45,12 @@ Kakao.Auth.login({
 						if (data == 'true') {
 							alert('아이디가 중복되었습니다.');
 						}
+						else{
+							$("#frm").css('visibility', 'visible')
+						}
 					}
 				});
-				$("#frm").css('visibility', 'visible')
+				
 
 			}
 		})

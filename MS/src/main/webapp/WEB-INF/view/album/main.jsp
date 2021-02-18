@@ -57,9 +57,7 @@ a, button, input, select {
         z-index:1002;
         overflow: auto;
     }
-
 </style>
-
 <script src="./js/three.js"></script>
 <script src="./js/OrbitControls.js"></script>
 <script src="./js/3Dink.js"></script>
@@ -67,25 +65,46 @@ a, button, input, select {
 
 </head>
 <body>
-<div id="container" class="black_overlay"></div>
 
-<div id="light" class="white_content">This is the lightbox content.
-    <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';">Close</a>
+<div id="intro" class="white_content">
+	<p>intro</p>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('intro').style.display='none';">Close</a>
 </div>
 
+<div id="container" class="black_overlay"></div>
+
+<div id="album1" class="white_content">
+	<div id="table">
+	<table>
+	<tr>
+	<td>
+	</td>
+	</tr>
+	</table>
+	</div>
+	<p>album1</p>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('album1').style.display='none';">Close</a>
+</div>
+
+<div id="album2" class="white_content"><p>album2</p>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('album2').style.display='none';">Close</a>
+</div>
+
+<div id="board" class="white_content"><p>board</p>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';">Close</a>
+</div>
     
 <audio loop id="music" preload="auto" style="display: none">
 		<source src="./upload/1613375880426.mp3" type="audio/mpeg">
 </audio>
 
 <video id="video" loop crossOrigin="anonymous" playsinline style="display:none" controls autoplay muted="muted">
-<source src="./video/newbackground.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+<source src="./video/newbackground.mp4" type='video/mp4; '>
 </video> 
 
 <script type="text/javascript">
 
 //변수선언
-
 // 오브젝트 갯수
 const num = 4;
 var width = window.innerWidth;
@@ -97,12 +116,12 @@ var camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 10000);
 const container = document.getElementById( 'container' );
 const audioElement = document.getElementById( 'music' );  
 
-camera.position.x = 50;
+camera.position.x = 0.1;
 camera.position.y = 0;
 camera.position.z = 0;
 camera.getEffectiveFOV();
 
- 
+//렌더링시 자연스러운 효과 추가 
 var renderer = new THREE.WebGLRenderer( { antialias: true, preserveDrawingBuffer: true } );
 var controls = new THREE.OrbitControls( camera, renderer.domElement );
 
@@ -114,19 +133,33 @@ container.appendChild( renderer.domElement );
 renderer.shadowMapEnabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	
+	
+	
+ 
+//grid Helper    
+var axes = new THREE.AxesHelper(200);
+                           // 길이
+scene.add(axes);
 
-	//렌더링시 자연스러운 효과 추가
+var grideHelper = new THREE.GridHelper( 200,10 );
+
+scene.add(grideHelper);
+
+	
+	
+
+	
 	  
 	//camera controler
 	function control(){    
-		controls.enablePan = false;
-		controls.enableZoom = false;
+		controls.enablePan = true;
+		controls.enableZoom = true;
 		controls.rotateSpeed = 0.7;
-		controls.zoomSpeed = 17;
+		controls.zoomSpeed = 5;
 		controls.minDistance = 3;
 		controls.maxDistance = 1000;
-		controls.minPolarAngle = Math.PI/2;
-		controls.maxPolarAngle = Math.PI/2;
+		//controls.minPolarAngle = Math.PI/2;
+		//controls.maxPolarAngle = Math.PI/2;
 		controls. enableKeys = false;
 		controls.autoRotate = false;
 		controls.autoRotateSpeed = 0.3;
@@ -159,23 +192,23 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	
 	var box = [];
 	
-	// 앨범 1
-	box[0] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/Circles.PNG'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
-	box[0].position.set(-47,0,0);
-	
-	// 앨범 2
-	box[1] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/Circles.PNG'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
-	box[1].position.set(-47,0,40);
-	
 	// 소개
+	box[0] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/Circles.PNG'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
+	box[0].position.set(-60,0,0);
 	
+	// 앨범 1 왼쪽
+	box[1] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/Circles.PNG'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
+	box[1].position.set(0,0,60);
+	box[1].rotation.set(0,Math.PI/2,0);
+	
+	// 앨범 2 오른쪽
 	box[2] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/Circles.PNG'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
-	box[2].position.set(-47,0,-40);
-	
-	// 자유 게시판
-	
+	box[2].position.set(0,0,-60);
+	box[2].rotation.set(0,Math.PI/2,0);
+
+	// 자유 게시판 3
 	box[3] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/Circles.PNG'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
-	box[3].position.set(97,0,0);
+	box[3].position.set(60.1,0,0);
 	
 	for (var i = 0; i<num; i++){
 		scene.add(box[i]);	
@@ -224,6 +257,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
              }       
            }                                    
       }
+ 
  // 마우스 클릭으로 좌표값에 의한 이벤트
  container.addEventListener( 'click', onClick, false );
  function onClick( event ) {
@@ -241,9 +275,26 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
      for (var i = 0; i < num; i++){ 
         intersect[i] = ray.intersectObject(box[i]);     
        if ( intersect[i].length > 0 ) {
-    	   
-    	  document.getElementById('light').style.display='block';
-     	  document.getElementById('container').style.display='block'
+    	  if( i == 0){
+    	  document.getElementById('intro').style.display='block';
+     	  document.getElementById('container').style.display='block';
+    	  }
+    	  
+    	  if( i == 1){
+        	  document.getElementById('album1').style.display='block';
+         	  document.getElementById('container').style.display='block';
+         }
+    	
+    	  if( i == 2){
+        	  document.getElementById('album2').style.display='block';
+         	  document.getElementById('container').style.display='block';
+        }
+    	  
+    	if( i == 3){
+        	  document.getElementById('board').style.display='block';
+         	  document.getElementById('container').style.display='block';
+        }
+    	  
       	  audioElement.pause();
              }
            }                                    
