@@ -74,9 +74,6 @@ Kakao.Auth.login({
 					} 
 				});
 				
-				
-				
-
 			}
 		})
 		 console.log(authObj);
