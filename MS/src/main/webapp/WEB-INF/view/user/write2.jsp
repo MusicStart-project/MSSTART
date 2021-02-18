@@ -33,6 +33,7 @@ Kakao.Auth.login({
 				document.getElementById("id").value = email;
 				document.getElementById("pwd").value = 11111111;
 				
+			
 				$.ajax({
 					url:'/MS/user/isDuplicateId.do',
 					data:{id:$("#id").val()},
@@ -42,14 +43,38 @@ Kakao.Auth.login({
 					async:false,
 					success:function(data) {
 						//console.log(data);
+						$.ajax({
+							url:'/MS/user/isDuplicateId.do',
+							data:{id:$("#id").val()},
+							type:'HTML',
+							method:'GET',
+							cache:false,
+							async:false,
+							success:function(data) {
+								//console.log(data);
+								if (data == 'true') {
+									alert("중복되었습니다.");
+									location.href="index.do";
+								
+								}
+							},
+							fail: function(err){
+							} 
+						});
 						if (data == 'true') {
-							alert('아이디가 중복되었습니다.');
+							alert("중복되었습니다.");
+							location.href="index.do";
+						
 						}
 						else{
 							$("#frm").css('visibility', 'visible')
 						}
-					}
+					},
+					fail: function(err){
+					} 
 				});
+				
+				
 				
 
 			}
