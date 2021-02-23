@@ -175,6 +175,11 @@ public class albumController {
 		
 		return "album/main";
 	}
+	@RequestMapping("/main2.do")
+	public String webgl2(HttpServletRequest req, albumVo vo) {
+		
+		return "album/main2";
+	}
 	
 /*	
 	@RequestMapping("/album/commentInsert.do")

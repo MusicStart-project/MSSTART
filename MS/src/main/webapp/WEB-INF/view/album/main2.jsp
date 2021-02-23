@@ -9,6 +9,22 @@
 <title>Main Page</title>
 <style>
 
+#intro{
+
+	text-align:center;
+
+}
+
+#intro_font{
+	font-weight : bold;
+	font-size : 20px;
+}
+#intro_img{
+    width: auto; height: auto;
+    max-width: 80%;
+    max-height: 80%;
+
+}
 #overlay {
 	position: absolute;
 	z-index: 2;
@@ -47,7 +63,7 @@ a, button, input, select {
         display: none;
         position: absolute;
         top: 25%;
-        left: 25%;
+        left: 22.627%;
         width: 50%;
         height: 50%;
         padding: 16px;
@@ -57,6 +73,9 @@ a, button, input, select {
         z-index:1002;
         overflow: auto;
     }
+
+
+
 </style>
 <script src="./js/three.js"></script>
 <script src="./js/OrbitControls.js"></script>
@@ -67,8 +86,22 @@ a, button, input, select {
 <body>
 
 <div id="intro" class="white_content">
-	<p>intro</p>
+	<div id= "intro_content" style="position: absolute;left:0%; ">	
+	<table>
+		<tr>
+			<td colspan="2" align="center" id=intro_font>intro</td>
+		</tr>
+		<tr> 
+			<td colspan="2" align="center" ><img src=./img/intro.jpg id="intro_img"></td>
+		</tr>
+		<tr> 
+			<td> 富</td>
+			<td> 富2</td>
+		</tr>
+	</table>
+
     <a href = "javascript:void(0)" onclick = "document.getElementById('intro').style.display='none';">Close</a>
+	</div>
 </div>
 
 <div id="container" class="black_overlay"></div>
@@ -193,7 +226,7 @@ scene.add(grideHelper);
 	var box = [];
 	
 	// 家俺
-	box[0] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/Circles.PNG'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
+	box[0] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/intro.jpg'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
 	box[0].position.set(-60,0,0);
 	
 	// 举裹 1 哭率
