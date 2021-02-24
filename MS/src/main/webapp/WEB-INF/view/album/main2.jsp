@@ -9,15 +9,18 @@
 <title>Main Page</title>
 <style>
 
+#intro_content{
+	position: absolute;
+	left:0%;
+}
+
 #intro{
-
-	text-align:center;
-
+	text-align: center;
 }
 
 #intro_font{
-	font-weight : bold;
-	font-size : 20px;
+	font-size : 300%;
+	font-family: 'Linux Libertine','Georgia','Times',serif;
 }
 #intro_img{
     width: auto; height: auto;
@@ -89,18 +92,28 @@ a, button, input, select {
 	<div id= "intro_content" style="position: absolute;left:0%; ">	
 	<table>
 		<tr>
-			<td colspan="2" align="center" id=intro_font>intro</td>
+			<td colspan="2" align="center" id=intro_font>Post Malone</td>
 		</tr>
 		<tr> 
-			<td colspan="2" align="center" ><img src=./img/intro.jpg id="intro_img"></td>
+			<td colspan="2" align="center" ><img src=./img/intro_img.jpg id="intro_img"></td>
 		</tr>
 		<tr> 
-			<td> ¸»</td>
-			<td> ¸»2</td>
+			<td width=50% valign="top"> Austin Richard Post (born July 4, 1995), known professionally as Post Malone, is an American rapper, singer, songwriter, 
+			and record producer. Known for his introspective songwriting and laconic vocal style, Malone has gained acclaim for bending a range of genres including hip hop
+			, R&B, pop, trap, rap rock, and cloud rap. He first attained recognition in 2015 following the release of his debut single "White Iverson".
+			 He subsequently signed a recording contract with Republic Records. His stage name is derived from his last name and from a rap name generator
+			 Malone's debut album Stoney (2016) featured the hit single "Congratulations",
+			 and set the record for most weeks on the US Billboard Top R&B/Hip-Hop Albums chart, with 77. 
+			 </td>
+			<td width=50% valign="top"> His second album, Beerbongs & Bentleys (2018), debuted at number one on the US Billboard 200 and broke several streaming records upon release. 
+			  Featuring the US Billboard Hot 100 number-one singles "Rockstar" and "Psycho", it was nominated for Album of the Year at the 2018 Grammy Awards.
+			   In 2018, Malone collaborated with American singer-rapper Swae Lee on the song "Sunflower" for the soundtrack to the film Spider-Man: Into the Spider-Verse,
+			    which reached the top of the Billboard Hot 100. His third album, Hollywood's Bleeding, explored indie pop and was released in late 2019.
+			     It became his second number-one album on the Billboard 200 and featured the Hot 100 number-one single "Circles", which spent a record 39 weeks in the top ten on the Hot 100.</td>
 		</tr>
 	</table>
 
-    <a href = "javascript:void(0)" onclick = "document.getElementById('intro').style.display='none';">Close</a>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('intro').style.display='none';" align="right">Close</a>
 	</div>
 </div>
 
