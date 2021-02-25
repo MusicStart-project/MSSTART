@@ -11,6 +11,8 @@ public class albumVo extends CommonVo {
 	private String filename_org; 	// 사용자가 업로드한 원본파일명
 	private int A_no;				// 앨번 번호
 	private int user_no;			// 유저 번호 확인
+
+	
 	
 	public albumVo() {
 		// 부모에서 초기값으로 10을 대입했지만, 자식에서 5로 변경

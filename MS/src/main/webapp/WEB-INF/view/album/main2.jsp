@@ -136,8 +136,9 @@ a, button, input, select {
     <a href = "javascript:void(0)" onclick = "document.getElementById('album2').style.display='none';">Close</a>
 </div>
 
-<div id="board" class="white_content"><p>board</p>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';">Close</a>
+<div id="board" class="white_content">
+	<iframe id="iframe" style="position: absolute; width:90%;height:90%;"src="http://localhost/MS/index1.jsp"></iframe>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';">Close</a>	
 </div>
     
 <audio loop id="music" preload="auto" style="display: none">
