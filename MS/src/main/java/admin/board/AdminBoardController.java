@@ -65,7 +65,8 @@ public class AdminBoardController {
 	}
 	
 	@GetMapping("/admin/board/write.do")
-	public String write() {
+	public String write(HttpServletRequest req, BoardVo vo) {
+		req.setAttribute("vo", vo);
 		return "admin/board/write";
 	}
 	

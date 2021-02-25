@@ -137,7 +137,7 @@ a, button, input, select {
 </div>
 
 <div id="board" class="white_content">
-	<iframe id="iframe" style="position: absolute; width:90%;height:90%;"src="http://localhost/MS/index1.jsp"></iframe>
+	<iframe id="iframe" style="position: absolute; width:90%;height:90%;"src="http://localhost/MS/admin/board/index.do"></iframe>
     <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';">Close</a>	
 </div>
     

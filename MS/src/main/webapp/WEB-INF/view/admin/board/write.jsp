@@ -1,8 +1,10 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
+
 <script>
 var oEditors = [];
 $(function() {
@@ -47,7 +49,7 @@ function formCheck() {
 	<!-- canvas -->
 	<div id="canvas">
 		<!-- S T A R T :: headerArea-->
-		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
+
 		<!-- E N D :: headerArea--> 
 		<!-- S T A R T :: containerArea-->
 		<div id="container">
@@ -61,7 +63,7 @@ function formCheck() {
 					<div id="bbs">
 						<div id="bread">
 							<form action="insert.do" onsubmit="return formCheck()" method="post" name="frm" id="frm" action="" enctype="multipart/form-data">
-							<input type="hidden" name="user_no" value=226>
+							<input type="hidden" name="user_no" value=${vo.user_no }>
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />

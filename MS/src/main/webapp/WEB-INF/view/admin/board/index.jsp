@@ -18,7 +18,7 @@ function moveWrite() {
 	<!-- canvas -->
 	<div id="canvas">
 		<!-- S T A R T :: headerArea-->
-		<%@ include file="/WEB-INF/view/admin/include/top.jsp" %>
+
 		<!-- E N D :: headerArea--> 
 		
 		<!-- S T A R T :: containerArea-->
