@@ -173,6 +173,10 @@ public class albumController {
 	@RequestMapping("/main.do")
 	public String webgl(HttpServletRequest req, albumVo vo) {
 		
+		List<albumVo> list = albumService.getList(vo);
+		req.setAttribute("list", list);
+		req.setAttribute("vo", vo);
+
 		return "album/main";
 	}
 	@RequestMapping("/main2.do")

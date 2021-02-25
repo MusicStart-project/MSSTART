@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +10,7 @@
 
 <title>Main Page</title>
 <style>
+
 
 #overlay {
 	position: absolute;
@@ -28,6 +31,16 @@
 a, button, input, select {
 	pointer-events: auto;
 }
+a.title:hover {
+   text-decoration: underline; 
+}
+
+.title{
+  text-decoration: none;
+  color : #232323;
+  cursor: pointer;
+  
+  }
 <!-- light box css -->
 .black_overlay{
         display: none;
@@ -57,11 +70,36 @@ a, button, input, select {
         z-index:1002;
         overflow: auto;
     }
+    
+     
+    .album_content {
+        display: none;
+        position: absolute;
+        top: 15%;
+        left: 33%;
+        width: 33%;
+        height: 70%;
+        padding: 16px;
+        border: 16px solid rgb(21, 34, 54);
+        background-color: rgb(255, 255, 255);
+        opacity:.80;
+        z-index:1002;
+        overflow: auto;
+    }
 </style>
 <script src="./js/three.js"></script>
 <script src="./js/OrbitControls.js"></script>
 <script src="./js/3Dink.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script>
+function album1(){
+	
+	
+	
+}
+
+
+</script>
 
 </head>
 <body>
@@ -73,18 +111,23 @@ a, button, input, select {
 
 <div id="container" class="black_overlay"></div>
 
-<div id="album1" class="white_content">
-	<div id="table">
-	<table>
-	<tr>
-	<td>
-	</td>
-	</tr>
+<div id="album1" class="album_content" >
+	<div id=album1_list>
+	<table style="width=100%;">
+	<c:forEach var="vo" items="${list}">
+	<c:if test="${vo.a_no == 1}">
+		<tr>
+		<td onmouseover="this.style.background='gray'" onmouseout="this.style.background='white'"><a href="javascript:void(0)" class="title" onclick = "window.open('album/detail.do?no=${vo.no}','test','width=400, height=800, menubar=no, status=no, toolbar=no');">${vo.title }</a></td>
+		<td style="color : gray; font-size: 13px; text-align: center;">Post Malone</td>
+		<td style="padding : 5%; color : red;" >liked</td>
+
+	</c:if>
+	</c:forEach>
 	</table>
+
 	</div>
-	<p>album1</p>
     <a href = "javascript:void(0)" onclick = "document.getElementById('album1').style.display='none';">Close</a>
-</div>
+	</div>
 
 <div id="album2" class="white_content"><p>album2</p>
     <a href = "javascript:void(0)" onclick = "document.getElementById('album2').style.display='none';">Close</a>
@@ -98,7 +141,24 @@ a, button, input, select {
 		<source src="./upload/1613375880426.mp3" type="audio/mpeg">
 </audio>
 
+<!-- 비디오 설정들 -->
 <video id="video" loop crossOrigin="anonymous" playsinline style="display:none" controls autoplay muted="muted">
+<source src="./video/newbackground.mp4" type='video/mp4; '>
+</video> 
+<video id="intro_video" loop crossOrigin="anonymous" playsinline style="display:none" controls autoplay muted="muted">
+<source src="./video/background1.mp4" type='video/mp4; '>
+<source src="./video/newbackground.mp4" type='video/mp4; '>
+</video> 
+<video id="album1_video" loop crossOrigin="anonymous" playsinline style="display:none" controls autoplay muted="muted">
+<source src="./video/background2.mp4" type='video/mp4; '>
+<source src="./video/newbackground.mp4" type='video/mp4; '>
+</video> 
+<video id="album2_video" loop crossOrigin="anonymous" playsinline style="display:none" controls autoplay muted="muted">
+<source src="./video/background3.mp4" type='video/mp4; '>
+<source src="./video/newbackground.mp4" type='video/mp4; '>
+</video> 
+<video id="board_video" loop crossOrigin="anonymous" playsinline style="display:none" controls autoplay muted="muted">
+<source src="./video/background4.mp4" type='video/mp4; '>
 <source src="./video/newbackground.mp4" type='video/mp4; '>
 </video> 
 
@@ -136,7 +196,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	
 	
  
-//grid Helper    
+/*grid Helper    
 var axes = new THREE.AxesHelper(200);
                            // 길이
 scene.add(axes);
@@ -144,7 +204,7 @@ scene.add(axes);
 var grideHelper = new THREE.GridHelper( 200,10 );
 
 scene.add(grideHelper);
-
+*/
 	
 	
 
@@ -152,17 +212,17 @@ scene.add(grideHelper);
 	  
 	//camera controler
 	function control(){    
-		controls.enablePan = true;
-		controls.enableZoom = true;
+		controls.enablePan = false;
+		controls.enableZoom = false;
 		controls.rotateSpeed = 0.7;
 		controls.zoomSpeed = 5;
 		controls.minDistance = 3;
 		controls.maxDistance = 1000;
-		//controls.minPolarAngle = Math.PI/2;
-		//controls.maxPolarAngle = Math.PI/2;
+		controls.minPolarAngle = Math.PI/2;
+		controls.maxPolarAngle = Math.PI/2;
 		controls. enableKeys = false;
-		controls.autoRotate = false;
-		controls.autoRotateSpeed = 0.3;
+		controls.autoRotate = true;
+		controls.autoRotateSpeed = -0.3;
 		controls.keys = {
 			LEFT: 65, //left arrow
 			UP: 87, // up arrow
@@ -184,25 +244,35 @@ scene.add(grideHelper);
 	
 	
 	//배경 비디오 호출
-	var video = document.getElementById( 'video' );
-	video.play();
-	var Ontexture = new THREE.VideoTexture( video );
-	var texture
+	var video = [];
+	video[0] = document.getElementById( 'video' );
+	video[1] = document.getElementById( 'intro_video' );
+	video[2] = document.getElementById( 'album1_video' );
+	video[3] = document.getElementById( 'album2_video' );
+	video[4] = document.getElementById( 'board_video' );
+	
+	for (var i = 0; i<5; i++)
+		{
+			video[i].play();	
+		
+		}
+	
+	var Ontexture = new THREE.VideoTexture( video[0] );
 	scene.background = Ontexture;
 	
 	var box = [];
 	
 	// 소개
-	box[0] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/Circles.PNG'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
+	box[0] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/intro.jpg'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
 	box[0].position.set(-60,0,0);
 	
 	// 앨범 1 왼쪽
-	box[1] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/Circles.PNG'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
+	box[1] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/album1.png'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
 	box[1].position.set(0,0,60);
 	box[1].rotation.set(0,Math.PI/2,0);
 	
 	// 앨범 2 오른쪽
-	box[2] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/Circles.PNG'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
+	box[2] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/album2.jpg'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
 	box[2].position.set(0,0,-60);
 	box[2].rotation.set(0,Math.PI/2,0);
 
@@ -278,21 +348,25 @@ scene.add(grideHelper);
     	  if( i == 0){
     	  document.getElementById('intro').style.display='block';
      	  document.getElementById('container').style.display='block';
+     	  scene.background = new THREE.VideoTexture( video[i+1] );
     	  }
     	  
     	  if( i == 1){
         	  document.getElementById('album1').style.display='block';
          	  document.getElementById('container').style.display='block';
+         	  scene.background = new THREE.VideoTexture( video[i+1] );
          }
     	
     	  if( i == 2){
         	  document.getElementById('album2').style.display='block';
          	  document.getElementById('container').style.display='block';
+         	  scene.background = new THREE.VideoTexture( video[i+1] );
         }
     	  
     	if( i == 3){
         	  document.getElementById('board').style.display='block';
          	  document.getElementById('container').style.display='block';
+         	  scene.background = new THREE.VideoTexture( video[i+1] );
         }
     	  
       	  audioElement.pause();
