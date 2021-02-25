@@ -50,7 +50,7 @@ function del() {
 	*/
 	if (confirm('정말 삭제하시겠습니까?')) {
 		$.ajax({
-			url:'/user/user/delete.do',
+			url:'/MS/user/delete.do',
 			data:{no:${vo.no}},
 			type:'HTML',
 			method:'GET',
@@ -60,7 +60,7 @@ function del() {
 				//console.log(data);
 				if (res == 'true') {
 					alert('정상적으로 삭제되었습니다.');
-					location.href='/user/user/index.do';
+					location.href='/MS/user/index.do';
 				} else {
 					alert('삭제 오류');
 				}

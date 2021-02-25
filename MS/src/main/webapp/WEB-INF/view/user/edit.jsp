@@ -21,7 +21,7 @@ $(function() {
 		}
 		var data = $("#frm").serialize();
 		$.ajax({
-			url:'/user/user/update.do',
+			url:'/MS/user/update.do',
 			data:data,
 			type:'HTML',
 			method:'POST',

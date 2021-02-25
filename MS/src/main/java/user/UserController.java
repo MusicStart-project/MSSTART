@@ -82,10 +82,7 @@ public class UserController {
 		System.out.println("여기는 write.do");
 		return "user/write";
 	}
-	@GetMapping("/user/write2.do")
-	public String write2() {
-		return "user/write2";
-	}
+	
 	
 	@RequestMapping("/user/insert.do")
 	public void insert(UserVo vo, HttpServletResponse res) throws Exception {
@@ -188,7 +185,47 @@ public class UserController {
 	}
 	
 	
+	@GetMapping("/user/write2.do")
+	public String write2() {
+		
+		return "user/write2";
+	}
 	
+	@PostMapping("/user/write2.do")
+	public String kakaologinProcess(UserVo vo, HttpServletRequest req) {
+		/*
+		 세션(session) : 브라우저 단위로 저장되는 저장소		 
+		 
+		 DB에서 아이디 비밀번호로 조회한 결과를 가져오고
+		 결과가 있으면(로그인 성공)
+		 - 세션에 결과객체를 저장
+		 - 목록페이지로 이동
+		 결과값 없으면(로그인 실패)
+		 - 메시지 처리
+		 - 로그인폼으로 이동
+		 */
+		// 사용자가 입력한 아이디와 비밀번호로 DB에서 조회한 결과
+		UserVo uv = userService.login(vo);
+		// 결과 확인
+		if (uv != null) { // 로그인 성공
+			// 세션객체 가져오기
+			HttpSession sess = req.getSession();
+			// 세션객체에 로그인정보 저장
+			sess.setAttribute("authUser", uv);
+			
+			// 위 코드와 동일하게
+			//req.getSession().setAttribute("authUser", uv);
+			String url = "/user/index.do";
+			if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
+				url = req.getParameter("url"); // /user/board/index.do
+			}
+			return "redirect:"+url;
+			
+		} else { // 로그인 실패
+			req.setAttribute("msg", "아이디와 비밀번호가 올바르지 않습니다.");
+			return "redirect:/user/write2.do";
+		}
+	}
 	
 	
 	
