@@ -28,8 +28,13 @@
 	</tr>
 	
 	<tr>
-		<td>첨부파일</td>
+		<!--  <td>첨부파일</td>
 		<td><a href="/MS/common/download.jsp?path=/upload/&r_file=${vo.filename}&o_file=${vo.filename_org}" target="_blank">${vo.filename_org}</a></td>
+		-->
+	 <audio controls>
+ 	 <source src="/MS/upload/${vo.filename}" type="audio/mpeg">
+	<p>Your browser does not support the audio element.</p>
+	</audio>
 	</tr>
 </table>
 <input type="button" value="수정" onclick='location.href="edit.do?no=${vo.no}";'>

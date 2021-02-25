@@ -199,7 +199,6 @@ $(function() {
 		<td>
 			<input type="password" name="pwd" id="login_pwd">
 		</td>
-		
 	</tr>
 </table>
 </form>
