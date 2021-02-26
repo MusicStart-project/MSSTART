@@ -75,6 +75,7 @@ a, button, input, select {
         opacity:.80;
         z-index:1002;
         overflow: auto;
+        
     }
 
 
@@ -84,6 +85,7 @@ a, button, input, select {
 <script src="./js/OrbitControls.js"></script>
 <script src="./js/3Dink.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 
 </head>
 <body>
@@ -137,7 +139,11 @@ a, button, input, select {
 </div>
 
 <div id="board" class="white_content">
-	<iframe id="iframe" style="position: absolute; width:90%;height:90%;"src="http://localhost/MS/admin/board/index.do"></iframe>
+	<iframe id="iframe" style="position: relative;
+         border: none;
+         height: 100%;
+         width: 100%;       
+         "src="http://localhost/MS/admin/board/index.do"></iframe>
     <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';">Close</a>	
 </div>
     
