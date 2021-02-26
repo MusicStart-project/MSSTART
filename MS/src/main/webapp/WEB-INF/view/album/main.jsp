@@ -11,6 +11,12 @@
 <title>Main Page</title>
 <style>
 
+body{
+	margin : 0;
+	overflow-x:hidden;
+	overflow-y:hidden
+}
+
 
 #overlay {
 	position: absolute;
@@ -117,7 +123,7 @@ function album1(){
 	<c:forEach var="vo" items="${list}">
 	<c:if test="${vo.a_no == 1}">
 		<tr>
-		<td onmouseover="this.style.background='gray'" onmouseout="this.style.background='white'"><a href="javascript:void(0)" class="title" onclick = "window.open('album/detail.do?no=${vo.no}','test','width=400, height=800, menubar=no, status=no, toolbar=no');">${vo.title }</a></td>
+		<td onmouseover="this.style.background='#999'" onmouseout="this.style.background='white'"><a href="javascript:void(0)" class="title" onclick = "window.open('album/detail.do?no=${vo.no}','test','width=400, height=800, menubar=no, status=no, toolbar=no');">${vo.title }</a></td>
 		<td style="color : gray; font-size: 13px; text-align: center;">Post Malone</td>
 		<td style="padding : 5%; color : red;" >liked</td>
 
