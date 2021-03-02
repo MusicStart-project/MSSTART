@@ -54,7 +54,7 @@ public class AdminBoardController {
 	@RequestMapping("/admin/board/detail.do")
 	public String detail(HttpServletRequest req, BoardVo vo) {
 		
-		BoardVo uv = boardService.selectOne(vo, false);
+		BoardVo uv = boardService.selectOne(vo, true);
 		List<CommentVo> clist = cService.getList(uv.getNo());
 		
 		req.setAttribute("vo", uv);
@@ -104,7 +104,7 @@ public class AdminBoardController {
 		out.print("<script>");
 		if (boardService.insert(vo)) {
 			out.print("alert('정상적으로 등록되었습니다.');");
-			out.print("location.href='/user/admin/board/index.do';");
+			out.print("location.href='/MS/admin/board/index.do';");
 		} else {
 			out.print("alert('등록실패.');");
 			out.print("history.back();");
@@ -156,7 +156,7 @@ public class AdminBoardController {
 		out.print("<script>");
 		if (boardService.update(vo)) {
 			out.print("alert('정상적으로 수정되었습니다.');");
-			out.print("location.href='/user/admin/board/detail.do?no="+vo.getNo()+"';");
+			out.print("location.href='/MS/admin/board/detail.do?no="+vo.getNo()+"';");
 		} else {
 			out.print("alert('수정실패.');");
 			out.print("history.back();");
@@ -178,7 +178,7 @@ public class AdminBoardController {
 		out.print("<script>");
 		if (cService.insert(vo)) {
 			out.print("alert('정상적으로 등록되었습니다.');");
-			out.print("location.href='/user/admin/board/detail.do?no="+vo.getBoard_no()+"';");
+			out.print("location.href='/MS/admin/board/detail.do?no="+vo.getBoard_no()+"';");
 		} else {
 			out.print("alert('등록실패.');");
 			out.print("history.back();");
@@ -194,7 +194,7 @@ public class AdminBoardController {
 		out.print("<script>");
 		if (cService.delete(vo.getNo())) {
 			out.print("alert('정상적으로 삭제되었습니다.');");
-			out.print("location.href='/user/admin/board/detail.do?no="+vo.getBoard_no()+"';");
+			out.print("location.href='/MS/admin/board/detail.do?no="+vo.getBoard_no()+"';");
 		} else {
 			out.print("alert('삭제실패.');");
 			out.print("history.back();");
@@ -223,7 +223,7 @@ public class AdminBoardController {
 		out.print("<script>");
 		if (delCount > 0) {
 			out.print("alert('총 "+nos.length+"건중에 "+delCount+"건이 삭제되었습니다.');");
-			out.print("location.href='/user/admin/board/index.do';");
+			out.print("location.href='/MS/admin/board/index.do';");
 		} else {
 			out.print("alert('삭제실패.');");
 			out.print("history.back();");
@@ -251,7 +251,7 @@ public class AdminBoardController {
 		out.print("<script>");
 		if (delCount > 0) {
 			out.print("alert('총 "+vo.getNos().length+"건중에 "+delCount+"건이 삭제되었습니다.');");
-			out.print("location.href='/user/admin/board/index.do';");
+			out.print("location.href='/MS/admin/board/index.do';");
 		} else {
 			out.print("alert('삭제실패.');");
 			out.print("history.back();");

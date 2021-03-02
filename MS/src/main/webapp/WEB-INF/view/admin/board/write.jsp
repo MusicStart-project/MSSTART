@@ -55,7 +55,7 @@ function formCheck() {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [쓰기]</h2>
+					<h2>작성</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -63,7 +63,7 @@ function formCheck() {
 					<div id="bbs">
 						<div id="bread">
 							<form action="insert.do" onsubmit="return formCheck()" method="post" name="frm" id="frm" action="" enctype="multipart/form-data">
-							<input type="hidden" name="user_no" value=${vo.user_no }>
+							<input type="hidden" name="user_no" value="${authUser.no }">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" summary="관리자 관리 기본내용입니다.">
 								<colgroup>
 									<col width="10%" />
