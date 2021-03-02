@@ -17,7 +17,7 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [읽기]</h2>
+					<h2>게시판</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -54,53 +54,7 @@
 												</div>
 										</td>
 									</tr>
-									<tr>
-										<td colspan="11">
-											<div class="reple">
-												<form name="delete_frm" id="delete_frm" action="/manage/board/comment/process.jsp" method="post">
-													<c:if test="${empty clist }">
-													<dl>
-														<dd class="bbsno">
-															댓글이 없습니다.
-														</dd>
-													</dl>
-													</c:if>
-													<c:if test="${!empty clist }">
-													<c:forEach var="vo" items="${clist}">
-													<dl>
-														<dt>${vo.regdate }</dt>
-														<dd>${vo.content }
-															<span class="reEdit">
-																<strong class="btn_in inbtn"><input type="button" class="r_delete" value="삭제" onclick="goDel(${vo.no});"/></strong>
-															</span>
-														</dd>
-													</dl>
-													</c:forEach>
-													</c:if>
-													<input type="hidden" name="no" id="no" value=""/>
-													<input type="hidden" name="url"	id="url" value="<%=request.getAttribute("javax.servlet.forward.request_uri")%>"/>
-												</form>
-												<div class="rego">
-													<form name="comment_frm" id="comment_frm" action="commentInsert.do" method="post">
-														<dl>
-															<dd>
-																<textarea class="focus_zone" name="content" id="contents" title="내용을 입력해주세요"></textarea>
-																<div class="btn">
-																	<div class="btnLeft">
-																		<a class="btns" style="cursor:pointer;" onclick="$('#comment_frm').submit();"><strong>댓글입력</strong></a>
-																	</div>					
-																</div>					
-																<!--//btnAll--> 
-															</dd>
-														</dl>
-														<input type="hidden" name="board_no" value="${vo.no }">
-														<input type="hidden" name="user_no" value="${vo.user_no }">
-													</form>
-												</div>
-												<!-- //rego -->
-											</div>
-										</td>
-									</tr>
+									
 								</tbody>
 							</table>
 							<div class="btn">

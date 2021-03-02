@@ -54,7 +54,7 @@ public class AdminBoardController {
 	@RequestMapping("/admin/board/detail.do")
 	public String detail(HttpServletRequest req, BoardVo vo) {
 		
-		BoardVo uv = boardService.selectOne(vo, false);
+		BoardVo uv = boardService.selectOne(vo, true);
 		List<CommentVo> clist = cService.getList(uv.getNo());
 		
 		req.setAttribute("vo", uv);

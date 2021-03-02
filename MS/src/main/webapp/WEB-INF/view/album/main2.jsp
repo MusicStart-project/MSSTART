@@ -16,6 +16,7 @@
 
 #intro{
 	text-align: center;
+	background-color: grey;
 }
 
 #intro_font{
@@ -72,7 +73,7 @@ a, button, input, select {
         padding: 16px;
         border: 16px solid rgb(21, 34, 54);
         background-color: rgb(255, 255, 255);
-        opacity:.80;
+        
         z-index:1002;
         overflow: auto;
         
@@ -103,6 +104,7 @@ a, button, input, select {
 			<td width=50% valign="top"> Austin Richard Post (born July 4, 1995), known professionally as Post Malone, is an American rapper, singer, songwriter, 
 			and record producer. Known for his introspective songwriting and laconic vocal style, Malone has gained acclaim for bending a range of genres including hip hop
 			, R&B, pop, trap, rap rock, and cloud rap. He first attained recognition in 2015 following the release of his debut single "White Iverson".
+			<br>
 			 He subsequently signed a recording contract with Republic Records. His stage name is derived from his last name and from a rap name generator
 			 Malone's debut album Stoney (2016) featured the hit single "Congratulations",
 			 and set the record for most weeks on the US Billboard Top R&B/Hip-Hop Albums chart, with 77. 
@@ -260,7 +262,7 @@ scene.add(grideHelper);
 	box[2].rotation.set(0,Math.PI/2,0);
 
 	// 자유 게시판 3
-	box[3] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/Circles.PNG'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
+	box[3] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/board.jpg'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
 	box[3].position.set(60.1,0,0);
 	
 	for (var i = 0; i<num; i++){

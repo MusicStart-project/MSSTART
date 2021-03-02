@@ -187,20 +187,10 @@ $(function() {
 
 <form action="write2.do" method="post" id="loginFrm">
 <input type="hidden" name="url" value="${param.url }"/>
-<table border="1">
-	<tr>
-		<td>아이디</td>
-		<td>
-			<input type="text" name="id" id="login_id">
-		</td>
-	</tr>
-	<tr>
-		<td>비밀번호</td>
-		<td>
-			<input type="password" name="pwd" id="login_pwd">
-		</td>
-	</tr>
-</table>
+
+<input type="hidden" name="id" id="login_id">
+<input type="hidden" name="pwd" id="login_pwd">
+
 </form>
 
 </body>
