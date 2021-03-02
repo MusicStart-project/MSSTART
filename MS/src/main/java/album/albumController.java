@@ -27,6 +27,7 @@ public class albumController {
 
 	@Autowired
 	private albumService albumService;
+	private likedService likedService;
 	
 	/*
 	@Autowired
@@ -171,16 +172,34 @@ public class albumController {
 	}
 	
 	@RequestMapping("/main.do")
-	public String webgl(HttpServletRequest req, albumVo vo) {
+	public String webgl(HttpServletRequest req, albumVo vo, likedVo lvo, HttpServletResponse res) throws IOException{
 		
 		List<albumVo> list = albumService.getList(vo);
 		req.setAttribute("list", list);
 		req.setAttribute("vo", vo);
+		
+		
 
 		return "album/main";
 	}
 	@RequestMapping("/main2.do")
 	public String webgl2(HttpServletRequest req, albumVo vo) {
+		
+		return "album/main2";
+	}
+	
+	@RequestMapping("/liked.do")
+	public String likedinsert(HttpServletRequest req, likedVo lvo, HttpServletResponse res) throws IOException{
+		
+			PrintWriter out = res.getWriter();
+			out.print("<script>");
+			if (likedService.insert(lvo)) {
+				out.print("alert('좋아요!');");
+			} else {
+				out.print("alert('실패.');");
+			}
+			out.print("</script>");
+			out.flush();
 		
 		return "album/main2";
 	}

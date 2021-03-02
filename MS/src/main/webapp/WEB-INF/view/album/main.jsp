@@ -37,6 +37,10 @@ body{
 a, button, input, select {
 	pointer-events: auto;
 }
+talbe{
+	frame=void
+	
+	}
 a.title:hover {
    text-decoration: underline; 
 }
@@ -77,7 +81,6 @@ a.title:hover {
         overflow: auto;
     }
     
-     
     .album_content {
         display: none;
         position: absolute;
@@ -86,11 +89,33 @@ a.title:hover {
         width: 33%;
         height: 70%;
         padding: 16px;
-        border: 16px solid rgb(21, 34, 54);
+        border: 12px solid rgb(50, 50, 50);
         background-color: rgb(255, 255, 255);
         opacity:.80;
         z-index:1002;
         overflow: auto;
+    }
+    
+    .song{
+    	height:50px;
+    	padding-left:11px;
+    	text-align:left;
+    	color:#232323;
+    	font-family:-apple-system,BlinkMacSystemFont,AppleSDGothicNeo,Helvetica,"\B9D1\C740   \ACE0\B515",Malgun Gothic,"\B3CB\C6C0",Dotum,sans-serif;
+    	}
+    	
+    .singer{
+    	text-align:center;
+    	color : #808080;
+    	font-size: 13px;
+    	text-align: center;
+    	font-family:-apple-system,BlinkMacSystemFont,AppleSDGothicNeo,Helvetica,"\B9D1\C740   \ACE0\B515",Malgun Gothic,"\B3CB\C6C0",Dotum,sans-serif;
+    	
+    }
+    
+    .likebut{
+    	width:40px;
+    	text-align: center;
     }
 </style>
 <script src="./js/three.js"></script>
@@ -98,13 +123,26 @@ a.title:hover {
 <script src="./js/3Dink.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script>
-function album1(){
-	
-	
-	
+/*
+$(function(){
+	// 추천버튼 클릭시(추천 추가 또는 추천 제거)
+	$("#favorite").click(function(){
+		$.ajax({
+			url: "/expro/RecUpdate.do",
+            type: "POST",
+            data: {
+                music_no: ${vo.no},
+                user_no: '${authUser.no}'
+            },
+            success: function () {
+		        recCount();
+            },
+		})
+	})
 }
+);
 
-
+*/
 </script>
 
 </head>
@@ -119,23 +157,52 @@ function album1(){
 
 <div id="album1" class="album_content" >
 	<div id=album1_list>
-	<table style="width=100%;">
+	<table border="0" width="100%" cellspacing="0">
 	<c:forEach var="vo" items="${list}">
 	<c:if test="${vo.a_no == 1}">
-		<tr>
-		<td onmouseover="this.style.background='#999'" onmouseout="this.style.background='white'"><a href="javascript:void(0)" class="title" onclick = "window.open('album/detail.do?no=${vo.no}','test','width=400, height=800, menubar=no, status=no, toolbar=no');">${vo.title }</a></td>
-		<td style="color : gray; font-size: 13px; text-align: center;">Post Malone</td>
-		<td style="padding : 5%; color : red;" >liked</td>
-
+		<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
+		<td class = "song"><a href="javascript:void(0)" class="title" onclick = "window.open('album/detail.do?no=${vo.no}','test','width=400, height=800, menubar=no, status=no, toolbar=no');">${vo.title }</a></td>
+		<td class ="singer">Post Malone</td>
+		<td class="likebut" >
+		<input type="hidden" id="music_no" name="no" value="${vo.no }">		
+			<c:if test="${!empty authUser }">
+			<span id="favorite" style="color:red;">♥</span>
+			</c:if>
+			<c:if test="${empty authUser }">
+			<span id="favorite"  style="color:red;">♡</span>
+			</c:if></td>
+		</tr>
 	</c:if>
 	</c:forEach>
+		
 	</table>
 
 	</div>
     <a href = "javascript:void(0)" onclick = "document.getElementById('album1').style.display='none';">Close</a>
 	</div>
 
-<div id="album2" class="white_content"><p>album2</p>
+<div id="album2" class="album_content">
+<div id=album2_list>
+	<table border="0" width="100%" cellspacing="0">
+	<c:forEach var="vo" items="${list}">
+	<c:if test="${vo.a_no == 2}">
+		<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
+		<td class="song"><a href="javascript:void(0)" class="title" onclick = "window.open('album/detail.do?no=${vo.no}','test','width=400, height=800, menubar=no, status=no, toolbar=no');">${vo.title }</a></td>
+		<td style="color : gray; font-size: 13px; text-align: center;" class="singer">Post Malone</td>
+		<td class="likebut" >
+		<input type="hidden" id="music_no" name="no" value="${vo.no }">		
+			<c:if test="${!empty authUser }">
+			<span id="favorite" style="color:red;">♥</span>
+			</c:if>
+			<c:if test="${empty authUser }">
+			<span id="favorite"  style="color:red;">♡</span>
+			</c:if></th>
+		</tr>
+	</c:if>
+	</c:forEach>
+	</table>
+
+	</div>
     <a href = "javascript:void(0)" onclick = "document.getElementById('album2').style.display='none';">Close</a>
 </div>
 
@@ -354,24 +421,36 @@ scene.add(grideHelper);
     	  if( i == 0){
     	  document.getElementById('intro').style.display='block';
      	  document.getElementById('container').style.display='block';
+     	  document.getElementById('album2').style.display='none'
+     	  document.getElementById('album1').style.display='none'
+     	  document.getElementById('board').style.display='none'
      	  scene.background = new THREE.VideoTexture( video[i+1] );
     	  }
     	  
     	  if( i == 1){
         	  document.getElementById('album1').style.display='block';
          	  document.getElementById('container').style.display='block';
+         	  document.getElementById('album2').style.display='none'
+              document.getElementById('board').style.display='none'
+              document.getElementById('intro').style.display='none'
          	  scene.background = new THREE.VideoTexture( video[i+1] );
          }
     	
     	  if( i == 2){
         	  document.getElementById('album2').style.display='block';
          	  document.getElementById('container').style.display='block';
+         	  document.getElementById('intro').style.display='none'
+              document.getElementById('album1').style.display='none'
+              document.getElementById('board').style.display='none'
          	  scene.background = new THREE.VideoTexture( video[i+1] );
         }
     	  
     	if( i == 3){
         	  document.getElementById('board').style.display='block';
          	  document.getElementById('container').style.display='block';
+         	  document.getElementById('album2').style.display='none'
+              document.getElementById('album1').style.display='none'
+              document.getElementById('intro').style.display='none'
          	  scene.background = new THREE.VideoTexture( video[i+1] );
         }
     	  

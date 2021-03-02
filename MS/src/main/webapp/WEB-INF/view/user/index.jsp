@@ -121,7 +121,7 @@ UserVo authUser = (UserVo)session.getAttribute("authUser");
 로그인전
 <% } %>
 <% if (authUser != null) { %>
-로그인후 <%=authUser.getName() %>님 안녕하세요!
+로그인후 <%=authUser.getNo() %>님 안녕하세요!
 <% } %>
 </body>
 </html>

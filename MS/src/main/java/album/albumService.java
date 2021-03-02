@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 public class albumService {
 
 	@Autowired
-	private albumDao boardDao;
+	private albumDao albumdao;
 	
 	// 총갯수와 총페이지수를 구하는 메서드
 	public int[] getRowPageCount(albumVo vo) {
-		int totCount = boardDao.count(vo); // 총갯수
+		int totCount = albumdao.count(vo); // 총갯수
 		// 총페이지 수 = 총갯수/페이지당갯수, 만약 총갯수에서 페이지당갯수로 나눈 나머지가 있으면 +1
 		int totPage = totCount / vo.getPageRow();
 		if (totCount % vo.getPageRow() > 0) totPage++;
@@ -38,14 +38,14 @@ public class albumService {
 		// limit 시작값 = (사용자가 요청한 페이지번호 - 1) * 페이지당갯수
 		//int startIdx = (vo.getReqPage() - 1) * vo.getPageRow();
 		//vo.setStartIdx((vo.getReqPage() - 1) * vo.getPageRow());
-		return boardDao.selectList(vo);
+		return albumdao.selectList(vo);
 	}
 	public albumVo selectOne(albumVo uv, boolean isUser) {
 		
-		return boardDao.selectOne(uv);
+		return albumdao.selectOne(uv);
 	}
 	public boolean insert(albumVo vo) {
-		int r = boardDao.insert(vo);
+		int r = albumdao.insert(vo);
 		if (r > 0) {
 			return true;
 		} else {
@@ -53,7 +53,7 @@ public class albumService {
 		}
 	}
 	public boolean update(albumVo vo) {
-		int r = boardDao.update(vo);
+		int r = albumdao.update(vo);
 		if (r > 0) {
 			return true;
 		} else {
@@ -62,7 +62,7 @@ public class albumService {
 	}
 	
 	public boolean delete(albumVo vo) {
-		int r = boardDao.delete(vo);
+		int r = albumdao.delete(vo);
 		if (r > 0) {
 			return true;
 		} else {
