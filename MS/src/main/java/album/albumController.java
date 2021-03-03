@@ -189,8 +189,12 @@ public class albumController {
 	}
 	
 	@RequestMapping("/liked.do")
-	public String likedinsert(HttpServletRequest req, likedVo lvo, HttpServletResponse res) throws IOException{
-		
+	public void likedinsert(HttpServletRequest req, likedVo lvo, HttpServletResponse res) throws IOException{
+			int music_no = Integer.parseInt(req.getParameter("music_no"));
+			int user_no = Integer.parseInt(req.getParameter("user_no"));
+			
+			System.out.println("음악 번호:"+music_no);
+			System.out.println("회원 번호:"+user_no);
 			PrintWriter out = res.getWriter();
 			out.print("<script>");
 			if (likedService.insert(lvo)) {
@@ -200,10 +204,8 @@ public class albumController {
 			}
 			out.print("</script>");
 			out.flush();
-		
-		return "album/main2";
 	}
-	
+
 /*	
 	@RequestMapping("/album/commentInsert.do")
 	public void commentInsert(CommentVo vo, HttpServletRequest req, HttpServletResponse res, MultipartFile file) throws Exception {
