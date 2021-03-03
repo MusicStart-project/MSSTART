@@ -11,6 +11,27 @@
 <title>Main Page</title>
 <style>
 
+#intro_content{
+	position: absolute;
+	left:0%;
+}
+
+#intro{
+	text-align: center;
+	background-color: grey;
+}
+
+#intro_font{
+	font-size : 300%;
+	font-family: 'Linux Libertine','Georgia','Times',serif;
+}
+#intro_img{
+    width: auto; height: auto;
+    max-width: 80%;
+    max-height: 80%;
+
+}
+
 body{
 	margin : 0;
 	overflow-x:hidden;
@@ -70,17 +91,17 @@ a.title:hover {
         display: none;
         position: absolute;
         top: 25%;
-        left: 25%;
+        left: 22.627%;
         width: 50%;
         height: 50%;
         padding: 16px;
         border: 16px solid rgb(21, 34, 54);
         background-color: rgb(255, 255, 255);
-        opacity:.80;
+        
         z-index:1002;
         overflow: auto;
+        
     }
-    
     .album_content {
         display: none;
         position: absolute;
@@ -154,8 +175,33 @@ $(function(){
 <body>
 
 <div id="intro" class="white_content">
-	<p>intro</p>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('intro').style.display='none';">Close</a>
+	<div id= "intro_content" style="position: absolute;left:0%; ">	
+	<table>
+		<tr>
+			<td colspan="2" align="center" id=intro_font>Post Malone</td>
+		</tr>
+		<tr> 
+			<td colspan="2" align="center" ><img src=./img/intro_img.jpg id="intro_img"></td>
+		</tr>
+		<tr> 
+			<td width=50% valign="top"> Austin Richard Post (born July 4, 1995), known professionally as Post Malone, is an American rapper, singer, songwriter, 
+			and record producer. Known for his introspective songwriting and laconic vocal style, Malone has gained acclaim for bending a range of genres including hip hop
+			, R&B, pop, trap, rap rock, and cloud rap. He first attained recognition in 2015 following the release of his debut single "White Iverson".
+			<br>
+			 He subsequently signed a recording contract with Republic Records. His stage name is derived from his last name and from a rap name generator
+			 Malone's debut album Stoney (2016) featured the hit single "Congratulations",
+			 and set the record for most weeks on the US Billboard Top R&B/Hip-Hop Albums chart, with 77. 
+			 </td>
+			<td width=50% valign="top"> His second album, Beerbongs & Bentleys (2018), debuted at number one on the US Billboard 200 and broke several streaming records upon release. 
+			  Featuring the US Billboard Hot 100 number-one singles "Rockstar" and "Psycho", it was nominated for Album of the Year at the 2018 Grammy Awards.
+			   In 2018, Malone collaborated with American singer-rapper Swae Lee on the song "Sunflower" for the soundtrack to the film Spider-Man: Into the Spider-Verse,
+			    which reached the top of the Billboard Hot 100. His third album, Hollywood's Bleeding, explored indie pop and was released in late 2019.
+			     It became his second number-one album on the Billboard 200 and featured the Hot 100 number-one single "Circles", which spent a record 39 weeks in the top ten on the Hot 100.</td>
+		</tr>
+	</table>
+
+    <a href = "javascript:void(0)" onclick = "document.getElementById('intro').style.display='none';" align="right">Close</a>
+	</div>
 </div>
 
 <div id="container" class="black_overlay"></div>
@@ -166,7 +212,7 @@ $(function(){
 	<c:forEach var="vo" items="${list}">
 	<c:if test="${vo.a_no == 1}">
 		<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
-		<td class = "song"><a href="javascript:void(0)" class="title" onclick = "window.open('album/detail.do?no=${vo.no}','test', 'menubar=no, status=no, toolbar=no, location=no, resizable=no, width=400, height=800');">${vo.title }</a></td>
+		<td class = "song"><a href="javascript:void(0)" class="title" onclick = "window.open('album/detail.do?no=${vo.no}','test', 'menubar=no, status=no, toolbar=no, location=no, resizable=no, width=400, height=650');">${vo.title }</a></td>
 		<td class ="singer">Post Malone</td>
 		<td class="likebut" >
 		<input type="hidden" id="music_no" name="no" value="${vo.no }">		
@@ -192,7 +238,7 @@ $(function(){
 	<c:forEach var="vo" items="${list}">
 	<c:if test="${vo.a_no == 2}">
 		<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
-		<td class="song"><a href="javascript:void(0)" class="title" onclick = "window.open('album/detail.do?no=${vo.no}','test', 'menubar=no, status=no, toolbar=no, location=no, resizable=no, width=400, height=800');">${vo.title }</a></td>
+		<td class="song"><a href="javascript:void(0)" class="title" onclick = "window.open('album/detail.do?no=${vo.no}','test', 'menubar=no, status=no, toolbar=no, location=no, resizable=no, width=400, height=650');">${vo.title }</a></td>
 		<td style="color : gray; font-size: 13px; text-align: center;" class="singer">Post Malone</td>
 		<td class="likebut" >
 		<input type="hidden" id="music_no" name="no" value="${vo.no }">		
@@ -211,8 +257,13 @@ $(function(){
     <a href = "javascript:void(0)" onclick = "document.getElementById('album2').style.display='none';">Close</a>
 </div>
 
-<div id="board" class="white_content"><p>board</p>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';">Close</a>
+<div id="board" class="white_content">
+	<iframe id="iframe" style="position: relative;
+         border: none;
+         height: 100%;
+         width: 100%;
+        "src="http://localhost/MS/admin/board/index.do"></iframe>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';">Close</a>	
 </div>
     
 <audio loop id="music" preload="auto" style="display: none">
@@ -286,8 +337,6 @@ scene.add(grideHelper);
 	
 	
 
-	
-	  
 	//camera controler
 	function control(){    
 		controls.enablePan = false;
@@ -355,7 +404,7 @@ scene.add(grideHelper);
 	box[2].rotation.set(0,Math.PI/2,0);
 
 	// 자유 게시판 3
-	box[3] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/Circles.PNG'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
+	box[3] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/board.jpg'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
 	box[3].position.set(60.1,0,0);
 	
 	for (var i = 0; i<num; i++){

@@ -69,9 +69,11 @@ function moveWrite() {
 							</table>
 							</form>
 							<div class="btn">
+								<c:if test="${authUser.no == 1}">
 								<div class="btnLeft">
 									<a class="btns" href="#" onclick="$('#frm').submit();"><strong>삭제</strong> </a>
 								</div>
+								</c:if>
 								<div class="btnRight">
 									<a class="wbtn" href="write.do"><strong>등록</strong> </a>
 								</div>

@@ -59,6 +59,8 @@
 			<mvc:mapping path="/user/update.do"/>
 			<mvc:mapping path="/user/delete.do"/>
 			<mvc:mapping path="/album/**"/>
+			<mvc:mapping path="/admin/**"/>
+			<mvc:exclude-mapping path="/admin/board/index.do"/>
 			<mvc:exclude-mapping path="/album/index.do"/>
 			<!-- 
 			한꺼번에 url 매핑

@@ -23,7 +23,6 @@ vertical-align: middle;
 }
 
 .img_box{
-
 --swiper-theme-color: #007aff;
 --swiper-navigation-size: 44px;
 font-family: -apple-system,BlinkMacSystemFont,AppleSDGothicNeo,Helvetica,"\B9D1\C740   \ACE0\B515",Malgun Gothic,"\B3CB\C6C0",Dotum,sans-serif;

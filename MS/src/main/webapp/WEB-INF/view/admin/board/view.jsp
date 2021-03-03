@@ -54,17 +54,64 @@
 												</div>
 										</td>
 									</tr>
-									
+									<tr>
+										<td colspan="11">
+											<div class="reple">
+												<form name="delete_frm" id="delete_frm" action="/manage/board/comment/process.jsp" method="post">
+													<c:if test="${empty clist}">
+													<dl>
+														<dd class="bbsno">
+															댓글이 없습니다.
+														</dd>
+													</dl>
+													</c:if>
+													<c:forEach var="vo" items="${clist }">
+													<dl>
+														<dt><strong>${authUser.name }</strong> ${vo.regdate }</dt>
+														<dd>${vo.content }
+															<span class="reEdit">
+																<strong class="btn_in inbtn"><input type="button" class="r_delete" value="삭제" onclick="goDel(${vo.no})"/></strong>
+															</span>
+														</dd>
+													</dl>
+													</c:forEach>
+													<input type="hidden" name="no" id="no" value=""/>
+													<input type="hidden" name="url"	id="url" value="<%=request.getAttribute("javax.servlet.forward.request_uri")%>"/>
+												</form>
+												<div class="rego">
+													<form name="comment_frm" id="comment_frm" action="commentInsert.do" method="post">
+														<dl>
+															<dd>
+																<textarea class="focus_zone" name="content" id="contents" title="내용을 입력해주세요"></textarea>
+																<div class="btn">
+																	<div class="btnLeft">
+																		<a class="btns" style="cursor:pointer;" onclick="$('#comment_frm').submit();"><strong>댓글입력</strong></a>
+																	</div>					
+																</div>					
+																<!--//btnAll--> 
+															</dd>
+														</dl>
+														<input type="hidden" name="board_no" value="${vo.no }">
+														<input type="hidden" name="user_no" value="${authUser.no }">
+													</form>
+												</div>
+												<!-- //rego -->
+											</div>
+										</td>
+									</tr>
 								</tbody>
 							</table>
+							<input type="hidden" name="user_no" value="${vo.user_no }"/>
 							<div class="btn">
 								<div class="btnLeft">
 									<a class="btns" href="index.do"><strong>목록</strong></a>
 								</div>
+								<c:if test="${authUser.no == vo.user_no }">
 								<div class="btnRight">
 									<a class="btns" style="cursor:pointer;" href="edit.do?no=${vo.no }"><strong>수정</strong></a>
 									<a class="btns" style="cursor:pointer;" href="javascript:;" onclick="del();"><strong>삭제</strong></a>
 								</div>
+								</c:if>
 							</div>
 							<!--//btn-->
 						</div>
@@ -113,7 +160,7 @@ function del() {
 
 function goDel(no) {
 	if (confirm('삭제하시겠습니까?')) {
-		location.href='/user/admin/board/commentDelete.do?no='+no+'&board_no=${vo.no}';
+		location.href='/MS/admin/board/commentDelete.do?no='+no+'&board_no=${vo.no}';
 	}
 }
 </script>

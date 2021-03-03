@@ -19,7 +19,7 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 			res.setContentType("text/html; charset=utf-8"); // 한글처리
 			PrintWriter out = res.getWriter();
 			out.print("<script>");
-			out.print("alert('관리자 로그인 후 사용가능합니다.');");
+			out.print("alert('로그인 후 사용가능합니다.');");
 			out.print("location.href='/MS/user/login.do';");
 			out.print("</script>");
 			out.flush();
