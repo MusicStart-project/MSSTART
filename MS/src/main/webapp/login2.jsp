@@ -2,48 +2,55 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <head>
+        <title>로그인 / 회원가입 폼 템플릿</title>
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/loginform.css" type="text/css">
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="form-wrap">
+                <div class="button-wrap">
+                    <div id="btn"></div>
+                    <button type="button" class="togglebtn" onclick="login()">LOG IN</button>
+                    <button type="button" class="togglebtn" onclick="register()">REGISTER</button>
+                </div>
+                <div class="social-icons">
+                    <img src="img/fb.png" alt="facebook">
+                    <img src="img/tw.png" alt="twitter">
+                    <img src="img/gl.png" alt="google">
+                </div>
+                <form id="login" action="" class="input-group">
+                    <input type="text" class="input-field" placeholder="User name or Email" required>
+                    <input type="password" class="input-field" placeholder="Enter Password" required>
+                    <input type="checkbox" class="checkbox"><span>Remember Password</span>
+                    <button class="submit">Login</button>
+                </form>
+                <form id="register" action="" class="input-group">
+                    <input type="text" class="input-field" placeholder="User name or Email" required>
+                    <input type="email" class="input-field" placeholder="Your Email" required>
+                    <input type="password" class="input-field" placeholder="Enter Password" required>
+                    <input type="checkbox" class="checkbox"><span>Terms and conditions</span>
+                    <button class="submit">REGISTER</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            var x = document.getElementById("login");
+            var y = document.getElementById("register");
+            var z = document.getElementById("btn");
+            
+            
+            function login(){
+                x.style.left = "50px";
+                y.style.left = "450px";
+                z.style.left = "0";
+            }
 
-<script type='text/javascript'>
-Kakao.init('f6434329e433f642218a332bfb4f5b48');
-
-Kakao.Auth.login({
-	success: function(authObj) {
-	
-		Kakao.API.request({
-			url: '/v2/user/me',
-			success: function(res) {
-				console.log(res);
-				var id = res.id;
-				var email = res.kakao_account.email;
-				var html = id + '<BR>' + email ;
-				$("#id").val(id);
-				$("#email").val(email);
-				//$('body').append(html);
-			}
-		
-		})
-		 console.log(authObj);
-		 var token = authObj.access_token;
-		},
-		fail: function(err){
-			alert(JSON.stringify(err));
-		}
-	});
-	//$("#id").val('안녕하세요');			
-</script>
-
-
-<input type="text" name="id" id="id" readonly>
-<input type="text" name="email" id="email" readonly>
-
-
-</body>
-</html>
+            function register(){
+                x.style.left = "-400px";
+                y.style.left = "50px";
+                z.style.left = "110px";
+            }
+        </script>
+    </body>
+</html> 

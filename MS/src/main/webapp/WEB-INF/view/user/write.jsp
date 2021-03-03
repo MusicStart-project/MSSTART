@@ -1,11 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Sign Up</title>
+
+    <!-- Icons font CSS-->
+    <link href="<%=request.getContextPath()%>/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="<%=request.getContextPath()%>/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="<%=request.getContextPath()%>/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="<%=request.getContextPath()%>/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet" media="all">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
 // 버튼에 이벤트를 거는 방식 (일반버튼)
 /*
@@ -178,40 +197,84 @@ $(function() {
 </head>
 <body>
 <form action="insert.do" method="post" id="frm" onsubmit="return false;">
-<table border="1">
-	<tr>
-		<td>아이디</td>
-		<td>
-			<input type="text" name="id" id="id"><br>
-			<span id="idMsg">아이디를 입력하세요</span>
-		</td>
-	</tr>
-	<tr>
-		<td>비밀번호</td>
-		<td><input type="password" name="pwd" id="pwd"></td>
-	</tr>
-	<tr>
-		<td>이름</td>
-		<td><input type="text" name="name" id="name"></td>
-	</tr>
-	<tr>
-		<td>이메일</td>
-		<td><input type="text" name="email"></td>
-	</tr>
-	<tr>
-		<td>연락처</td>
-		<td><input type="text" name="tel"></td>
-	</tr>
-	<tr>
-		<td>주소</td>
-		<td>
-			<input type="text" name="zipcode" id="zipcode" size="5" readonly><input type="button" value="우편번호" onclick="zip_api();"><br>
-			<input type="text" name="addr1" id="addr1" readonly><br>
-			<input type="text" name="addr2" id="addr2">
-		</td>
-	</tr>
-</table>
-<input type="submit" value="등록" id="submitBtn">
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Registration Form</h2>
+                    <form method="POST">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Id</label>
+                                    <input class="input--style-4" type="text" name="id" id="id">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Password</label>
+                                    <input class="input--style-4" type="password" name="pwd" id="pwd">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Name</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4" type="text" name="name" id="name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Email</label>
+                                    <input class="input--style-4" type="text" name="email">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Phone Number</label>
+                                    <input class="input--style-4" type="text" name="tel">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Address</label>
+                            <div class="input-group">
+                            	<div>
+                            		<input class="input--style-4 zip" id="zipcode1" type="text" name="zipcode" id="zipcode" size="5"  readonly>
+                            		<input class="input--style-4 zip" id="zipcode2" type="button" value="Zip code" onclick="zip_api();"><br>
+                            	</div>
+                                <input class="input--style-4 zip" type="text" name="addr1" id="addr1" readonly><br>
+								<input class="input--style-4 zip" type="text" name="addr2" id="addr2">
+                            </div>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit" id ="submitBtn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
-</body>
-</html>
+<!-- Jquery JS-->
+<script src="<%=request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+<!-- Vendor JS-->
+<script src="<%=request.getContextPath()%>/vendor/select2/select2.min.js"></script>
+<script src="<%=request.getContextPath()%>/vendor/datepicker/moment.min.js"></script>
+<script src="<%=request.getContextPath()%>/vendor/datepicker/daterangepicker.js"></script>
+
+<!-- Main JS-->
+<script src="<%=request.getContextPath()%>/js/global.js"></script><div class="daterangepicker dropdown-menu ltr single opensright"><div class="calendar left single" style="display: block;"><div class="daterangepicker_input"><input class="input-mini form-control" type="text" name="daterangepicker_start" value="" style="display: none;"><i class="fa fa-calendar glyphicon glyphicon-calendar" style="display: none;"></i><div class="calendar-time" style="display: none;"><div></div><i class="fa fa-clock-o glyphicon glyphicon-time"></i></div></div><div class="calendar-table"></div></div><div class="calendar right" style="display: none;"><div class="daterangepicker_input"><input class="input-mini form-control" type="text" name="daterangepicker_end" value="" style="display: none;"><i class="fa fa-calendar glyphicon glyphicon-calendar" style="display: none;"></i><div class="calendar-time" style="display: none;"><div></div><i class="fa fa-clock-o glyphicon glyphicon-time"></i></div></div><div class="calendar-table"></div></div><div class="ranges" style="display: none;"><div class="range_inputs"><button class="applyBtn btn btn-sm btn-success" disabled="disabled" type="button">Apply</button> <button class="cancelBtn btn btn-sm btn-default" type="button">Cancel</button></div></div></div>
+
+
+
+
+<!-- end document--></body>

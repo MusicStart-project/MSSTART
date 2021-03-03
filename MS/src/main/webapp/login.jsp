@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>회원 로그인</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 <c:if test="${!empty msg}">
 	alert('${msg}');
 </c:if>
 	$(function() {
-		$("#btn").click(function(){
+		$("#button").click(function(){
 			if ($("#id").val().trim() == '') {
 				alert('아이디를 입력하세요');
 				$("#id").focus();
@@ -19,6 +20,11 @@
 			}
 			if ($("#pwd").val().trim() == '') {
 				alert('비밀번호를 입력하세요');
+				$("#pwd").focus();
+				return false;
+			}
+			if($("#pwd").val().length <8){
+				alert('비밀번호는 8자 이상입니다.');
 				$("#pwd").focus();
 				return false;
 			}
@@ -55,31 +61,35 @@ $(function() {
            		console.log(JSON.stringify(authObj));
 
 				Kakao.API.request({
-					url: '/v2/user/me',
+					url: '/user/write2.do',
 					success: function(res) {
-				
+
 						console.log('kakao id : '+res.id);
 						console.log('kakao email : '+res.kakao_account.email);
 						console.log('kakao birthday : '+res.kakao_account.birthday);
 						console.log('kakao gender : '+res.kakao_account.gender);
 						console.log('kakao nickname : ' +res.properties['nickname']);
-				
 				 	},
 				 	fail: function(error) {
 						alert(JSON.stringify(error));
+						console.log("1");
 				 	}
 				});
 			},
 			fail: function(err) {
 			  alert(JSON.stringify(err));
+			  console.log("2");
 			}
         });
+        
     });
   //]]>
 });
 </script>
 </head>
 <body>
+<form action="login.do" method="post" class="loginFrm">
+<input type="hidden" name="url" value="${param.url }"/>
 <table border="1">
 	<tr>
 		<td>아이디</td>
@@ -95,11 +105,11 @@ $(function() {
 	</tr>
 	<tr>
 		<td colspan="2" align="center">
-			<input type="button" value="로그인" id="btn">
+			<input type="button" value="로그인" id="button">
 		</td>
 	</tr>
 </table>
-<a href="#;" id="kakaoBtn">카카오 로그인</a>
-
+<a href="write2.do" id="kakaoBtn"><img src="../img/kakao_loginform.png"></a>
+</form>
 </body>
 </html>

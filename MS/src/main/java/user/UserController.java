@@ -133,7 +133,7 @@ public class UserController {
 	
 	// 로그인처리
 	@PostMapping("/user/login.do")
-	public String loginProcess(UserVo vo, HttpServletRequest req) {
+	public String loginProcess(UserVo vo, HttpServletRequest req){
 		/*
 		 세션(session) : 브라우저 단위로 저장되는 저장소		 
 		 
@@ -147,6 +147,7 @@ public class UserController {
 		 */
 		// 사용자가 입력한 아이디와 비밀번호로 DB에서 조회한 결과
 		UserVo uv = userService.login(vo);
+
 		// 결과 확인
 		if (uv != null) { // 로그인 성공
 			// 세션객체 가져오기
