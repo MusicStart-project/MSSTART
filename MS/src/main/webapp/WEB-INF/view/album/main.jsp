@@ -34,7 +34,7 @@ body{
 }
 
 
-a, button, input, select {
+a, button, input, select, span {
 	pointer-events: auto;
 }
 talbe{
@@ -123,26 +123,31 @@ a.title:hover {
 <script src="./js/3Dink.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script>
-/*
+
 $(function(){
 	// 추천버튼 클릭시(추천 추가 또는 추천 제거)
 	$("#favorite").click(function(){
+	
 		$.ajax({
-			url: "/expro/RecUpdate.do",
+			url: "liked.do",
             type: "POST",
             data: {
-                music_no: ${vo.no},
-                user_no: '${authUser.no}'
+                music_no: 6,
+                user_no: ${authUser.no}
             },
             success: function () {
-		        recCount();
+            	alert($("#favorite").val()+"성공");
             },
-		})
-	})
+            error: function(){
+            	alert($("#favorite").val()+"실패");
+            },
+		});
+		location.href='liked.do';
+	});
 }
 );
 
-*/
+
 </script>
 
 </head>
@@ -161,7 +166,7 @@ $(function(){
 	<c:forEach var="vo" items="${list}">
 	<c:if test="${vo.a_no == 1}">
 		<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
-		<td class = "song"><a href="javascript:void(0)" class="title" onclick = "window.open('album/detail.do?no=${vo.no}','test','width=400, height=800, menubar=no, status=no, toolbar=no');">${vo.title }</a></td>
+		<td class = "song"><a href="javascript:void(0)" class="title" onclick = "window.open('album/detail.do?no=${vo.no}','test', 'menubar=no, status=no, toolbar=no, location=no, resizable=no, width=400, height=800');">${vo.title }</a></td>
 		<td class ="singer">Post Malone</td>
 		<td class="likebut" >
 		<input type="hidden" id="music_no" name="no" value="${vo.no }">		
@@ -187,7 +192,7 @@ $(function(){
 	<c:forEach var="vo" items="${list}">
 	<c:if test="${vo.a_no == 2}">
 		<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
-		<td class="song"><a href="javascript:void(0)" class="title" onclick = "window.open('album/detail.do?no=${vo.no}','test','width=400, height=800, menubar=no, status=no, toolbar=no');">${vo.title }</a></td>
+		<td class="song"><a href="javascript:void(0)" class="title" onclick = "window.open('album/detail.do?no=${vo.no}','test', 'menubar=no, status=no, toolbar=no, location=no, resizable=no, width=400, height=800');">${vo.title }</a></td>
 		<td style="color : gray; font-size: 13px; text-align: center;" class="singer">Post Malone</td>
 		<td class="likebut" >
 		<input type="hidden" id="music_no" name="no" value="${vo.no }">		

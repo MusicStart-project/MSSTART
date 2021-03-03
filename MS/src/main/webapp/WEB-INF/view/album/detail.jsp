@@ -5,49 +5,125 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 상세</title>
+<title>${vo.title}</title>
+
+<style>
+.top_content{
+--swiper-theme-color: #007aff;
+--swiper-navigation-size: 44px;
+font-family: -apple-system,BlinkMacSystemFont,AppleSDGothicNeo,Helvetica,"\B9D1\C740   \ACE0\B515",Malgun Gothic,"\B3CB\C6C0",Dotum,sans-serif;
+font-size: 14px;
+line-height: 1.25em;
+text-align: left;
+margin:0;
+padding: 0;
+display: table-cell;
+vertical-align: middle;
+
+}
+
+.img_box{
+
+--swiper-theme-color: #007aff;
+--swiper-navigation-size: 44px;
+font-family: -apple-system,BlinkMacSystemFont,AppleSDGothicNeo,Helvetica,"\B9D1\C740   \ACE0\B515",Malgun Gothic,"\B3CB\C6C0",Dotum,sans-serif;
+font-size: 14px;
+line-height: 1.25em;
+text-align: center;
+margin: 0;
+padding: 0;
+float: left;
+width: 110px;
+height: 110px;
+margin-right: 18px;
+margin-left:5px;
+}
+.info{
+	--swiper-theme-color: #007aff;
+--swiper-navigation-size: 44px;
+font-family: -apple-system,BlinkMacSystemFont,AppleSDGothicNeo,Helvetica,"\B9D1\C740   \ACE0\B515",Malgun Gothic,"\B3CB\C6C0",Dotum,sans-serif;
+font-size: 15px;
+line-height: 1.45em;
+margin: 0;
+padding: 0;
+display: table;
+overflow: hidden;
+height: 100px;
+margin-right: 34px;
+text-align: left;
+}
+
+.lyrics{
+
+--swiper-theme-color: #007aff;
+--swiper-navigation-size: 44px;
+font-family: -apple-system,BlinkMacSystemFont,AppleSDGothicNeo,Helvetica,"\B9D1\C740   \ACE0\B515",Malgun Gothic,"\B3CB\C6C0",Dotum,sans-serif;
+font-size: 14px;
+line-height: 1.25em;
+margin: 0;
+overflow-x: hidden;
+overflow-y: auto;
+width: 368px;
+max-height: 349px;
+margin-top: 25px;
+padding: 0 35px;
+color: #666;
+text-align: left;
+outline: none;
+}
+
+.lyrics_text{
+--swiper-theme-color: #007aff;
+--swiper-navigation-size: 44px;
+font-family: -apple-system,BlinkMacSystemFont,AppleSDGothicNeo,Helvetica,"\B9D1\C740   \ACE0\B515",Malgun Gothic,"\B3CB\C6C0",Dotum,sans-serif;
+color: #666;
+text-align: left;
+margin: 0;
+padding: 0;
+font-size: 14px;
+line-height: 22px;
+white-space: pre-line;
+}
+.whitespace{
+
+--swiper-theme-color: #007aff;
+--swiper-navigation-size: 44px;
+font-family: -apple-system,BlinkMacSystemFont,AppleSDGothicNeo,Helvetica,"\B9D1\C740   \ACE0\B515",Malgun Gothic,"\B3CB\C6C0",Dotum,sans-serif;
+color: #666;
+text-align: left;
+font-size: 14px;
+line-height: 22px;
+white-space: pre-wrap;
+}
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<table border="1">
-	<tr>
-		<td>노래 번호</td>
-		<td>${vo.no }</td>
-	</tr>
-	<tr>
-		<td>제목</td>
-		<td>${vo.title}</td>
-	</tr>
-	<tr>
-		<td>가사</td>
-		<td>${vo.lyrics}</td>
-	</tr>
-	<tr>
-		<td>앨범 번호</td>
-		<td>${vo.a_no}</td>
-	</tr>
-	
-	<tr>
-		<!--  <td>첨부파일</td>
-		<td><a href="/MS/common/download.jsp?path=/upload/&r_file=${vo.filename}&o_file=${vo.filename_org}" target="_blank">${vo.filename_org}</a></td>
-		-->
-	 <audio controls>
+<div class="top_content">
+	<div class="img_box">
+		<c:if test="${vo.a_no ==1}">
+		<img src="/MS/img/album1.png" alt="Hollywood's Bleeding 앨범 커버" style="height: 100px; width: 100px;">
+		</c:if>
+		<c:if test="${vo.a_no ==2}">
+		<img src="/MS/img/album2.jpg" alt="beerbongs & bentleys 앨범 커버" style="height: 100px; width: 100px;">
+		</c:if>
+	</div>
+		<div class="info">
+		<p><b>${vo.title}</b><p>
+		<span>post malon</span>
+		</div>
+</div>
+<div> 
+	<audio controls style="margin-left:15px; width:350px">
  	 <source src="/MS/upload/${vo.filename}" type="audio/mpeg">
 	<p>Your browser does not support the audio element.</p>
-	</audio>
-	</tr>
-</table>
-<input type="button" value="수정" onclick='location.href="edit.do?no=${vo.no}";'>
-<input type="button" value="삭제" onclick="del();">
-<input type="button" value="목록" onclick='location.href="index.do";'>
-
+	</audio></div>
+<div class="lyrics">
+ 		<p class="lylics_text"><span class="whitespace"> ${vo.lyrics}</span></p>
+</div>
+	
 <script>
 function del() {
-	/*
-	if (confirm("정말 삭제하시겠습니까?")) {
-		location.href="delete.do?no=${vo.no}";
-	}
-	*/
 	if (confirm('정말 삭제하시겠습니까?')) {
 		$.ajax({
 			url:'delete.do',
@@ -69,46 +145,5 @@ function del() {
 	}
 }
 </script>
-<!-- 
-<form action="commentInsert.do" method="post">
-<input type="hidden" name="board_no" value="${vo.no }">
-<input type="hidden" name="User_no" value="${authUser.no }">
-<table border="1">
-	<tr>
-		<td>
-			<textarea name="content"></textarea>
-		</td>
-	</tr>
-</table>
-<input type="submit" value="댓글저장">
-
-</form>
-<table border="1">
-<c:if test="${empty clist }">
-<tr>
-<td>등록된 댓글이 없습니다.</td>
-</tr>
-</c:if>
-<c:forEach var="vo" items="${clist }">
-	<tr>
-	<td>
-		${vo.content }
-		<c:if test="${vo.user_no==auth.no }">
-		<input type="button" value="삭제 " onclick="goDel(${vo.no});">
-		&nbsp;&nbsp;${vo.regdate }
-		</c:if>
-	</td>
-	</tr>
-	<script>
-function goDel(no){
-	if (confirm('삭제하시겠습니다?')){
-		location.href='/user/board/commentDelete?no='+no+'&board_no=${vo.no}';
-	}
-}
-</script>
-</c:forEach>
-
-</table>
- -->
 </body>
 </html>

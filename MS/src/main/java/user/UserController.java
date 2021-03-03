@@ -108,7 +108,6 @@ public class UserController {
 	public String edit(HttpServletRequest req, UserVo vo) {
 		
 		UserVo uv = userService.selectOne(vo);
-		
 		req.setAttribute("vo", uv);
 		
 		// jsp 포워딩
@@ -227,9 +226,5 @@ public class UserController {
 		}
 	}
 	
-	
-	
-	
-	
-	
+
 }
