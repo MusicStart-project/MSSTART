@@ -18,7 +18,7 @@
 
 #intro{
 	text-align: center;
-	background-color: grey;
+	background-image: url('https://pm1.narvii.com/6811/85b4e886c823657fac2dc5257aa0253b2a8d4b40v2_hq.jpg');
 }
 
 #intro_font{
@@ -173,36 +173,55 @@ $(function(){
 
 
 </script>
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bio.css" type="text/css">
 </head>
 <body>
 
 <div id="intro" class="white_content">
-	<div id= "intro_content" style="position: absolute;left:0%; ">	
-	<table>
-		<tr>
-			<td colspan="2" align="center" id=intro_font>Post Malone</td>
-		</tr>
-		<tr> 
-			<td colspan="2" align="center" ><img src=./img/intro_img.jpg id="intro_img"></td>
-		</tr>
-		<tr> 
-			<td width=50% valign="top"> Austin Richard Post (born July 4, 1995), known professionally as Post Malone, is an American rapper, singer, songwriter, 
-			and record producer. Known for his introspective songwriting and laconic vocal style, Malone has gained acclaim for bending a range of genres including hip hop
-			, R&B, pop, trap, rap rock, and cloud rap. He first attained recognition in 2015 following the release of his debut single "White Iverson".
-			<br>
-			 He subsequently signed a recording contract with Republic Records. His stage name is derived from his last name and from a rap name generator
-			 Malone's debut album Stoney (2016) featured the hit single "Congratulations",
-			 and set the record for most weeks on the US Billboard Top R&B/Hip-Hop Albums chart, with 77. 
-			 </td>
-			<td width=50% valign="top"> His second album, Beerbongs & Bentleys (2018), debuted at number one on the US Billboard 200 and broke several streaming records upon release. 
-			  Featuring the US Billboard Hot 100 number-one singles "Rockstar" and "Psycho", it was nominated for Album of the Year at the 2018 Grammy Awards.
-			   In 2018, Malone collaborated with American singer-rapper Swae Lee on the song "Sunflower" for the soundtrack to the film Spider-Man: Into the Spider-Verse,
-			    which reached the top of the Billboard Hot 100. His third album, Hollywood's Bleeding, explored indie pop and was released in late 2019.
-			     It became his second number-one album on the Billboard 200 and featured the Hot 100 number-one single "Circles", which spent a record 39 weeks in the top ten on the Hot 100.</td>
-		</tr>
-	</table>
-
+	<div style="position: absolute;left:0%; ">	
+	<div id="main" class="container">
+  <div class="col-1">
+    <div class="header-info">
+      <h2 id="title">Post Malone</h2>
+    </div>
+    <div id="img-div">
+      <img src="./img/intro_img.jpg" alt="Post Malone Tribute" id="image" class="img-resp">
+      <div class="icons">
+      </div>
+      <div class="playlist">
+        <div>
+      </div>
+    </div>
+  </div>
+  <div class="col-2">
+    <div id="tribute-info">
+      <h2 class="display-2">Bio</h2>
+      <p>Austin Post, well-known by the stage name Post Malone, is a popular American songwriter, singer, guitarist and recording artist born on July 4, 1995, in Syracuse, New York. He became famous after ¡°White Iverson¡±, his first single released on SoundCloud
+        in 2015 (February) which got a million views only within the first month. The singer signed a contract with Republic Records and keeps recording more music, such as ¡°Too Young¡± (another popular song). His fans recognize him because of gold teeth
+        and braids in his hair, and this rapper is white.
+      </p>
+      <h2 class="display-2">Albums</h2>
+      <div class="album-gallery">
+        <div class="album-info">
+          <img class="album-thumbnail" src="./img/album1.png" alt="Hollywood's Bleeding Album Cover">
+          <p class="album-title">Hollywood's Bleeding</p>
+          <p class="album-year">2019</p>
+        </div>
+        <div class="album-info">         
+          <img class="album-thumbnail" src="./img/album2.jpg" alt="Beerbongs and Betleys">
+          <p class="album-title">Beerbongs & Bentleys</p>
+          <p class="album-year">2018</p>
+        </div>
+        <div class="album-info">
+          <img class="album-thumbnail" src="http://s3.amazonaws.com/hiphopdx-production/2016/11/Post-Malone-Stoney-album-cover-640x640.jpg" alt="Stoney Album Cover">
+          <p class="album-title">Stoney</p>
+          <p class="album-year">2016</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
     <a href = "javascript:void(0)" onclick = "document.getElementById('intro').style.display='none';" align="right">Close</a>
 	</div>
 </div>

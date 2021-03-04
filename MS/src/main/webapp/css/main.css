@@ -512,7 +512,12 @@ input {
 }
 #zipcode2 {
 	width: 18%;
-    margin-left: 20px;
+    text-align:center;
+    padding:0px 0px;
+    font-size:2vw;
+}
+@media screen and (min-width:800px) {
+	#zipcode2 { font-size: 16px; }
 }
 
 /* ==========================================================================
