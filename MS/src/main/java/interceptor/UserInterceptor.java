@@ -14,6 +14,8 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws IOException {
 		
+		String referer = req.getHeader("Referer");
+		req.getSession().setAttribute("url", referer);
 		// 세션을 체크 (authUser가 null인지)
 		if (req.getSession().getAttribute("authUser") == null) { // 비로그인상태
 			res.setContentType("text/html; charset=utf-8"); // 한글처리

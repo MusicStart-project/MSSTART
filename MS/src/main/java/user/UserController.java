@@ -146,7 +146,7 @@ public class UserController {
 		 */
 		// 사용자가 입력한 아이디와 비밀번호로 DB에서 조회한 결과
 		UserVo uv = userService.login(vo);
-
+		
 		// 결과 확인
 		if (uv != null) { // 로그인 성공
 			// 세션객체 가져오기
@@ -156,8 +156,21 @@ public class UserController {
 			
 			// 위 코드와 동일하게
 			//req.getSession().setAttribute("authUser", uv);
-			String url = "/user/index.do";
-			if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
+			//String referer = req.getHeader("Referer");
+			//req.getSession().setAttribute("url", referer);
+			String url = "/main.do";
+			 if ((String)sess.getAttribute("url")  != null && !"".equals((String)sess.getAttribute("url"))) {
+					url = (String)sess.getAttribute("url"); // /user/board/index.do
+				}
+				return "redirect:"+url;
+				
+			} else { // 로그인 실패
+				req.setAttribute("msg", "아이디와 비밀번호가 올바르지 않습니다.");
+				return "redirect:/user/login.do";
+			}
+		}
+			/*
+			 if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
 				url = req.getParameter("url"); // /user/board/index.do
 			}
 			return "redirect:"+url;
@@ -167,6 +180,7 @@ public class UserController {
 			return "redirect:/user/login.do";
 		}
 	}
+	*/
 	
 	@RequestMapping("/user/logout.do")
 	public void logout(HttpServletResponse res, HttpSession sess) throws IOException {
