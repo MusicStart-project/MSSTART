@@ -133,6 +133,9 @@ $(function() {
     </div>
     <div class="login_fields__submit">
       <input type="button" value="Log In" id="button">
+      <div class="forgot">
+        <a href="write.do">Sign Up?</a>
+      </div>
       <div>
 			<a href="write2.do" id="kakaoBtn" ><img src="../img/kakao_loginform.png" id="kakao_img"></a>			
       </div>
@@ -152,11 +155,11 @@ $(function() {
 </div>
 </form>
 
-    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-      <script id="rendered-js">
+<script id="rendered-js">
 
 
 $('input[type="text"],input[type="password"]').focus(function () {

@@ -80,7 +80,7 @@ function formCheck() {
 											<input type="text" id="title" name="title" class="w100" title="제목을 입력해주세요" />	
 										</td>
 									</tr>
-									<tr>
+									<tr >
 										<th scope="row"><label for="">*내용</label></th>
 										<td colspan="10">
 											<textarea id="contents" name="content" title="내용을 입력해주세요" style="width:100%;"></textarea>	

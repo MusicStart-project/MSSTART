@@ -201,7 +201,7 @@ $(function() {
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title">Registration Form</h2>
+                    <h2 class="title">Sign Up</h2>
                     <form method="POST">
                         <div class="row row-space">
                             <div class="col-2">
@@ -249,7 +249,7 @@ $(function() {
                             <div class="input-group">
                             	<div>
                             		<input class="input--style-4 zip" id="zipcode1" type="text" name="zipcode" id="zipcode" size="5"  readonly>
-                            		<input class="input--style-4 zip" id="zipcode2" type="button" value="Zip code" onclick="zip_api();"><br>
+                            		<input class="input--style-4 zip" id="zipcode2" type="button" value="Zip code" size="20px" onclick="zip_api();"><br>
                             	</div>
                                 <input class="input--style-4 zip" type="text" name="addr1" id="addr1" readonly><br>
 								<input class="input--style-4 zip" type="text" name="addr2" id="addr2">
