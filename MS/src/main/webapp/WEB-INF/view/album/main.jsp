@@ -251,7 +251,7 @@ $(function(){
 	</table>
 
 	</div>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('album1').style.display='none';">Close</a>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('album1').style.display='none';" style="margin-left:45%">Close</a>
 	</div>
 
 <div id="album2" class="album_content">
@@ -276,7 +276,7 @@ $(function(){
 	</table>
 
 	</div>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('album2').style.display='none';">Close</a>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('album2').style.display='none';" style="margin-left:45%">Close</a>
 </div>
 
 <div id="board" class="white_content">
@@ -285,7 +285,7 @@ $(function(){
          height: 100%;
          width: 100%;
         "src="http://localhost/MS/admin/board/index.do"></iframe>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';">Close</a>	
+    <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';" style="margin-left:50%">Close</a>	
 </div>
     
 <audio loop id="music" preload="auto" style="display: none">
