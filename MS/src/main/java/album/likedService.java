@@ -1,5 +1,7 @@
 package album;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +17,9 @@ public class likedService {
 		return likeddao.likedchecked(vo);
 	}
 	
-	public boolean insert(likedVo vo) {
-		int r = likeddao.insertliked(vo);
+	public boolean insert(Map map) {
+		int r = likeddao.insertliked(map);
+		
 		if (r > 0) {
 			return true;
 		} else {

@@ -1,5 +1,7 @@
 package album;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,8 +17,8 @@ public class likedDao {
 		return sqlSession.selectOne("liked.likedchecked", vo);
 	}
 	
-	public int insertliked(likedVo vo) {
-		return sqlSession.insert("album.insertalbum",vo);
+	public int insertliked(Map map ) {
+		return sqlSession.insert("album.insertalbum",map);
 	}
 	
 	public int updateliked(likedVo vo) {

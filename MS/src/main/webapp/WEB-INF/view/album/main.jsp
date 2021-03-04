@@ -148,9 +148,13 @@ a.title:hover {
 $(function(){
 	// 추천버튼 클릭시(추천 추가 또는 추천 제거)
 	$("#favorite").click(function(){
-	
+		//location.href='liked.do';
+		<c:if test="${empty authUser }">
+		location.href='user/login.do';
+		</c:if>
+		<c:if test="${!empty authUser }">
 		$.ajax({
-			url: "liked.do",
+			url: "main.do",
             type: "POST",
             data: {
                 music_no: 6,
@@ -159,11 +163,10 @@ $(function(){
             success: function () {
             	alert($("#favorite").val()+"성공");
             },
-            error: function(){
-            	alert($("#favorite").val()+"실패");
-            },
+           
 		});
-		location.href='liked.do';
+		</c:if>
+		
 	});
 }
 );
@@ -217,10 +220,10 @@ $(function(){
 		<td class="likebut" >
 		<input type="hidden" id="music_no" name="no" value="${vo.no }">		
 			<c:if test="${!empty authUser }">
-			<span id="favorite" style="color:red;">♥</span>
+			<span id="favorite" style="color:red; cursor:pointer;">♥</span>
 			</c:if>
 			<c:if test="${empty authUser }">
-			<span id="favorite"  style="color:red;">♡</span>
+			<span id="favorite"  style="color:red; cursor:pointer;">♡</span>
 			</c:if></td>
 		</tr>
 	</c:if>

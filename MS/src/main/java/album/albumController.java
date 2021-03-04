@@ -8,7 +8,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -188,16 +190,21 @@ public class albumController {
 		return "album/main2";
 	}
 	
-	@RequestMapping("/liked.do")
-	public void likedinsert(HttpServletRequest req, likedVo lvo, HttpServletResponse res) throws IOException{
-			int music_no = Integer.parseInt(req.getParameter("music_no"));
-			int user_no = Integer.parseInt(req.getParameter("user_no"));
+	@PostMapping("/main.do")
+	public void likedinsert(HttpServletRequest req, HttpServletResponse res) throws IOException{
+			Map map = new HashMap();
+			String music_no = req.getParameter("music_no");
+			String user_no = req.getParameter("user_no");
+			System.out.println(user_no);
+			System.out.println(music_no);
 			
-			System.out.println("음악 번호:"+music_no);
-			System.out.println("회원 번호:"+user_no);
+			map.put("user_no", user_no);
+			map.put("music_no", music_no);
+			
+			
 			PrintWriter out = res.getWriter();
 			out.print("<script>");
-			if (likedService.insert(lvo)) {
+			if (likedService.insert(map)) {
 				out.print("alert('좋아요!');");
 			} else {
 				out.print("alert('실패.');");
