@@ -40,6 +40,11 @@ public class albumService {
 		//vo.setStartIdx((vo.getReqPage() - 1) * vo.getPageRow());
 		return albumdao.selectList(vo);
 	}
+	
+	public List<albumVo> albumList(likedVo vo) {
+	
+		return albumdao.albumList(vo);
+	}
 	public albumVo selectOne(albumVo uv, boolean isUser) {
 		
 		return albumdao.selectOne(uv);

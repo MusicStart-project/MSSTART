@@ -11,6 +11,20 @@
 <title>Main Page</title>
 <style>
 
+canvas{
+	width:100%;
+	height:100%;
+	display:block;
+}
+
+.login_button {
+	position: relative;
+	width:80%; 
+	height: 100%;
+	border-style: none;
+	background-color:black;
+}
+
 #intro_content{
 	position: absolute;
 	left:0%;
@@ -18,7 +32,7 @@
 
 #intro{
 	text-align: center;
-	background-image: url('https://pm1.narvii.com/6811/85b4e886c823657fac2dc5257aa0253b2a8d4b40v2_hq.jpg');
+	background-color: grey;
 }
 
 #intro_font{
@@ -31,13 +45,11 @@
     max-height: 80%;
 
 }
-
 body{
 	margin : 0;
 	overflow-x:hidden;
 	overflow-y:hidden;
 }
-
 
 #overlay {
 	position: absolute;
@@ -196,112 +208,151 @@ function music_click(){
 </head>
 <body>
 
-
+<!-- 인트로 -->
 <div id="intro" class="white_content">
-	<div style="position: absolute;left:0%; ">	
-	<div id="main" class="container">
-  <div class="col-1">
-    <div class="header-info">
-      <h2 id="title">Post Malone</h2>
-    </div>
-    <div id="img-div">
-      <img src="./img/intro_img.jpg" alt="Post Malone Tribute" id="image" class="img-resp">
-      <div class="icons">
-      </div>
-      <div class="playlist">
-        <div>
-      </div>
-    </div>
-  </div>
-  <div class="col-2">
-    <div id="tribute-info">
-      <h2 class="display-2">Bio</h2>
-      <p>Austin Post, well-known by the stage name Post Malone, is a popular American songwriter, singer, guitarist and recording artist born on July 4, 1995, in Syracuse, New York. He became famous after “White Iverson”, his first single released on SoundCloud
-        in 2015 (February) which got a million views only within the first month. The singer signed a contract with Republic Records and keeps recording more music, such as “Too Young” (another popular song). His fans recognize him because of gold teeth
-        and braids in his hair, and this rapper is white.
-      </p>
-      <h2 class="display-2">Albums</h2>
-      <div class="album-gallery">
-        <div class="album-info">
-          <img class="album-thumbnail" src="./img/album1.png" alt="Hollywood's Bleeding Album Cover">
-          <p class="album-title">Hollywood's Bleeding</p>
-          <p class="album-year">2019</p>
-        </div>
-        <div class="album-info">         
-          <img class="album-thumbnail" src="./img/album2.jpg" alt="Beerbongs and Betleys">
-          <p class="album-title">Beerbongs & Bentleys</p>
-          <p class="album-year">2018</p>
-        </div>
-        <div class="album-info">
-          <img class="album-thumbnail" src="http://s3.amazonaws.com/hiphopdx-production/2016/11/Post-Malone-Stoney-album-cover-640x640.jpg" alt="Stoney Album Cover">
-          <p class="album-title">Stoney</p>
-          <p class="album-year">2016</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('intro').style.display='none';" align="right">Close</a>
+	<div id= "intro_content" style="position: absolute;left:0%; ">	
+	<div id="main" class="container1">
+	  <div class="col-1">
+	    <div class="header-info">
+	      <h2 id="title">Post Malone</h2>
+	    </div>
+	    <div id="img-div">
+	      <img src="img/intro_img.jpg" alt="Post Malone Tribute" id="image" class="img-resp">
+	      <p id="img-caption">Follow Me:</p>
+	      <div class="icons">
+	        <i class="fab fa-facebook fa-2x"></i>
+	        <i class="fab fa-twitter fa-2x"></i>
+	        <i class="fab fa-instagram fa-2x"></i>
+	      </div>
+	      <div class="playlist">
+	        <div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="col-2">
+	    <div id="tribute-info">
+	      <h2 class="display-2">Bio</h2>
+	      <p>Austin Post, well-known by the stage name Post Malone, is a popular American songwriter, singer, guitarist and recording artist born on July 4, 1995, in Syracuse, New York. He became famous after “White Iverson”, his first single released on SoundCloud
+	        in 2015 (February) which got a million views only within the first month. The singer signed a contract with Republic Records and keeps recording more music, such as “Too Young” (another popular song). His fans recognize him because of gold teeth
+	        and braids in his hair, and this rapper is white.
+	      </p>
+	      <h2 class="display-2">Albums</h2>
+	      <div class="album-gallery">
+	        <div class="album-info">
+	          <img class="album-thumbnail" src="img/album1.png" alt="Hollywood's Bleeding Album Cover">
+	          <p class="album-title">Hollywood's Bleeding</p>
+	          <p class="album-year">2019</p>
+	        </div>
+	        <div class="album-info">         
+	          <img class="album-thumbnail" src="img/album2.jpg" alt="Beerbongs and Betleys">
+	          <p class="album-title">Beerbongs & Bentleys</p>
+	          <p class="album-year">2018</p>
+	        </div>
+	        <div class="album-info">
+	          <img class="album-thumbnail" src="http://s3.amazonaws.com/hiphopdx-production/2016/11/Post-Malone-Stoney-album-cover-640x640.jpg" alt="Stoney Album Cover">
+	          <p class="album-title">Stoney</p>
+	          <p class="album-year">2016</p>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('intro').style.display='none';" align="right"><img src="/MS/img/close_btn.png" width="40px"></a>
 	</div>
 </div>
+</div>
 
+<!-- three.js 켄버스 -->
 <div id="container" class="black_overlay"></div>
 
-<div id="album1" class="album_content" >
-	<div id=album1_list>
-	<table border="0" width="100%" cellspacing="0">
-	<c:forEach var="vo" items="${list}">
-	<c:if test="${vo.a_no == 1}">
-		<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
-		<td class = "song"><a href="javascript:void(0)" class="title" onclick = "music_click()">${vo.title }</a></td>
-		<td class ="singer">Post Malone</td>
-		<td class="likebut" >
+<!-- 헤더 작업 -->
+<div class="w_txt1" style="position: fixed;
+	color: white;
+	text-align: center;
+	pointer-events: none;
+	background-color:black;
+	opacity: 0.7;
+	z-index: 1003;
+	border-radius: 5px 5px 5px 5px;
+	width:100%;
+	height:8%;
+	top : 1px
+	">
+	<div style=" position: relative;
+    top: 25px;">
+    	<div style="left:2%;
+	    position: absolute;
+	    top: -2px;">
+    		<button style="cursor:pointer; border:0; background:black;" onclick="location.href='/MS/main.do'"><img src="/MS/img/ms_icon.png" width="200%"></button>
+    	</div>
+		<div style="left: 50%;
+	    position: absolute;
+	    top: -2px;">
+			<button style="border:0; background:black;" onclick="location.href='/MS/main.do'"><img src="/MS/img/ms_icon.png" width="200%"></button>			
+		</div>
+		<div style="right: 2%;
+	    position: absolute;">
 			<c:if test="${!empty authUser }">
-				<c:if test="${vo.liked ==1}">
-				<span class="favorite"  style="color:red; cursor:pointer; data-no="${vo.no }">♥</span>		
-			    </c:if>
-			    <c:if test="${vo.liked != 1}">
-				<span class="favorite"  style="color:red; cursor:pointer; data-no="${vo.no }">♡</span>		
-			    </c:if>
-			 </c:if> 
-			<c:if test="${empty authUser }">
-			<span class="favorite"  style="color:red; cursor:pointer; data-no="${vo.no }">♡</span>
-		    </c:if></td>
-		</tr>
-	</c:if>
-	</c:forEach>
-		
-	</table>
-
-	</div>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('album1').style.display='none';" style="margin-left:45%">Close</a>
-	</div>
-
-<div id="album2" class="album_content">
-<div id=album2_list>
-	<table border="0" width="100%" cellspacing="0">
-	<c:forEach var="vo" items="${list}">
-	<c:if test="${vo.a_no == 2}">
-		<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
-		<td class="song"><a href="javascript:void(0)" class="title" onclick = "music_click()">${vo.title }</a></td>
-		<td style="color : gray; font-size: 13px; text-align: center;" class="singer">Post Malone</td>
-		<td class="likebut" >
-		<input type="hidden" id="music_no" name="no" value="${vo.no }">		
-			<c:if test="${!empty authUser }">
-			<span class="favorite" style="color:red;" data-no="${vo.no }">♥</span>
+			<input type="button" id="login_button" class="login_button" style="cursor:pointer; font-weight:bold; font-size: 20px;width:100%;height:100%;border:0;background:black;color:white;"onclick="location.href='/MS/user/logout.do'" value="Log out"/>
 			</c:if>
 			<c:if test="${empty authUser }">
-			<span class="favorite"  style="color:red; data-no="${vo.no }" >♡</span>
-			</c:if></th>
-		</tr>
-	</c:if>
-	</c:forEach>
-	</table>
+			<input type="button" id="login_button" class="login_button" style="cursor:pointer; font-weight:bold; font-size: 20px;width:100%;height:100%;border:0; background:black;color:white;"onclick="location.href='/MS/user/login.do'" value="Sign In">
+			</c:if>
+		</div>	
+	</div>	
+</div>
 
+<!-- 앨법 1-->
+<div id="album1" class="album_content" >
+	<div id=album1_list ">
+		<table border="0" width="100%" cellspacing="0">
+		<c:forEach var="vo" items="${list}">
+			<c:if test="${vo.a_no == 1}">
+				<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
+				<td class = "song"><a href="javascript:void(0)" class="title" onclick = "music_click()">${vo.title }</a></td>
+				<td class ="singer">Post Malone</td>
+				<td class="likebut" >
+				<c:if test="${vo.liked == 1}">
+					<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }">♥</span>	
+	    		</c:if>
+	    		<c:if test="${vo.liked == 0}">
+					<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }">♡</span>		
+	    		</c:if>
+				</tr>
+			</c:if>
+		</c:forEach>
+	    </table>
+	</div>
+    	<a href = "javascript:void(0)" onclick = "document.getElementById('album1').style.display='none';" style="margin-left:45%">Close</a>
+</div>
+
+<!-- 앨범 2-->
+<div id="album2" class="album_content">
+	<div id=album2_list>
+		<table border="0" width="100%" cellspacing="0">
+		<c:forEach var="vo" items="${list}">
+			<c:if test="${vo.a_no == 2}">
+				<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
+				<td class="song"><a href="javascript:void(0)" class="title" onclick = "music_click()">${vo.title }</a></td>
+				<td style="color : gray; font-size: 13px; text-align: center;" class="singer">Post Malone</td>
+				<td class="likebut" >
+					<input type="hidden" id="liked" name="liked" value="${vo.liked }">	
+					<input type="hidden" id="likeded" name="user" value="${lvo.user_no }">		
+					<c:if test="${vo.liked == 1}">
+						<span class="favorite" style="color:red; cursor:pointer; " data-no="${vo.no }">♥</span>
+					</c:if>
+					<c:if test="${vo.liked == 0}">
+						<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }" >♡</span>
+					</c:if>
+				</tr>
+			</c:if>
+		</c:forEach>
+		</table>
 	</div>
     <a href = "javascript:void(0)" onclick = "document.getElementById('album2').style.display='none';" style="margin-left:45%">Close</a>
 </div>
+
+<!-- 보드 작업 -->
 <div id="board" class="white_content">
 	<iframe id="iframe" style="position: relative;
          border: none;
@@ -311,11 +362,12 @@ function music_click(){
     <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';" style="margin-left:45%">Close</a>	
 </div>
     
+    <!-- 3D 음향을 위한 오디오테그 추가-->
 <audio loop id="music" preload="auto" style="display: none">
 		<source src="./upload/1613375880426.mp3" type="audio/mpeg">
 </audio>
 
-<!-- 비디오 설정들 -->
+<!-- 비디오 테그 설정들 -->
 <video id="video" loop crossOrigin="anonymous" playsinline style="display:none" controls autoplay muted="muted">
 <source src="./video/newbackground.mp4" type='video/mp4; '>
 </video> 

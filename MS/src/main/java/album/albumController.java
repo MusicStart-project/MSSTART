@@ -176,11 +176,13 @@ public class albumController {
 	@RequestMapping("/main.do")
 	public String webgl(HttpServletRequest req, albumVo vo, likedVo lvo, HttpServletResponse res, HttpSession sess) throws IOException{
 		UserVo uv = (UserVo)sess.getAttribute("authUser");
-		if (uv != null) vo.setUser_no(uv.getNo());
-		List<albumVo> list = albumService.getList(vo);
-	
+		if (uv != null) lvo.setUser_no(uv.getNo());
+		
+		List<albumVo> list = albumService.albumList(lvo);
 		req.setAttribute("list", list);
 		req.setAttribute("vo", vo);
+		req.setAttribute("lvo", lvo);
+
 		
 		return "album/main";
 	}
@@ -195,8 +197,8 @@ public class albumController {
 			Map map = new HashMap();
 			int music_no = Integer.parseInt(req.getParameter("music_no"));
 			int user_no = Integer.parseInt(req.getParameter("user_no"));
-			System.out.println(user_no);
-			System.out.println(music_no);
+			System.out.println("회원번호: "+user_no);
+			System.out.println("음악번호: "+music_no);
 			
 			map.put("user_no", user_no);
 			map.put("music_no", music_no);

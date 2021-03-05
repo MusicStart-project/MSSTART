@@ -3,22 +3,18 @@
 <mapper namespace="album">	
 
 	
-	<sql id="albumWhere">
-		<where> <!-- 아래 조건이 있으면 where 붙임 -->
-			<!-- 이름이나 아이디 검색 -->
-			<if test="A_no != null and A_no != ''"> <!-- where 다음에 and가 오면 자동으로 제거 -->
-			and A_no = ${A_no}
-			</if>
-			</where>
-	</sql>
+	
 	
 	<select id="count" parameterType="album.albumVo" resultType="int">
 		select count(*) as cnt from album 
 	</select>
 	
 	<select id="selectList" parameterType="album.albumVo" resultType="album.albumVo">
+		SELECT * from album
+	</select>
+	
+	<select id="albumList" parameterType="album.likedVo" resultType="album.albumVo">
 		SELECT *,(SELECT COUNT(*) FROM liked WHERE music_no=album.no AND user_no=${user_no}) AS liked from album
-		<include refid="albumWhere"/>
 	</select>
 	
 	<select id="selectOne" parameterType="album.albumVo" resultType="album.albumVo">

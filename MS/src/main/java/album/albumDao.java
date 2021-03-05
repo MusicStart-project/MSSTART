@@ -20,6 +20,10 @@ public class albumDao {
 		return sqlSession.selectList("album.selectList", vo);
 	}
 	
+	public List<albumVo> albumList(likedVo vo) {
+		return sqlSession.selectList("album.albumList", vo);
+	}
+	
 	public albumVo selectOne(albumVo vo) {
 		return sqlSession.selectOne("album.selectOne", vo);
 	}
