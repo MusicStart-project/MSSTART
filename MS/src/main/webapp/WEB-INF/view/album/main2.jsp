@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,23 +11,19 @@
 <style>
 
 <!-- div 스타일 -->
-.w_txt1 { 
-	position: fixed;
-	left: 93%;
-	top: 92%;
-	font-size: 10px;
-	color: #303030;
-	text-align: center;
-	pointer-events: none;
-	opacity: 0.8;
-	z-index: 1;
+
+canvas{
+	width:100%;
+	height:100%;
+	display:block;
 }
 <!--버튼스타일 -->
-.login_button{
-	background-color: rgba( 255, 255, 255, 0.0 );
+.login_button {
 	position: relative;
-	width:80%; height: 100%;
+	width:80%; 
+	height: 100%;
 	border-style: none;
+	background-color:black;
 }
 
 #intro_content{
@@ -108,9 +105,9 @@ a, button, input, select {
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bio.css" type="text/css">
 
-
 </head>
 <body>
+
 
 <div id="intro" class="white_content">
 	<div id= "intro_content" style="position: absolute;left:0%; ">	
@@ -163,8 +160,30 @@ a, button, input, select {
     <a href = "javascript:void(0)" onclick = "document.getElementById('intro').style.display='none';" align="right">Close</a>
 	</div>
 </div>
+</div>
 
-<div id="container" class="black_overlay"></div>
+<div id="container">
+<div class="w_txt1" style="position: fixed;
+	left: 93%;
+	top: 1%;
+	font-size: 20px;
+	color: white;
+	text-align: center;
+	pointer-events: none;
+	background-color:black;
+	padding:5px 5px;
+	opacity: 0.8;
+	z-index: 1003;
+	border-radius: 5px 5px 5px 5px;
+	margin:5px 5px;">
+	<c:if test="${!empty authUser }">
+	<button class="login_button" onclick="location.href='/MS/user/logout.do'">Log out</button>
+	</c:if>
+	<c:if test="${empty authUser }">
+	<button class="login_button" onclick="location.href='/MS/user/login.do'">Sign In</button>
+	</c:if>
+</div>
+</div>
 
 <div id="album1" class="white_content">
 	<div id="table">
