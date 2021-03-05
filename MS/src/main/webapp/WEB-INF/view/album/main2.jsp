@@ -9,6 +9,26 @@
 <title>Main Page</title>
 <style>
 
+<!-- div 스타일 -->
+.w_txt1 { 
+	position: fixed;
+	left: 93%;
+	top: 92%;
+	font-size: 10px;
+	color: #303030;
+	text-align: center;
+	pointer-events: none;
+	opacity: 0.8;
+	z-index: 1;
+}
+<!--버튼스타일 -->
+.login_button{
+	background-color: rgba( 255, 255, 255, 0.0 );
+	position: relative;
+	width:80%; height: 100%;
+	border-style: none;
+}
+
 #intro_content{
 	position: absolute;
 	left:0%;
