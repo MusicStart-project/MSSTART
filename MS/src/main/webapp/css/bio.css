@@ -18,7 +18,7 @@ body {
    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.container {
+.container1 {
    background-color: #111;
   color: #fff;
    max-width: 1000px;
@@ -34,7 +34,7 @@ body {
            flex-direction: row-reverse;
 }
 
-.container:before {
+.container1:before {
    content: '';
    position: absolute;
    top: 0;

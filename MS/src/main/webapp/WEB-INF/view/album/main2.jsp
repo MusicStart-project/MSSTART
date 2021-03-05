@@ -62,7 +62,7 @@ canvas{
 }
 
 
-a, button, input, select {
+a,button, input, select {
 	pointer-events: auto;
 }
 <!-- light box css -->
@@ -111,7 +111,7 @@ a, button, input, select {
 
 <div id="intro" class="white_content">
 	<div id= "intro_content" style="position: absolute;left:0%; ">	
-	<div id="main" class="container">
+	<div id="main" class="container1">
 	  <div class="col-1">
 	    <div class="header-info">
 	      <h2 id="title">Post Malone</h2>
@@ -157,31 +157,46 @@ a, button, input, select {
 	    </div>
 	  </div>
 	</div>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('intro').style.display='none';" align="right">Close</a>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('intro').style.display='none';" align="right"><img src="/MS/img/close_btn.png" width="40px"></a>
 	</div>
 </div>
 </div>
 
 <div id="container">
+
 <div class="w_txt1" style="position: fixed;
-	left: 93%;
-	top: 1%;
-	font-size: 20px;
 	color: white;
 	text-align: center;
 	pointer-events: none;
 	background-color:black;
-	padding:5px 5px;
-	opacity: 0.8;
+	opacity: 0.7;
 	z-index: 1003;
 	border-radius: 5px 5px 5px 5px;
-	margin:5px 5px;">
-	<c:if test="${!empty authUser }">
-	<button class="login_button" onclick="location.href='/MS/user/logout.do'">Log out</button>
-	</c:if>
-	<c:if test="${empty authUser }">
-	<button class="login_button" onclick="location.href='/MS/user/login.do'">Sign In</button>
-	</c:if>
+	width:100%;
+	height:8%;
+	">
+	<div style=" position: relative;
+    top: 25px;">
+    	<div style="left:2%;
+	    position: absolute;
+	    top: -2px;">
+    		<button style="border:0; background:black;" onclick="location.href='/MS/main.do'"/><img src="/MS/img/ms_icon.png" width="200%"></button>
+    	</div>
+		<div style="left: 50%;
+	    position: absolute;
+	    top: -2px;">
+			<button style="border:0; background:black;" onclick="location.href='/MS/main.do'"/><img src="/MS/img/ms_icon.png" width="200%"></button>			
+		</div>
+		<div style="right: 2%;
+	    position: absolute;">
+			<c:if test="${!empty authUser }">
+			<input type="button" id="login_button" class="login_button" style="font-weight:bold; font-size: 20px;width:100%;height:100%;border:0;background:black;color:white;"onclick="location.href='/MS/user/logout.do'" value="Log out"/>
+			</c:if>
+			<c:if test="${empty authUser }">
+			<input type="button" id="login_button" class="login_button" style="font-weight:bold; font-size: 20px;width:100%;height:100%;border:0; background:black;color:white;"onclick="location.href='/MS/user/login.do'" value="Sign In">
+			</c:if>
+		</div>	
+	</div>	
 </div>
 </div>
 
