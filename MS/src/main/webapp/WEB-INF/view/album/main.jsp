@@ -142,34 +142,52 @@ a.title:hover {
 <script src="./js/three.js"></script>
 <script src="./js/OrbitControls.js"></script>
 <script src="./js/3Dink.js"></script>
+<script src="./js/dat.gui.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script>
 
 $(function(){
 	// 추천버튼 클릭시(추천 추가 또는 추천 제거)
-	$("#favorite").click(function(){
+	$(".favorite").click(function(){
 		//location.href='liked.do';
 		<c:if test="${empty authUser }">
 		location.href='user/login.do';
 		</c:if>
 		<c:if test="${!empty authUser }">
+		var val = $(this).text();
+		var obj = $(this);
 		$.ajax({
-			url: "main.do",
+			url: "like.do",
             type: "POST",
             data: {
-                music_no: 6,
+                music_no: $(this).data("no"),
                 user_no: ${authUser.no}
             },
             success: function () {
-            	alert($("#favorite").val()+"성공");
+            	//alert(val+"성공");
+            	if (val=='♥') {
+            		obj.text('♡');
+            	} else {
+            		obj.text('♥');
+            	}
             },
            
 		});
 		</c:if>
-		
 	});
 }
 );
+
+function music_click(){
+	
+	<c:if test="${empty authUser }">
+	location.href='user/login.do';
+	</c:if>
+	<c:if test="${!empty authUser }">
+	window.open('album/detail.do?no=${vo.no}','test', 'menubar=no, status=no, toolbar=no, location=no, resizable=no, width=400, height=650');
+	</c:if>
+	
+}
 
 
 </script>
@@ -234,15 +252,15 @@ $(function(){
 	<c:forEach var="vo" items="${list}">
 	<c:if test="${vo.a_no == 1}">
 		<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
-		<td class = "song"><a href="javascript:void(0)" class="title" onclick = "window.open('album/detail.do?no=${vo.no}','test', 'menubar=no, status=no, toolbar=no, location=no, resizable=no, width=400, height=650');">${vo.title }</a></td>
+		<td class = "song"><a href="javascript:void(0)" class="title" onclick = "music_click()">${vo.title }</a></td>
 		<td class ="singer">Post Malone</td>
 		<td class="likebut" >
 		<input type="hidden" id="music_no" name="no" value="${vo.no }">		
 			<c:if test="${!empty authUser }">
-			<span id="favorite" style="color:red; cursor:pointer;">♥</span>
+			<span class="favorite" style="color:red; cursor:pointer;" data-no="${vo.no }">♥</span>
 			</c:if>
 			<c:if test="${empty authUser }">
-			<span id="favorite"  style="color:red; cursor:pointer;">♡</span>
+			<span class="favorite"  style="color:red; cursor:pointer;">♡</span>
 			</c:if></td>
 		</tr>
 	</c:if>
@@ -260,15 +278,15 @@ $(function(){
 	<c:forEach var="vo" items="${list}">
 	<c:if test="${vo.a_no == 2}">
 		<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
-		<td class="song"><a href="javascript:void(0)" class="title" onclick = "window.open('album/detail.do?no=${vo.no}','test', 'menubar=no, status=no, toolbar=no, location=no, resizable=no, width=400, height=650');">${vo.title }</a></td>
+		<td class="song"><a href="javascript:void(0)" class="title" onclick = "music_click()">${vo.title }</a></td>
 		<td style="color : gray; font-size: 13px; text-align: center;" class="singer">Post Malone</td>
 		<td class="likebut" >
 		<input type="hidden" id="music_no" name="no" value="${vo.no }">		
 			<c:if test="${!empty authUser }">
-			<span id="favorite" style="color:red;">♥</span>
+			<span class="favorite" style="color:red;" data-no="${vo.no }">♥</span>
 			</c:if>
 			<c:if test="${empty authUser }">
-			<span id="favorite"  style="color:red;">♡</span>
+			<span class="favorite"  style="color:red;">♡</span>
 			</c:if></th>
 		</tr>
 	</c:if>
@@ -319,6 +337,9 @@ $(function(){
 const num = 4;
 var width = window.innerWidth;
 var height = window.innerHeight;
+
+//우측상단 gui 모델 선언
+
 
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 10000);
@@ -521,12 +542,20 @@ scene.add(grideHelper);
         }
     	  
     	if( i == 3){
+    		
+    		
+    		  <c:if test="${empty authUser }">
+    		  location.href='user/login.do';
+    		  </c:if>
+    		  
+    		  <c:if test="${!empty authUser }">
         	  document.getElementById('board').style.display='block';
          	  document.getElementById('container').style.display='block';
          	  document.getElementById('album2').style.display='none'
               document.getElementById('album1').style.display='none'
               document.getElementById('intro').style.display='none'
          	  scene.background = new THREE.VideoTexture( video[i+1] );
+         	  </c:if>
         }
     	  
       	  audioElement.pause();

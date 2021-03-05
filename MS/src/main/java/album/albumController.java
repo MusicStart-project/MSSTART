@@ -29,6 +29,7 @@ public class albumController {
 
 	@Autowired
 	private albumService albumService;
+	@Autowired
 	private likedService likedService;
 	
 	/*
@@ -190,11 +191,11 @@ public class albumController {
 		return "album/main2";
 	}
 	
-	@PostMapping("/main.do")
+	@RequestMapping("/like.do")
 	public void likedinsert(HttpServletRequest req, HttpServletResponse res) throws IOException{
 			Map map = new HashMap();
-			String music_no = req.getParameter("music_no");
-			String user_no = req.getParameter("user_no");
+			int music_no = Integer.parseInt(req.getParameter("music_no"));
+			int user_no = Integer.parseInt(req.getParameter("user_no"));
 			System.out.println(user_no);
 			System.out.println(music_no);
 			

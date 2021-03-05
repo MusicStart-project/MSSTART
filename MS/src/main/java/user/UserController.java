@@ -229,7 +229,7 @@ public class UserController {
 			
 			// 위 코드와 동일하게
 			//req.getSession().setAttribute("authUser", uv);
-			String url = "/user/index.do";
+			String url = "/main.do";
 			if (req.getParameter("url") != null && !"".equals(req.getParameter("url"))) {
 				url = req.getParameter("url"); // /user/board/index.do
 			}

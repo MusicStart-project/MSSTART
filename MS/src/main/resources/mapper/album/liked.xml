@@ -14,7 +14,7 @@
 			user_no, music_no
 		) VALUES (
 			${user_no},
-			${music_no},
+			${music_no}
 		)
 	</insert>
 	

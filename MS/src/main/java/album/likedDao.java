@@ -18,7 +18,7 @@ public class likedDao {
 	}
 	
 	public int insertliked(Map map ) {
-		return sqlSession.insert("album.insertalbum",map);
+		return sqlSession.insert("liked.insertliked",map);
 	}
 	
 	public int updateliked(likedVo vo) {
