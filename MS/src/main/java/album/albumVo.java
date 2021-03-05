@@ -10,7 +10,8 @@ public class albumVo extends CommonVo {
 	private String filename; 		// 서버에 저장될 파일명
 	private String filename_org; 	// 사용자가 업로드한 원본파일명
 	private int A_no;				// 앨번 번호
-	private int user_no;			// 유저 번호 확인
+	private int user_no;
+	private int liked;// 유저 번호 확인
 
 	
 	
@@ -29,6 +30,13 @@ public class albumVo extends CommonVo {
 		return A_no;
 	}
 
+	public int getLiked() {
+		return liked;
+	}
+	public void setLiked(int liked) {
+		this.liked = liked;
+	}
+	
 	public void setA_no(int a_no) {
 		A_no = a_no;
 	}

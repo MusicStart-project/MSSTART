@@ -1,10 +1,6 @@
 package album;
 
 import java.io.File;
-
-
-
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -14,6 +10,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+
+import user.UserVo;
 
 // import album.CommentService;
 
@@ -175,14 +174,14 @@ public class albumController {
 	}
 	
 	@RequestMapping("/main.do")
-	public String webgl(HttpServletRequest req, albumVo vo, likedVo lvo, HttpServletResponse res) throws IOException{
-		
+	public String webgl(HttpServletRequest req, albumVo vo, likedVo lvo, HttpServletResponse res, HttpSession sess) throws IOException{
+		UserVo uv = (UserVo)sess.getAttribute("authUser");
+		if (uv != null) vo.setUser_no(uv.getNo());
 		List<albumVo> list = albumService.getList(vo);
+	
 		req.setAttribute("list", list);
 		req.setAttribute("vo", vo);
 		
-		
-
 		return "album/main";
 	}
 	@RequestMapping("/main2.do")
@@ -202,17 +201,9 @@ public class albumController {
 			map.put("user_no", user_no);
 			map.put("music_no", music_no);
 			
-			
-			PrintWriter out = res.getWriter();
-			out.print("<script>");
-			if (likedService.insert(map)) {
-				out.print("alert('좋아요!');");
-			} else {
-				out.print("alert('실패.');");
-			}
-			out.print("</script>");
-			out.flush();
+			likedService.insert(map);
 	}
+	
 
 /*	
 	@RequestMapping("/album/commentInsert.do")

@@ -1,5 +1,6 @@
 package album;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -13,16 +14,17 @@ public class likedDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public likedVo likedchecked(likedVo vo) {
-		return sqlSession.selectOne("liked.likedchecked", vo);
+	public int likedchecked(Map map) {
+		return sqlSession.selectOne("liked.likedcheck", map);
 	}
+
 	
 	public int insertliked(Map map ) {
 		return sqlSession.insert("liked.insertliked",map);
 	}
 	
-	public int updateliked(likedVo vo) {
-		return sqlSession.update("album.updatealbum", vo);
+	public int delete(Map map) {
+		return sqlSession.delete("liked.deleteliked", map);
 	}
 	
 }

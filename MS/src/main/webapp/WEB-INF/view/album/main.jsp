@@ -11,26 +11,6 @@
 <title>Main Page</title>
 <style>
 
-<!-- div 스타일 -->
-.w_txt1 { 
-	position: fixed;
-	left: 93%;
-	top: 92%;
-	font-size: 10px;
-	color: #303030;
-	text-align: center;
-	pointer-events: none;
-	opacity: 0.8;
-	z-index: 1;
-}
-<!--버튼스타일 -->
-.login_button{
-	background-color: rgba( 255, 255, 255, 0.0 );
-	position: relative;
-	width:80%; height: 100%;
-	border-style: none;
-}
-
 #intro_content{
 	position: absolute;
 	left:0%;
@@ -78,6 +58,7 @@ body{
 a, button, input, select, span {
 	pointer-events: auto;
 }
+
 talbe{
 	frame=void
 	
@@ -215,6 +196,7 @@ function music_click(){
 </head>
 <body>
 
+
 <div id="intro" class="white_content">
 	<div style="position: absolute;left:0%; ">	
 	<div id="main" class="container">
@@ -275,13 +257,17 @@ function music_click(){
 		<td class = "song"><a href="javascript:void(0)" class="title" onclick = "music_click()">${vo.title }</a></td>
 		<td class ="singer">Post Malone</td>
 		<td class="likebut" >
-		<input type="hidden" id="music_no" name="no" value="${vo.no }">		
 			<c:if test="${!empty authUser }">
-			<span class="favorite" style="color:red; cursor:pointer;" data-no="${vo.no }">♥</span>
-			</c:if>
+				<c:if test="${vo.liked ==1}">
+				<span class="favorite"  style="color:red; cursor:pointer; data-no="${vo.no }">♥</span>		
+			    </c:if>
+			    <c:if test="${vo.liked != 1}">
+				<span class="favorite"  style="color:red; cursor:pointer; data-no="${vo.no }">♡</span>		
+			    </c:if>
+			 </c:if> 
 			<c:if test="${empty authUser }">
-			<span class="favorite"  style="color:red; cursor:pointer;">♡</span>
-			</c:if></td>
+			<span class="favorite"  style="color:red; cursor:pointer; data-no="${vo.no }">♡</span>
+		    </c:if></td>
 		</tr>
 	</c:if>
 	</c:forEach>
@@ -306,7 +292,7 @@ function music_click(){
 			<span class="favorite" style="color:red;" data-no="${vo.no }">♥</span>
 			</c:if>
 			<c:if test="${empty authUser }">
-			<span class="favorite"  style="color:red;">♡</span>
+			<span class="favorite"  style="color:red; data-no="${vo.no }" >♡</span>
 			</c:if></th>
 		</tr>
 	</c:if>
