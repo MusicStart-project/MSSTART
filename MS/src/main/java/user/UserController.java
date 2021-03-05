@@ -166,7 +166,9 @@ public class UserController {
 				
 			} else { // 로그인 실패
 				req.setAttribute("msg", "아이디와 비밀번호가 올바르지 않습니다.");
-				return "redirect:/user/login.do";
+				req.setAttribute("url", "/MS/user/login.do");
+				//return "redirect:/user/login.do";
+				return "include/alert";
 			}
 		}
 			/*
@@ -193,7 +195,7 @@ public class UserController {
 		PrintWriter out = res.getWriter();
 		out.print("<script>");
 		out.print("alert('로그아웃되었습니다.');");
-		out.print("location.href='/MS/user/index.do';");
+		out.print("location.href='/MS/main.do';");
 		out.print("</script>");
 		out.flush();
 	}
