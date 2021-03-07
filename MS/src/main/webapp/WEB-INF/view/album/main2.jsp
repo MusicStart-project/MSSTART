@@ -145,8 +145,11 @@ $(function(){
 		$("#menu1").show();
 		$("#menu").hide();
 	});
-	$("#menu_album").click(function(){
-		$(".menu_albums").toggle();
+	$("#menu_album").mouseover(function(){
+		$(".menu_albums").show();
+	});	
+	$("#menu_album").mouseout(function(){
+		$(".menu_albums").hide();
 	});	
 	$("#menu_album1").click(function(){
 		$("#album1").show();
