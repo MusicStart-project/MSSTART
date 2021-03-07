@@ -105,6 +105,73 @@ a,button, input, select {
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bio.css" type="text/css">
 
+<script type="text/javascript">
+$(function() {
+	$("#button").click(function(){
+		if ($("#id").val().trim() == '') {
+			alert('아이디를 입력하세요');
+			$("#id").focus();
+			return false;
+		}
+		if ($("#pwd").val().trim() == '') {
+			alert('비밀번호를 입력하세요');
+			$("#pwd").focus();
+			return false;
+		}
+		if($("#pwd").val().length <8){
+			alert('비밀번호는 8자 이상입니다.');
+			$("#pwd").focus();
+			return false;
+		}
+		// 폼전송
+		$(".loginFrm").submit();
+	});
+});
+$(function(){
+	$("#menu").hide();
+	$(".menu_albums").hide();
+
+	$("#menu1").click(function(){
+		$("#menu1").hide();
+		$("#menu").show();
+	});	
+	$("#menu_close").click(function(){
+		$("#menu1").show();
+		$("#menu").hide();
+	});
+	$("#menu_intro").click(function(){
+		$("#intro").show();
+		
+		$("#menu1").show();
+		$("#menu").hide();
+	});
+	$("#menu_album").click(function(){
+		$(".menu_albums").toggle();
+	});	
+	$("#menu_album1").click(function(){
+		$("#album1").show();
+		
+		$("#menu1").show();
+		$("#menu").hide();
+	});
+	$("#menu_album2").click(function(){
+		$("#album2").show();
+		
+		$("#menu1").show();
+		$("#menu").hide();
+	});
+	$("#menu_board").click(function(){
+		$("#board").show();
+		
+		$("#menu1").show();
+		$("#menu").hide();
+	});
+	$("#menu1").click(function(){
+		$("#menu1").hide();
+		$("#menu").show();
+	});	
+});
+</script>
 </head>
 <body>
 
@@ -180,7 +247,19 @@ a,button, input, select {
     	<div style="left:2%;
 	    position: absolute;
 	    top: -2px;">
-    		<button style="border:0; background:black;" onclick="location.href='/MS/main.do'"/><img src="/MS/img/ms_icon.png" width="200%"></button>
+    		<button id="menu1" >menu</button>
+    		<div id="menu">
+  			<ul class="menu">
+  				<li><button id="menu_intro">인트로</button><button id="menu_close">close</button></li>
+  				<li><button id="menu_album">앨범</button>		
+  					<ul>
+  						<li><button class="menu_albums" id="menu_album1">앨범1</button></li>
+  						<li><button class="menu_albums" id="menu_album2">앨범2</button></li>
+  					</ul>
+  				</li>
+  				<li><button id="menu_board">게시판</button>
+			</ul>
+		</div>
     	</div>
 		<div style="left: 50%;
 	    position: absolute;
