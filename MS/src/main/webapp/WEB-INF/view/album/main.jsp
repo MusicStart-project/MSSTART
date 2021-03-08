@@ -191,13 +191,13 @@ $(function(){
 }
 );
 
-function music_click(){
+function music_click(no){
 	
 	<c:if test="${empty authUser }">
 	location.href='user/login.do';
 	</c:if>
 	<c:if test="${!empty authUser }">
-	window.open('album/detail.do?no=${vo.no}','test', 'menubar=no, status=no, toolbar=no, location=no, resizable=no, width=400, height=650');
+	window.open('album/detail.do?no='+no+'','test', 'menubar=no, status=no, toolbar=no, location=no, resizable=no, width=400, height=650');
 	</c:if>
 	
 }
@@ -309,7 +309,10 @@ function music_click(){
 		<c:forEach var="vo" items="${list}">
 			<c:if test="${vo.a_no == 1}">
 				<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
-				<td class = "song"><a href="javascript:void(0)" class="title" onclick = "music_click()">${vo.title }</a></td>
+				<td class = "song">
+				<input type="hidden" class="mu
+				sic_no" name="no" value="${vo.no }">
+				<a href="javascript:void(0)" class="title" onclick = "music_click(${vo.no})">${vo.title }</a></td>
 				<td class ="singer">Post Malone</td>
 				<td class="likebut" >
 				<c:if test="${vo.liked == 1}">
@@ -333,11 +336,9 @@ function music_click(){
 		<c:forEach var="vo" items="${list}">
 			<c:if test="${vo.a_no == 2}">
 				<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
-				<td class="song"><a href="javascript:void(0)" class="title" onclick = "music_click()">${vo.title }</a></td>
+				<td class="song"><a href="javascript:void(0)" class="title" onclick = "music_click(${vo.no})">${vo.title }</a></td>
 				<td style="color : gray; font-size: 13px; text-align: center;" class="singer">Post Malone</td>
-				<td class="likebut" >
-					<input type="hidden" id="liked" name="liked" value="${vo.liked }">	
-					<input type="hidden" id="likeded" name="user" value="${lvo.user_no }">		
+				<td class="likebut" >	
 					<c:if test="${vo.liked == 1}">
 						<span class="favorite" style="color:red; cursor:pointer; " data-no="${vo.no }">¢¾</span>
 					</c:if>
