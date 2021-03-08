@@ -257,7 +257,7 @@ function music_click(no){
 	    </div>
 	  </div>
 	</div>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('intro').style.display='none';" align="right"><img src="/MS/img/close_btn.png" width="40px"></a>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('intro').style.display='none';" style="position:absolute;"><img src="/MS/img/close_btn.png" width="40px"></a>
 	</div>
 </div>
 </div>
@@ -276,7 +276,8 @@ function music_click(no){
 	border-radius: 5px 5px 5px 5px;
 	width:100%;
 	height:8%;
-	top : 1px
+	top : 1px;
+	height:77px;
 	">
 	<div style=" position: relative;
     top: 25px;">
@@ -285,10 +286,10 @@ function music_click(no){
 	    top: -2px;">
     		<button style="cursor:pointer; border:0; background:black;" onclick="location.href='/MS/main.do'"><img src="/MS/img/ms_icon.png" width="200%"></button>
     	</div>
-		<div style="left: 50%;
+		<div style="left: 48%;
 	    position: absolute;
-	    top: -2px;">
-			<button style="border:0; background:black;" onclick="location.href='/MS/main.do'"><img src="/MS/img/ms_icon.png" width="200%"></button>			
+	    top: -30px;">
+			<p style="color:orange;font-size:40px;"><b>post malone</b></p>
 		</div>
 		<div style="right: 2%;
 	    position: absolute;">
@@ -304,7 +305,7 @@ function music_click(no){
 
 <!-- ¾Ù¹ý 1-->
 <div id="album1" class="album_content" >
-	<div id=album1_list ">
+	<div id="album1_list" style="position:absolute;">
 		<table border="0" width="100%" cellspacing="0">
 		<c:forEach var="vo" items="${list}">
 			<c:if test="${vo.a_no == 1}">
@@ -326,7 +327,7 @@ function music_click(no){
 		</c:forEach>
 	    </table>
 	</div>
-    	<a href = "javascript:void(0)" onclick = "document.getElementById('album1').style.display='none';" style="margin-left:45%">Close</a>
+	 <a href = "javascript:void(0)" onclick = "document.getElementById('album1').style.display='none';" style="position:absolute;float:right;"><img src="/MS/img/close_btn.png" width="40px"></a>
 </div>
 
 <!-- ¾Ù¹ü 2-->
