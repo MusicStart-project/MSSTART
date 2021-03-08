@@ -45,6 +45,13 @@ public class albumService {
 	
 		return albumdao.albumList(vo);
 	}
+	
+
+	public List<albumVo> mypageList(likedVo vo) {
+	
+		return albumdao.mypageList(vo);
+	}
+	
 	public albumVo selectOne(albumVo uv, boolean isUser) {
 		
 		return albumdao.selectOne(uv);

@@ -2,16 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="album">	
 
-	
-	
-	
 	<select id="count" parameterType="album.albumVo" resultType="int">
 		select count(*) as cnt from album 
 	</select>
 	
+	
+	
 	<select id="selectList" parameterType="album.albumVo" resultType="album.albumVo">
 		SELECT * from album
 	</select>
+	
+	<select id="mypageList" parameterType="album.likedVo" resultType="album.albumVo">
+		SELECT * from album where NO IN (SELECT music_no FROM liked WHERE user_no = ${user_no} AND likedcheck = 1)
+	</select>	
 	
 	<select id="albumList" parameterType="album.likedVo" resultType="album.albumVo">
 		SELECT *,(SELECT COUNT(*) FROM liked WHERE music_no=album.no AND user_no=${user_no}) AS liked from album

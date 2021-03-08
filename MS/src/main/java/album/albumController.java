@@ -177,8 +177,8 @@ public class albumController {
 	public String webgl(HttpServletRequest req, albumVo vo, likedVo lvo, HttpServletResponse res, HttpSession sess) throws IOException{
 		UserVo uv = (UserVo)sess.getAttribute("authUser");
 		if (uv != null) lvo.setUser_no(uv.getNo());
-		
 		List<albumVo> list = albumService.albumList(lvo);
+		
 		req.setAttribute("list", list);
 		req.setAttribute("vo", vo);
 		req.setAttribute("lvo", lvo);
@@ -206,7 +206,19 @@ public class albumController {
 			likedService.insert(map);
 	}
 	
+	@RequestMapping("/mypage.do")
+	public String mypage(HttpServletRequest req, albumVo vo, likedVo lvo, HttpServletResponse res, HttpSession sess) throws IOException{
+		UserVo uv = (UserVo)sess.getAttribute("authUser");
+		if (uv != null) lvo.setUser_no(uv.getNo());
+		List<albumVo> list = albumService.mypageList(lvo);
+		
+		req.setAttribute("list", list);
+		req.setAttribute("vo", vo);
+		req.setAttribute("lvo", lvo);
 
+		
+		return "album/mypage";
+	}
 /*	
 	@RequestMapping("/album/commentInsert.do")
 	public void commentInsert(CommentVo vo, HttpServletRequest req, HttpServletResponse res, MultipartFile file) throws Exception {
