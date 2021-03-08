@@ -211,7 +211,7 @@ function mypage(){
 }
 
 var album1 = 1
-var album2 = 2
+var album2 = 1
 </script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bio.css" type="text/css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/album.css" type="text/css">
@@ -322,14 +322,6 @@ var album2 = 2
         <div class="overview__albums__head">
         
           <span class="section-title">album</span>
-          
-          <span class="view-type">
-          
-            <i class="fa fa-list list active"></i>
-            
-            <i class="fa fa-th-large card"></i>
-            
-          </span>
         
         </div>
         
@@ -339,7 +331,7 @@ var album2 = 2
           
             <div class="album__info__art">
             
-              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg" alt="When It's Dark Out">
+              <img src="<%=request.getContextPath()%>/img/Hollywood_s-Bleeding_album.jpg" alt="Hollywood's Bleeding">
               
             </div>
             
@@ -388,7 +380,12 @@ var album2 = 2
 				
               <div class="track">
 
-                <div class="track__number">1</div>
+                <div class="track__number">
+	                <script>
+					document.write(album1)
+					album1 += 1
+					</script>
+				</div>
 
                 <div class="track__added">
 
@@ -425,31 +422,129 @@ var album2 = 2
         </div>
       </div>
 	</div>
-	 <a href = "javascript:void(0)" onclick = "document.getElementById('album1').style.display='none';" style="position:absolute;float:right;"><img src="/MS/img/close_btn.png" width="40px"></a>
+	 <a href = "javascript:void(0)" onclick = "document.getElementById('album1').style.display='none';" style="position:absolute; top : 20px; right:2%"><img src="/MS/img/close_btn.png" width="40px"></a>
 </div>
 
 <!-- 앨범 2-->
 <div id="album2" class="album_content">
 	<div id=album2_list>
-		<table border="0" width="100%" cellspacing="0">
-		<c:forEach var="vo" items="${list}">
-			<c:if test="${vo.a_no == 2}">
-				<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
-				<td class="song"><a href="javascript:void(0)" class="title" onclick = "music_click(${vo.no})">${vo.title }</a></td>
-				<td style="color : gray; font-size: 13px; text-align: center;" class="singer">Post Malone</td>
-				<td class="likebut" >	
-					<c:if test="${vo.liked == 1}">
-						<span class="favorite" style="color:red; cursor:pointer; " data-no="${vo.no }">♥</span>
-					</c:if>
-					<c:if test="${vo.liked == 0}">
-						<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }" >♡</span>
-					</c:if>
-				</tr>
-			</c:if>
-		</c:forEach>
-		</table>
+		
+		<div class="overview__albums">
+              
+        <div class="overview__albums__head">
+        
+          <span class="section-title">album</span>
+          
+          <span class="view-type">
+          
+            <i class="fa fa-list list active"></i>
+            
+            <i class="fa fa-th-large card"></i>
+            
+          </span>
+        
+        </div>
+        
+        <div class="album">
+        
+          <div class="album__info">
+          
+            <div class="album__info__art">
+            
+              <img src="<%=request.getContextPath()%>/img/Hollywood_s-Bleeding_album.jpg" alt="Beerbongs and Bentleys">
+              
+            </div>
+            
+            <div class="album__info__meta">
+            
+              <div class="album__year">2018</div>
+              
+              <div class="album__name">Beerbongs and Bentleys</div>
+              
+              <div class="album__actions">
+              
+                <button class="button-light save">share</button>
+                
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <div class="album__tracks">
+          
+            <div class="tracks">
+              
+              <div class="tracks__heading">
+              
+                <div class="tracks__heading__number">#</div>
+                
+                <div class="tracks__heading__title" style="margin-left:45px;">Song</div>
+                
+                <div class="tracks__heading__length">
+                
+                  <i class="ion-ios-stopwatch-outline"></i>
+                  
+                </div>
+                
+                <div class="tracks__heading__popularity">
+                
+                  <i class="ion-thumbsup"></i>
+                  
+                </div>
+                
+              </div>
+				<c:forEach var="vo" items="${list}">
+					<c:if test="${vo.a_no == 2}">
+				
+				
+              <div class="track">
+
+                <div class="track__number">
+                    <script>
+				 		document.write(album2)
+						album2 += 1
+					</script>
+				</div>
+
+                <div class="track__added">
+
+                  <i class="ion-checkmark-round added"></i>
+
+                </div>
+
+                <div class="track__title" style="margin-left:10px;"><a href="javascript:void(0)" class="title" onclick = "music_click(${vo.no})">${vo.title }</a></div>
+
+                <div class="track__explicit">
+
+                  <span class="label" style="font-size:11px;">Post Malone</span>
+
+                </div>
+                
+                <div class="track__length" style="margin-right:6px;">
+	                <c:if test="${vo.liked == 1}">
+						<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }">♥</span>	
+		    		</c:if>
+		    		<c:if test="${vo.liked == 0}">
+						<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }">♡</span>		
+		    		</c:if>
+	    		</div>
+                <div class="track__popularity">
+                
+                  <i class="ion-arrow-graph-up-right"></i>
+                </div>
+              </div>
+              </c:if>
+              </c:forEach>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+		
+		
 	</div>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('album2').style.display='none';" style="margin-left:45%">Close</a>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('album2').style.display='none';" style="position:absolute; top : 20px; right:2%"><img src="/MS/img/close_btn.png" width="40px"></a>
 </div>
 
 <!-- 보드 작업 -->

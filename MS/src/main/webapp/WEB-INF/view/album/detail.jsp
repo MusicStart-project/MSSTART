@@ -101,7 +101,7 @@ white-space: pre-wrap;
 <div class="top_content">
 	<div class="img_box">
 		<c:if test="${vo.a_no ==1}">
-		<img src="/MS/img/album1.png" alt="Hollywood's Bleeding 앨범 커버" style="height: 100px; width: 100px;">
+		<img src="/MS/img/Hollywood_s-Bleeding_album.jpg" alt="Hollywood's Bleeding 앨범 커버" style="height: 100px; width: 100px;">
 		</c:if>
 		<c:if test="${vo.a_no ==2}">
 		<img src="/MS/img/album2.jpg" alt="beerbongs & bentleys 앨범 커버" style="height: 100px; width: 100px;">
