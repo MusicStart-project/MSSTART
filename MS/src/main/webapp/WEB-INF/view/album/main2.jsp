@@ -106,38 +106,22 @@ a,button, input, select {
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bio.css" type="text/css">
 
 <script type="text/javascript">
-$(function() {
-	$("#button").click(function(){
-		if ($("#id").val().trim() == '') {
-			alert('아이디를 입력하세요');
-			$("#id").focus();
-			return false;
-		}
-		if ($("#pwd").val().trim() == '') {
-			alert('비밀번호를 입력하세요');
-			$("#pwd").focus();
-			return false;
-		}
-		if($("#pwd").val().length <8){
-			alert('비밀번호는 8자 이상입니다.');
-			$("#pwd").focus();
-			return false;
-		}
-		// 폼전송
-		$(".loginFrm").submit();
-	});
-});
+
 $(function(){
 	$("#menu").hide();
-	$(".menu_albums").hide();
+
+
 
 	$("#menu1").click(function(){
 		$("#menu1").hide();
 		$("#menu").show();
+		$("canvas").css('opacity','0.5');
+
 	});	
 	$("#menu_close").click(function(){
 		$("#menu1").show();
 		$("#menu").hide();
+		$("canvas").css('opacity','1');
 	});
 	$("#menu_intro").click(function(){
 		$("#intro").show();
@@ -145,12 +129,7 @@ $(function(){
 		$("#menu1").show();
 		$("#menu").hide();
 	});
-	$("#menu_album").mouseover(function(){
-		$(".menu_albums").show();
-	});	
-	$("#menu_album").mouseout(function(){
-		$(".menu_albums").hide();
-	});	
+
 	$("#menu_album1").click(function(){
 		$("#album1").show();
 		
@@ -256,8 +235,7 @@ $(function(){
   				<li><button id="menu_intro">인트로</button><button id="menu_close">close</button></li>
   				<li><button id="menu_album">앨범</button>		
   					<ul>
-  						<li><button class="menu_albums" id="menu_album1">앨범1</button></li>
-  						<li><button class="menu_albums" id="menu_album2">앨범2</button></li>
+  						<li><button class="menu_albums" id="menu_album1">앨범1</button><button class="menu_albums" id="menu_album2">앨범2</button></li>
   					</ul>
   				</li>
   				<li><button id="menu_board">게시판</button>
