@@ -10,14 +10,12 @@
 <title>Main Page</title>
 <style>
 
-<!-- div 스타일 -->
-
 canvas{
 	width:100%;
 	height:100%;
 	display:block;
 }
-<!--버튼스타일 -->
+
 .login_button {
 	position: relative;
 	width:80%; 
@@ -46,6 +44,12 @@ canvas{
     max-height: 80%;
 
 }
+body{
+	margin : 0;
+	overflow-x:hidden;
+	overflow-y:hidden;
+}
+
 #overlay {
 	position: absolute;
 	z-index: 2;
@@ -62,9 +66,24 @@ canvas{
 }
 
 
-a,button, input, select {
+a, button, input, select, span {
 	pointer-events: auto;
 }
+
+talbe{
+	frame=void
+	
+	}
+a.title:hover {
+   text-decoration: underline; 
+}
+
+.title{
+  text-decoration: none;
+  color : #232323;
+  cursor: pointer;
+  
+  }
 <!-- light box css -->
 .black_overlay{
         display: none;
@@ -95,69 +114,101 @@ a,button, input, select {
         overflow: auto;
         
     }
-
-
-
+    .album_content {
+        display: none;
+        position: absolute;
+        top: 15%;
+        left: 33%;
+        width: 33%;
+        height: 70%;
+        padding: 16px;
+        border: 12px solid rgb(50, 50, 50);
+        background-color: rgb(12, 12, 12);
+        opacity:.80;
+        z-index:1002;
+        overflow: auto;
+    }
+    
+    .song{
+    	height:50px;
+    	padding-left:11px;
+    	text-align:left;
+    	color:#232323;
+    	font-family:-apple-system,BlinkMacSystemFont,AppleSDGothicNeo,Helvetica,"\B9D1\C740   \ACE0\B515",Malgun Gothic,"\B3CB\C6C0",Dotum,sans-serif;
+    	}
+    	
+    .singer{
+    	text-align:center;
+    	color : #808080;
+    	font-size: 13px;
+    	text-align: center;
+    	font-family:-apple-system,BlinkMacSystemFont,AppleSDGothicNeo,Helvetica,"\B9D1\C740   \ACE0\B515",Malgun Gothic,"\B3CB\C6C0",Dotum,sans-serif;
+    	
+    }
+    
+    .likebut{
+    	width:40px;
+    	text-align: center;
+    }
 </style>
 <script src="./js/three.js"></script>
 <script src="./js/OrbitControls.js"></script>
 <script src="./js/3Dink.js"></script>
+<script src="./js/dat.gui.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bio.css" type="text/css">
-
-<script type="text/javascript">
+<script>
 
 $(function(){
-	$("#menu").hide();
+	// 추천버튼 클릭시(추천 추가 또는 추천 제거)
+	$(".favorite").click(function(){
+		//location.href='liked.do';
+		<c:if test="${empty authUser }">
+		location.href='user/login.do';
+		</c:if>
+		<c:if test="${!empty authUser }">
+		var val = $(this).text();
+		var obj = $(this);
+		$.ajax({
+			url: "like.do",
+            type: "POST",
+            data: {
+                music_no: $(this).data("no"),
+                user_no: ${authUser.no}
+            },
+            success: function () {
+            	//alert(val+"성공");
+            	if (val=='♥') {
+            		obj.text('♡');
+            	} else {
+            		obj.text('♥');
+            	}
+            },
+           
+		});
+		</c:if>
+	});
+}
+);
+
+function music_click(no){
+	
+	<c:if test="${empty authUser }">
+	location.href='user/login.do';
+	</c:if>
+	<c:if test="${!empty authUser }">
+	window.open('album/detail.do?no='+no+'','test', 'menubar=no, status=no, toolbar=no, location=no, resizable=no, width=400, height=650');
+	</c:if>
+	
+}
 
 
-
-	$("#menu1").click(function(){
-		$("#menu1").hide();
-		$("#menu").show();
-		$("canvas").css('opacity','0.5');
-
-	});	
-	$("#menu_close").click(function(){
-		$("#menu1").show();
-		$("#menu").hide();
-		$("canvas").css('opacity','1');
-	});
-	$("#menu_intro").click(function(){
-		$("#intro").show();
-		
-		$("#menu1").show();
-		$("#menu").hide();
-	});
-
-	$("#menu_album1").click(function(){
-		$("#album1").show();
-		
-		$("#menu1").show();
-		$("#menu").hide();
-	});
-	$("#menu_album2").click(function(){
-		$("#album2").show();
-		
-		$("#menu1").show();
-		$("#menu").hide();
-	});
-	$("#menu_board").click(function(){
-		$("#board").show();
-		
-		$("#menu1").show();
-		$("#menu").hide();
-	});
-	$("#menu1").click(function(){
-		$("#menu1").hide();
-		$("#menu").show();
-	});	
-});
 </script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bio.css" type="text/css">
+
 </head>
 <body>
 
-
+<!-- 인트로 -->
 <div id="intro" class="white_content">
 	<div id= "intro_content" style="position: absolute;left:0%; ">	
 	<div id="main" class="container1">
@@ -166,7 +217,7 @@ $(function(){
 	      <h2 id="title">Post Malone</h2>
 	    </div>
 	    <div id="img-div">
-	      <img src="/img/intro_img.jpg" alt="Post Malone Tribute" id="image" class="img-resp">
+	      <img src="img/intro_img.jpg" alt="Post Malone Tribute" id="image" class="img-resp">
 	      <p id="img-caption">Follow Me:</p>
 	      <div class="icons">
 	        <i class="fab fa-facebook fa-2x"></i>
@@ -188,12 +239,12 @@ $(function(){
 	      <h2 class="display-2">Albums</h2>
 	      <div class="album-gallery">
 	        <div class="album-info">
-	          <img class="album-thumbnail" src="/img/album1.png" alt="Hollywood's Bleeding Album Cover">
+	          <img class="album-thumbnail" src="img/album1.png" alt="Hollywood's Bleeding Album Cover">
 	          <p class="album-title">Hollywood's Bleeding</p>
 	          <p class="album-year">2019</p>
 	        </div>
 	        <div class="album-info">         
-	          <img class="album-thumbnail" src="/img/album2.jpg" alt="Beerbongs and Betleys">
+	          <img class="album-thumbnail" src="img/album2.jpg" alt="Beerbongs and Betleys">
 	          <p class="album-title">Beerbongs & Bentleys</p>
 	          <p class="album-year">2018</p>
 	        </div>
@@ -206,13 +257,15 @@ $(function(){
 	    </div>
 	  </div>
 	</div>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('intro').style.display='none';" align="right"><img src="/MS/img/close_btn.png" width="40px"></a>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('intro').style.display='none';" style="position:absolute;"><img src="/MS/img/close_btn.png" width="40px"></a>
 	</div>
 </div>
 </div>
 
-<div id="container">
+<!-- three.js 켄버스 -->
+<div id="container" class="black_overlay"></div>
 
+<!-- 헤더 작업 -->
 <div class="w_txt1" style="position: fixed;
 	color: white;
 	text-align: center;
@@ -223,74 +276,251 @@ $(function(){
 	border-radius: 5px 5px 5px 5px;
 	width:100%;
 	height:8%;
+	top : 1px;
+	height:77px;
 	">
 	<div style=" position: relative;
     top: 25px;">
     	<div style="left:2%;
 	    position: absolute;
 	    top: -2px;">
-    		<button id="menu1" >menu</button>
-    		<div id="menu">
-  			<ul class="menu">
-  				<li><button id="menu_intro">인트로</button><button id="menu_close">close</button></li>
-  				<li><button id="menu_album">앨범</button>		
-  					<ul>
-  						<li><button class="menu_albums" id="menu_album1">앨범1</button><button class="menu_albums" id="menu_album2">앨범2</button></li>
-  					</ul>
-  				</li>
-  				<li><button id="menu_board">게시판</button>
-			</ul>
-		</div>
+    		<button style="cursor:pointer; border:0; background:black;" onclick="location.href='/MS/main.do'"><img src="/MS/img/ms_icon.png" width="200%"></button>
     	</div>
-		<div style="left: 50%;
+		<div style="left: 48%;
 	    position: absolute;
-	    top: -2px;">
-			<button style="border:0; background:black;" onclick="location.href='/MS/main.do'"/><img src="/MS/img/ms_icon.png" width="200%"></button>			
+	    top: -30px;">
+			<p style="color:orange;font-size:40px;"><b>post malone</b></p>
 		</div>
 		<div style="right: 2%;
 	    position: absolute;">
 			<c:if test="${!empty authUser }">
-			<input type="button" id="login_button" class="login_button" style="font-weight:bold; font-size: 20px;width:100%;height:100%;border:0;background:black;color:white;"onclick="location.href='/MS/user/logout.do'" value="Log out"/>
+			<input type="button" id="login_button" class="login_button" style="cursor:pointer; font-weight:bold; font-size: 20px;width:100%;height:100%;border:0;background:black;color:white;"onclick="location.href='/MS/user/logout.do'" value="Log out"/>
 			</c:if>
 			<c:if test="${empty authUser }">
-			<input type="button" id="login_button" class="login_button" style="font-weight:bold; font-size: 20px;width:100%;height:100%;border:0; background:black;color:white;"onclick="location.href='/MS/user/login.do'" value="Sign In">
+			<input type="button" id="login_button" class="login_button" style="cursor:pointer; font-weight:bold; font-size: 20px;width:100%;height:100%;border:0; background:black;color:white;"onclick="location.href='/MS/user/login.do'" value="Sign In">
 			</c:if>
 		</div>	
 	</div>	
 </div>
-</div>
 
-<div id="album1" class="white_content">
-	<div id="table">
-	<table>
-	<tr>
-	<td>
-	</td>
-	</tr>
-	</table>
+<!-- 앨법 1-->
+<div id="album1" class="album_content" >
+	<div id="album1_list" style="position:absolute; font-color:white;">
+		<table border="0" width="100%" cellspacing="0">
+		<c:forEach var="vo" items="${list}">
+			<c:if test="${vo.a_no == 1}">
+				<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
+				<td class = "song">
+				<input type="hidden" class="mu
+				sic_no" name="no" value="${vo.no }">
+				<a href="javascript:void(0)" class="title" onclick = "music_click(${vo.no})">${vo.title }</a></td>
+				<td class ="singer">Post Malone</td>
+				<td class="likebut" >
+				<c:if test="${vo.liked == 1}">
+					<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }">♥</span>	
+	    		</c:if>
+	    		<c:if test="${vo.liked == 0}">
+					<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }">♡</span>		
+	    		</c:if>
+				</tr>
+			</c:if>
+		</c:forEach>
+	    </table>
 	</div>
-	<p>album1</p>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('album1').style.display='none';">Close</a>
+	 <a href = "javascript:void(0)" onclick = "document.getElementById('album1').style.display='none';" style="position:absolute;float:right;"><img src="/MS/img/close_btn.png" width="40px"></a>
 </div>
 
-<div id="album2" class="white_content"><p>album2</p>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('album2').style.display='none';">Close</a>
+
+
+<!-- 앨범 2-->
+<div id="album2" class="album_content" >
+	<div id="album2_list">
+
+         <div class="overview__albums">
+              
+        <div class="overview__albums__head">
+        
+          <span class="section-title">Albums</span>
+          
+          <span class="view-type">
+          
+            <i class="fa fa-list list active"></i>
+            
+            <i class="fa fa-th-large card"></i>
+            
+          </span>
+        
+        </div>
+        
+        <div class="album">
+        
+          <div class="album__info">
+          
+            <div class="album__info__art">
+            
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg" alt="When It's Dark Out">
+              
+            </div>
+            
+            <div class="album__info__meta">
+            
+              <div class="album__year">2015</div>
+              
+              <div class="album__name">When It's Dark Out</div>
+              
+              <div class="album__actions">
+              
+                <button class="button-light save">Save</button>
+                
+                <button class="button-light more">
+                  <i class="ion-ios-more"></i>
+                </button>
+                
+              </div>
+              
+            </div>
+            
+          </div>
+          
+          <div class="album__tracks">
+          
+            <div class="tracks">
+              
+              <div class="tracks__heading">
+              
+                <div class="tracks__heading__number">#</div>
+                
+                <div class="tracks__heading__title">Song</div>
+                
+                <div class="tracks__heading__length">
+                
+                  <i class="ion-ios-stopwatch-outline"></i>
+                  
+                </div>
+                
+                <div class="tracks__heading__popularity">
+                
+                  <i class="ion-thumbsup"></i>
+                  
+                </div>
+                
+              </div>
+			<c:forEach var="vo" items="${list}">
+              <div class="track">
+				<input type="hidden" name="hidden" value='${vo.no }'/>
+                <div class="track__number">1</div>
+
+                <div class="track__added">
+
+                  <i class="ion-checkmark-round added"></i>
+
+                </div>
+
+                <div class="track__title">Intro</div>
+
+                <div class="track__explicit">
+
+                  <span class="label">Explicit</span>
+
+                </div>
+                
+                <div class="track__length">
+                	<c:if test="${vo.liked == 1}">
+						<span class="favorite" style="color:red; cursor:pointer; " data-no="${vo.no }">♥</span>
+					</c:if>
+					<c:if test="${vo.liked == 0}">
+						<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }" >♡</span>
+					</c:if>
+				</div>
+                
+                <div class="track__popularity">
+                
+                  <i class="ion-arrow-graph-up-right"></i>
+                  
+                </div>
+
+              </div>
+              </c:forEach>
+              
+                    <div class="track">
+				<input type="hidden" name="hidden" value='vo.no'/>
+                <div class="track__number">1</div>
+
+                <div class="track__added">
+
+                  <i class="ion-checkmark-round added"></i>
+
+                </div>
+
+                <div class="track__title">Intro</div>
+
+                <div class="track__explicit">
+
+                  <span class="label">Explicit</span>
+
+                </div>
+                
+                <div class="track__length">
+                	<c:if test="${vo.liked == 1}">
+						<span class="favorite" style="color:red; cursor:pointer; " data-no="${vo.no }">♥</span>
+					</c:if>
+					<c:if test="${vo.liked == 0}">
+						<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }" >♡</span>
+					</c:if>
+				</div>
+                
+                <div class="track__popularity">
+                
+                  <i class="ion-arrow-graph-up-right"></i>
+                  
+                </div>
+
+              </div>
+              
+            </div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      </div>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('album2').style.display='none';" style="margin-left:45%">Close</a>
 </div>
 
+<!-- 보드 작업 -->
 <div id="board" class="white_content">
 	<iframe id="iframe" style="position: relative;
          border: none;
          height: 100%;
-         width: 100%;       
-         "src="http://localhost/MS/admin/board/index.do"></iframe>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';">Close</a>	
+         width: 100%;
+        "src="http://localhost/MS/admin/board/index.do"></iframe>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';" style="margin-left:45%">Close</a>	
 </div>
     
+    <!-- 3D 음향을 위한 오디오테그 추가-->
 <audio loop id="music" preload="auto" style="display: none">
 		<source src="./upload/1613375880426.mp3" type="audio/mpeg">
 </audio>
 
+<!-- 비디오 테그 설정들 -->
 <video id="video" loop crossOrigin="anonymous" playsinline style="display:none" controls autoplay muted="muted">
+<source src="./video/newbackground.mp4" type='video/mp4; '>
+</video> 
+<video id="intro_video" loop crossOrigin="anonymous" playsinline style="display:none" controls autoplay muted="muted">
+<source src="./video/background1.mp4" type='video/mp4; '>
+<source src="./video/newbackground.mp4" type='video/mp4; '>
+</video> 
+<video id="album1_video" loop crossOrigin="anonymous" playsinline style="display:none" controls autoplay muted="muted">
+<source src="./video/background2.mp4" type='video/mp4; '>
+<source src="./video/newbackground.mp4" type='video/mp4; '>
+</video> 
+<video id="album2_video" loop crossOrigin="anonymous" playsinline style="display:none" controls autoplay muted="muted">
+<source src="./video/background3.mp4" type='video/mp4; '>
+<source src="./video/newbackground.mp4" type='video/mp4; '>
+</video> 
+<video id="board_video" loop crossOrigin="anonymous" playsinline style="display:none" controls autoplay muted="muted">
+<source src="./video/background4.mp4" type='video/mp4; '>
 <source src="./video/newbackground.mp4" type='video/mp4; '>
 </video> 
 
@@ -301,6 +531,9 @@ $(function(){
 const num = 4;
 var width = window.innerWidth;
 var height = window.innerHeight;
+
+//우측상단 gui 모델 선언
+
 
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 10000);
@@ -328,7 +561,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	
 	
  
-//grid Helper    
+/*grid Helper    
 var axes = new THREE.AxesHelper(200);
                            // 길이
 scene.add(axes);
@@ -336,25 +569,23 @@ scene.add(axes);
 var grideHelper = new THREE.GridHelper( 200,10 );
 
 scene.add(grideHelper);
-
+*/
 	
 	
 
-	
-	  
 	//camera controler
 	function control(){    
-		controls.enablePan = true;
-		controls.enableZoom = true;
+		controls.enablePan = false;
+		controls.enableZoom = false;
 		controls.rotateSpeed = 0.7;
 		controls.zoomSpeed = 5;
 		controls.minDistance = 3;
 		controls.maxDistance = 1000;
-		//controls.minPolarAngle = Math.PI/2;
-		//controls.maxPolarAngle = Math.PI/2;
+		controls.minPolarAngle = Math.PI/2;
+		controls.maxPolarAngle = Math.PI/2;
 		controls. enableKeys = false;
-		controls.autoRotate = false;
-		controls.autoRotateSpeed = 0.3;
+		controls.autoRotate = true;
+		controls.autoRotateSpeed = -0.3;
 		controls.keys = {
 			LEFT: 65, //left arrow
 			UP: 87, // up arrow
@@ -376,10 +607,20 @@ scene.add(grideHelper);
 	
 	
 	//배경 비디오 호출
-	var video = document.getElementById( 'video' );
-	video.play();
-	var Ontexture = new THREE.VideoTexture( video );
-	var texture
+	var video = [];
+	video[0] = document.getElementById( 'video' );
+	video[1] = document.getElementById( 'intro_video' );
+	video[2] = document.getElementById( 'album1_video' );
+	video[3] = document.getElementById( 'album2_video' );
+	video[4] = document.getElementById( 'board_video' );
+	
+	for (var i = 0; i<5; i++)
+		{
+			video[i].play();	
+		
+		}
+	
+	var Ontexture = new THREE.VideoTexture( video[0] );
 	scene.background = Ontexture;
 	
 	var box = [];
@@ -389,12 +630,12 @@ scene.add(grideHelper);
 	box[0].position.set(-60,0,0);
 	
 	// 앨범 1 왼쪽
-	box[1] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/Circles.PNG'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
+	box[1] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/album1.png'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
 	box[1].position.set(0,0,60);
 	box[1].rotation.set(0,Math.PI/2,0);
 	
 	// 앨범 2 오른쪽
-	box[2] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/Circles.PNG'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
+	box[2] = new THREE.Mesh(new THREE.BoxGeometry(5,30,30),new THREE.MeshBasicMaterial({map: new THREE.TextureLoader().load('./img/album2.jpg'), side:THREE.FrontSide,transparent: true, opacity : 0.5}));
 	box[2].position.set(0,0,-60);
 	box[2].rotation.set(0,Math.PI/2,0);
 
@@ -415,6 +656,7 @@ scene.add(grideHelper);
 // 윈도우 크기에 따른 화면 조정 함수
  window.addEventListener('resize', function()
 {    
+	 
 	var width = window.innerWidth;
     var height = window.innerHeight;
    	renderer.setSize(width, height);
@@ -470,21 +712,45 @@ scene.add(grideHelper);
     	  if( i == 0){
     	  document.getElementById('intro').style.display='block';
      	  document.getElementById('container').style.display='block';
+     	  document.getElementById('album2').style.display='none'
+     	  document.getElementById('album1').style.display='none'
+     	  document.getElementById('board').style.display='none'
+     	  scene.background = new THREE.VideoTexture( video[i+1] );
     	  }
     	  
     	  if( i == 1){
         	  document.getElementById('album1').style.display='block';
          	  document.getElementById('container').style.display='block';
+         	  document.getElementById('album2').style.display='none'
+              document.getElementById('board').style.display='none'
+              document.getElementById('intro').style.display='none'
+         	  scene.background = new THREE.VideoTexture( video[i+1] );
          }
     	
     	  if( i == 2){
         	  document.getElementById('album2').style.display='block';
          	  document.getElementById('container').style.display='block';
+         	  document.getElementById('intro').style.display='none'
+              document.getElementById('album1').style.display='none'
+              document.getElementById('board').style.display='none'
+         	  scene.background = new THREE.VideoTexture( video[i+1] );
         }
     	  
     	if( i == 3){
+    		
+    		
+    		  <c:if test="${empty authUser }">
+    		  location.href='user/login.do';
+    		  </c:if>
+    		  
+    		  <c:if test="${!empty authUser }">
         	  document.getElementById('board').style.display='block';
          	  document.getElementById('container').style.display='block';
+         	  document.getElementById('album2').style.display='none'
+              document.getElementById('album1').style.display='none'
+              document.getElementById('intro').style.display='none'
+         	  scene.background = new THREE.VideoTexture( video[i+1] );
+         	  </c:if>
         }
     	  
       	  audioElement.pause();
