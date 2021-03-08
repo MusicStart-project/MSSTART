@@ -187,7 +187,15 @@ public class albumController {
 		return "album/main";
 	}
 	@RequestMapping("/main2.do")
-	public String webgl2(HttpServletRequest req, albumVo vo) {
+	public String webgl2(HttpServletRequest req, albumVo vo, HttpServletResponse res, HttpSession sess, likedVo lvo) {
+		
+		UserVo uv = (UserVo)sess.getAttribute("authUser");
+		if (uv != null) lvo.setUser_no(uv.getNo());
+		List<albumVo> list = albumService.albumList(lvo);
+		
+		req.setAttribute("list", list);
+		req.setAttribute("vo", vo);
+		req.setAttribute("lvo", lvo);
 		
 		return "album/main2";
 	}

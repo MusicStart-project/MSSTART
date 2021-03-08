@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-<title>Main Page</title>
+<title>Music Start</title>
 <style>
 
 canvas{
@@ -80,7 +81,7 @@ a.title:hover {
 
 .title{
   text-decoration: none;
-  color : #232323;
+  color : #ffffff;
   cursor: pointer;
   
   }
@@ -133,14 +134,14 @@ a.title:hover {
     	height:50px;
     	padding-left:11px;
     	text-align:left;
-    	color:#232323;
+    	font-color:#ffffff;
     	font-family:-apple-system,BlinkMacSystemFont,AppleSDGothicNeo,Helvetica,"\B9D1\C740   \ACE0\B515",Malgun Gothic,"\B3CB\C6C0",Dotum,sans-serif;
     	}
     	
     .singer{
     	text-align:center;
-    	color : #808080;
-    	font-size: 13px;
+    	color : #888888;
+    	font-size: 10px;
     	text-align: center;
     	font-family:-apple-system,BlinkMacSystemFont,AppleSDGothicNeo,Helvetica,"\B9D1\C740   \ACE0\B515",Malgun Gothic,"\B3CB\C6C0",Dotum,sans-serif;
     	
@@ -200,11 +201,20 @@ function music_click(no){
 	</c:if>
 	
 }
+function mypage(){
+	<c:if test="${empty authUser }">
+	location.href='user/login.do';
+	</c:if>
+	<c:if test="${!empty authUser }">
+	location.href='/MS/mypage.do';
+	</c:if>
+}
 
-
+var album1 = 1
+var album2 = 2
 </script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bio.css" type="text/css">
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/album.css" type="text/css">
 </head>
 <body>
 
@@ -266,7 +276,7 @@ function music_click(no){
 <div id="container" class="black_overlay"></div>
 
 <!-- 헤더 작업 -->
-<div class="w_txt1" style="position: fixed;
+<div  style="position: fixed;
 	color: white;
 	text-align: center;
 	pointer-events: none;
@@ -276,21 +286,22 @@ function music_click(no){
 	border-radius: 5px 5px 5px 5px;
 	width:100%;
 	height:8%;
-	top : 1px;
+	top : 0px;
 	height:77px;
 	">
 	<div style=" position: relative;
     top: 25px;">
-    	<div style="left:2%;
+    	<div style="left:1%;
 	    position: absolute;
-	    top: -2px;">
-    		<button style="cursor:pointer; border:0; background:black;" onclick="location.href='/MS/main.do'"><img src="/MS/img/ms_icon.png" width="200%"></button>
+	    top: -12px;">
+    		<button style="cursor:pointer; border:0; background:black;width: 50px;height: 50px;" onclick="mypage()"><img src="/MS/img/mypage.png"width="50px"></button>
     	</div>
-		<div style="left: 48%;
+ 	    <div style="left:48%;
 	    position: absolute;
-	    top: -30px;">
-			<p style="color:orange;font-size:40px;"><b>post malone</b></p>
-		</div>
+	    top: -7px;">
+    		<button style="cursor:pointer; border:0; background:black;width: 40px;height: 40px;" onclick="location.href='/MS/main.do'"><img src="/MS/img/ms_icon.png" width="40px"></button>
+    	</div>
+
 		<div style="right: 2%;
 	    position: absolute;">
 			<c:if test="${!empty authUser }">
@@ -305,42 +316,12 @@ function music_click(no){
 
 <!-- 앨법 1-->
 <div id="album1" class="album_content" >
-	<div id="album1_list" style="position:absolute; font-color:white;">
-		<table border="0" width="100%" cellspacing="0">
-		<c:forEach var="vo" items="${list}">
-			<c:if test="${vo.a_no == 1}">
-				<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
-				<td class = "song">
-				<input type="hidden" class="mu
-				sic_no" name="no" value="${vo.no }">
-				<a href="javascript:void(0)" class="title" onclick = "music_click(${vo.no})">${vo.title }</a></td>
-				<td class ="singer">Post Malone</td>
-				<td class="likebut" >
-				<c:if test="${vo.liked == 1}">
-					<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }">♥</span>	
-	    		</c:if>
-	    		<c:if test="${vo.liked == 0}">
-					<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }">♡</span>		
-	    		</c:if>
-				</tr>
-			</c:if>
-		</c:forEach>
-	    </table>
-	</div>
-	 <a href = "javascript:void(0)" onclick = "document.getElementById('album1').style.display='none';" style="position:absolute;float:right;"><img src="/MS/img/close_btn.png" width="40px"></a>
-</div>
-
-
-
-<!-- 앨범 2-->
-<div id="album2" class="album_content" >
-	<div id="album2_list">
-
-         <div class="overview__albums">
+	<div id="album1_list" style="position:absolute;">
+		  <div class="overview__albums">
               
         <div class="overview__albums__head">
         
-          <span class="section-title">Albums</span>
+          <span class="section-title">album</span>
           
           <span class="view-type">
           
@@ -364,17 +345,13 @@ function music_click(no){
             
             <div class="album__info__meta">
             
-              <div class="album__year">2015</div>
+              <div class="album__year">2019</div>
               
-              <div class="album__name">When It's Dark Out</div>
+              <div class="album__name">Hollywood's Bleeding</div>
               
               <div class="album__actions">
               
-                <button class="button-light save">Save</button>
-                
-                <button class="button-light more">
-                  <i class="ion-ios-more"></i>
-                </button>
+                <button class="button-light save">share</button>
                 
               </div>
               
@@ -390,7 +367,7 @@ function music_click(no){
               
                 <div class="tracks__heading__number">#</div>
                 
-                <div class="tracks__heading__title">Song</div>
+                <div class="tracks__heading__title" style="margin-left:45px;">Song</div>
                 
                 <div class="tracks__heading__length">
                 
@@ -405,9 +382,12 @@ function music_click(no){
                 </div>
                 
               </div>
-			<c:forEach var="vo" items="${list}">
+				<c:forEach var="vo" items="${list}">
+					<c:if test="${vo.a_no == 1}">
+				
+				
               <div class="track">
-				<input type="hidden" name="hidden" value='${vo.no }'/>
+
                 <div class="track__number">1</div>
 
                 <div class="track__added">
@@ -416,75 +396,59 @@ function music_click(no){
 
                 </div>
 
-                <div class="track__title">Intro</div>
+                <div class="track__title" style="margin-left:10px;"><a href="javascript:void(0)" class="title" onclick = "music_click(${vo.no})">${vo.title }</a></div>
 
                 <div class="track__explicit">
 
-                  <span class="label">Explicit</span>
+                  <span class="label" style="font-size:11px;">Post Malone</span>
 
                 </div>
                 
-                <div class="track__length">
-                	<c:if test="${vo.liked == 1}">
-						<span class="favorite" style="color:red; cursor:pointer; " data-no="${vo.no }">♥</span>
-					</c:if>
-					<c:if test="${vo.liked == 0}">
-						<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }" >♡</span>
-					</c:if>
-				</div>
-                
+                <div class="track__length" style="margin-right:6px;">
+	                <c:if test="${vo.liked == 1}">
+						<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }">♥</span>	
+		    		</c:if>
+		    		<c:if test="${vo.liked == 0}">
+						<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }">♡</span>		
+		    		</c:if>
+	    		</div>
                 <div class="track__popularity">
                 
                   <i class="ion-arrow-graph-up-right"></i>
-                  
                 </div>
-
               </div>
+              </c:if>
               </c:forEach>
-              
-                    <div class="track">
-				<input type="hidden" name="hidden" value='vo.no'/>
-                <div class="track__number">1</div>
-
-                <div class="track__added">
-
-                  <i class="ion-checkmark-round added"></i>
-
-                </div>
-
-                <div class="track__title">Intro</div>
-
-                <div class="track__explicit">
-
-                  <span class="label">Explicit</span>
-
-                </div>
-                
-                <div class="track__length">
-                	<c:if test="${vo.liked == 1}">
-						<span class="favorite" style="color:red; cursor:pointer; " data-no="${vo.no }">♥</span>
-					</c:if>
-					<c:if test="${vo.liked == 0}">
-						<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }" >♡</span>
-					</c:if>
-				</div>
-                
-                <div class="track__popularity">
-                
-                  <i class="ion-arrow-graph-up-right"></i>
-                  
-                </div>
-
-              </div>
-              
             </div>
             
           </div>
-          
         </div>
-        
       </div>
-      </div>
+	</div>
+	 <a href = "javascript:void(0)" onclick = "document.getElementById('album1').style.display='none';" style="position:absolute;float:right;"><img src="/MS/img/close_btn.png" width="40px"></a>
+</div>
+
+<!-- 앨범 2-->
+<div id="album2" class="album_content">
+	<div id=album2_list>
+		<table border="0" width="100%" cellspacing="0">
+		<c:forEach var="vo" items="${list}">
+			<c:if test="${vo.a_no == 2}">
+				<tr onmouseover="this.style.background='#d2d2d2'" onmouseout="this.style.background='white'">
+				<td class="song"><a href="javascript:void(0)" class="title" onclick = "music_click(${vo.no})">${vo.title }</a></td>
+				<td style="color : gray; font-size: 13px; text-align: center;" class="singer">Post Malone</td>
+				<td class="likebut" >	
+					<c:if test="${vo.liked == 1}">
+						<span class="favorite" style="color:red; cursor:pointer; " data-no="${vo.no }">♥</span>
+					</c:if>
+					<c:if test="${vo.liked == 0}">
+						<span class="favorite"  style="color:red; cursor:pointer;" data-no="${vo.no }" >♡</span>
+					</c:if>
+				</tr>
+			</c:if>
+		</c:forEach>
+		</table>
+	</div>
     <a href = "javascript:void(0)" onclick = "document.getElementById('album2').style.display='none';" style="margin-left:45%">Close</a>
 </div>
 
@@ -495,7 +459,7 @@ function music_click(no){
          height: 100%;
          width: 100%;
         "src="http://localhost/MS/admin/board/index.do"></iframe>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';" style="margin-left:45%">Close</a>	
+    <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';" style="position:absolute;right: 1%;"><img src="/MS/img/close_btn.png" width="40px"></a>
 </div>
     
     <!-- 3D 음향을 위한 오디오테그 추가-->
