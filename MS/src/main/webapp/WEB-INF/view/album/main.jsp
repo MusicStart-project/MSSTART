@@ -8,7 +8,7 @@
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-<title>Main Page</title>
+<title>Music Start</title>
 <style>
 
 canvas{
@@ -201,6 +201,14 @@ function music_click(no){
 	</c:if>
 	
 }
+function mypage(){
+	<c:if test="${empty authUser }">
+	location.href='user/login.do';
+	</c:if>
+	<c:if test="${!empty authUser }">
+	location.href='/MS/mypage.do';
+	</c:if>
+}
 
 
 </script>
@@ -266,7 +274,7 @@ function music_click(no){
 <div id="container" class="black_overlay"></div>
 
 <!-- 헤더 작업 -->
-<div class="w_txt1" style="position: fixed;
+<div  style="position: fixed;
 	color: white;
 	text-align: center;
 	pointer-events: none;
@@ -276,21 +284,22 @@ function music_click(no){
 	border-radius: 5px 5px 5px 5px;
 	width:100%;
 	height:8%;
-	top : 1px;
+	top : 0px;
 	height:77px;
 	">
 	<div style=" position: relative;
     top: 25px;">
-    	<div style="left:2%;
+    	<div style="left:1%;
 	    position: absolute;
-	    top: -2px;">
-    		<button style="cursor:pointer; border:0; background:black;" onclick="location.href='/MS/main.do'"><img src="/MS/img/ms_icon.png" width="200%"></button>
+	    top: -12px;">
+    		<button style="cursor:pointer; border:0; background:black;width: 50px;height: 50px;" onclick="mypage()"><img src="/MS/img/mypage.png"width="50px"></button>
     	</div>
-		<div style="left: 48%;
+ 	    <div style="left:48%;
 	    position: absolute;
-	    top: -30px;">
-			<p style="color:orange;font-size:40px;"><b>post malone</b></p>
-		</div>
+	    top: -7px;">
+    		<button style="cursor:pointer; border:0; background:black;width: 40px;height: 40px;" onclick="location.href='/MS/main.do'"><img src="/MS/img/ms_icon.png" width="40px"></button>
+    	</div>
+
 		<div style="right: 2%;
 	    position: absolute;">
 			<c:if test="${!empty authUser }">
@@ -361,7 +370,7 @@ function music_click(no){
          height: 100%;
          width: 100%;
         "src="http://localhost/MS/admin/board/index.do"></iframe>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';" style="margin-left:45%">Close</a>	
+    <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';" style="position:absolute;right: 1%;"><img src="/MS/img/close_btn.png" width="40px"></a>
 </div>
     
     <!-- 3D 음향을 위한 오디오테그 추가-->
