@@ -109,6 +109,7 @@ $(function() {
 		</td>
 	</tr>
 </table>
+<!-- git test -->
 <a href="write2.do" id="kakaoBtn"><img src="../img/kakao_loginform.png"></a>
 </form>
 </body>
