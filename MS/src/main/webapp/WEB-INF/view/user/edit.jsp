@@ -3,45 +3,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Sign Up</title>
+
+    <!-- Icons font CSS-->
+    <link href="<%=request.getContextPath()%>/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="<%=request.getContextPath()%>/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="<%=request.getContextPath()%>/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="<%=request.getContextPath()%>/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="<%=request.getContextPath()%>/css/main.css" rel="stylesheet" media="all">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-// submit(image) 버튼인 경우
-// form에 onsubmit 속성 부여
-$(function() {
-	$("#submitBtn").click(function() {
-		if ($("#pwd").val().trim() == '') {
-			alert('비밀번호를 입력하세요');
-			return false;
-		}
-		if ($("#name").val().trim() == '') {
-			alert('이름을 입력하세요');
-			return false;
-		}
-		var data = $("#frm").serialize();
-		$.ajax({
-			url:'/MS/user/update.do',
-			data:data,
-			type:'HTML',
-			method:'POST',
-			cache:false,
-			success:function(data) {
-				//console.log(data);
-				if (data == 'true') {
-					alert("정상적으로 수정되었습니다.");
-					// 모든 입력란을 초기화
-					//$("input[type='text'], input[type='password']").val("");
-					//$("#frm")[0].reset();
-					location.href="index.do";
-				} else {
-					alert("등록 실패");
-				}
-			}
-		});
-	});
-});
-</script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -94,44 +78,105 @@ $(function() {
             }
         }).open();
     }
+function readURL(input) {
+   	 if (input.files && input.files[0]) {
+   	  var reader = new FileReader();
+   	  
+   	  reader.onload = function (e) {
+   	   $('#img').attr('src', e.target.result);  
+   	  }
+   	  
+   	  reader.readAsDataURL(input.files[0]);
+   	  }
+   	}
+   	 
+   	// 이벤트를 바인딩해서 input에 파일이 올라올때 위의 함수를 this context로 실행합니다.
+   	$("#filename").change(function(){
+   	   readURL(this);
+   	});
+
 </script>
 </head>
 <body>
 <form action="update.do" method="post" id="frm" onsubmit="return false;">
-<input type="hidden" name="no" value="${vo.no }">
-<table border="1">
-	<tr>
-		<td>아이디</td>
-		<td>
-			${vo.id }
-		</td>
-	</tr>
-	<tr>
-		<td>비밀번호</td>
-		<td><input type="password" name="pwd" id="pwd" value=""></td>
-	</tr>
-	<tr>
-		<td>이름</td>
-		<td><input type="text" name="name" id="name" value="${vo.name }"></td>
-	</tr>
-	<tr>
-		<td>이메일</td>
-		<td><input type="text" name="email" value="${vo.email }"></td>
-	</tr>
-	<tr>
-		<td>연락처</td>
-		<td><input type="text" name="tel" value="${vo.tel }"></td>
-	</tr>
-	<tr>
-		<td>주소</td>
-		<td>
-			<input type="text" name="zipcode" id="zipcode" size="5" readonly value="${vo.zipcode }"><input type="button" value="우편번호" onclick="zip_api();"><br>
-			<input type="text" name="addr1" id="addr1" readonly value="${vo.addr1 }"><br>
-			<input type="text" name="addr2" id="addr2" value="${vo.addr2 }">
-		</td>
-	</tr>
-</table>
-<input type="submit" value="수정" id="submitBtn">
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">My Profile</h2>
+                    <form method="POST">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+									<img id="img" src="#" width="260px" height="170px">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group" style="top:147px;">
+                                	<input type="file" id="filename" name="file" class="w100" title="첨부파일을 업로드 해주세요." />	
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Name</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4" type="text" name="name" id="name" value="${authUser.name }">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Email</label>
+                                    <input class="input--style-4" type="text" name="email" value="${authUser.email }">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Phone Number</label>
+                                    <input class="input--style-4" type="text" name="tel" value="${authUser.tel }">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Address</label>
+                            <div class="input-group">
+                            	<div>
+                            		<input class="input--style-4 zip" id="zipcode1" type="text" name="zipcode" id="zipcode" size="5" value="${authUser.zipcode }">
+                            		<input class="input--style-4 zip" id="zipcode2" type="button" value="Zip code" size="20px" onclick="zip_api();"><br>
+                            	</div>
+                                <input class="input--style-4 zip" type="text" name="addr1" id="addr1" value="${authUser.addr1 }"><br>
+								<input class="input--style-4 zip" type="text" name="addr2" id="addr2"  value="${authUser.addr2 }">
+                            </div>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit" id ="submitBtn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
+<!-- Jquery JS-->
+<script src="<%=request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+<!-- Vendor JS-->
+<script src="<%=request.getContextPath()%>/vendor/select2/select2.min.js"></script>
+<script src="<%=request.getContextPath()%>/vendor/datepicker/moment.min.js"></script>
+<script src="<%=request.getContextPath()%>/vendor/datepicker/daterangepicker.js"></script>
+
+<!-- Main JS-->
+<script src="<%=request.getContextPath()%>/js/global.js"></script><div class="daterangepicker dropdown-menu ltr single opensright"><div class="calendar left single" style="display: block;"><div class="daterangepicker_input"><input class="input-mini form-control" type="text" name="daterangepicker_start" value="" style="display: none;"><i class="fa fa-calendar glyphicon glyphicon-calendar" style="display: none;"></i><div class="calendar-time" style="display: none;"><div></div><i class="fa fa-clock-o glyphicon glyphicon-time"></i></div></div><div class="calendar-table"></div></div><div class="calendar right" style="display: none;"><div class="daterangepicker_input"><input class="input-mini form-control" type="text" name="daterangepicker_end" value="" style="display: none;"><i class="fa fa-calendar glyphicon glyphicon-calendar" style="display: none;"></i><div class="calendar-time" style="display: none;"><div></div><i class="fa fa-clock-o glyphicon glyphicon-time"></i></div></div><div class="calendar-table"></div></div><div class="ranges" style="display: none;"><div class="range_inputs"><button class="applyBtn btn btn-sm btn-success" disabled="disabled" type="button">Apply</button> <button class="cancelBtn btn btn-sm btn-default" type="button">Cancel</button></div></div></div>
+
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </body>
 </html>

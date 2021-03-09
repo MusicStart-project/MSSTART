@@ -93,8 +93,7 @@
 			tel = #{tel},
 			zipcode = #{zipcode},
 			addr1 = #{addr1},
-			addr2 = #{addr2},
-			pwd = password(#{pwd})
+			addr2 = #{addr2}
 		WHERE
 			no = #{no}
 	</update>

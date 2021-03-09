@@ -31,22 +31,37 @@ var i=1;
 
 	
 	  <div class="overview__albums">
-              
-        <div class="overview__albums__head">
+	  	<div class="overview__albums__head">
         
           <span class="section-title" style="font-size:30px">My Page</span>
           
           <span class="view-type">
           
             <c:if test="${!empty authUser }">
-			<input type="button" id="login_button" class="login_button section-title" style="cursor:pointer; font-weight:bold; font-size: 20px;width:100%;height:100%;border:0;background:#121212;color:#AAAAAA;"onclick="location.href='/MS/user/logout.do'" value="Log out"/>
+			<input type="button" style="cursor:pointer; font-weight:bold; font-size: 20px;width:100%;height:100%;border:0;background:#121212;color:#AAAAAA;"onclick="location.href='/MS/user/logout.do'" value="Log out"/>
 			</c:if>
             
           </span>
         
         </div>
+	 	 <div class="album__info">
+          
+            <div style="margin:0 auto;">
+            
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg" alt="When It's Dark Out "style="border-radius:250px 250px 250px 250px">
+              
+            </div>
+            
+         </div>
+         
+         <div style="color:white;position:relative;text-align:center;">
+         	<h3>${authUser.name}</h3>	
+         	<button style="float:right; position:absolute;top: -200%;left: 64%;background:none;padding:0px 0px;width:45px;height:45px;" onclick="location.href='/MS/user/edit.do?no=${authUser.no}'"><img height="45px"width="45px" src="./img/setting_icon.png"></button>
+         </div>
+              
         
-        <div class="album">
+        
+        <div class="album">        
           
           <div class="album__tracks">
           
