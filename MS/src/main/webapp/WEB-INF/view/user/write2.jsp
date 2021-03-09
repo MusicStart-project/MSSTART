@@ -58,18 +58,14 @@ Kakao.Auth.login({
 					success:function(data) {
 						//console.log(data);
 								if (data == 'true') {
-									
-										
 											$(function() {
-											
 													$("#loginFrm").submit();
-											
 											});
-										
-										
 									}
 								else{
-									$("#frm").css('visibility', 'visible')
+									$(function() {
+										formCheck();
+									});
 								}
 							}
 							
@@ -83,52 +79,12 @@ Kakao.Auth.login({
 			alert(JSON.stringify(err));
 		}
 	});
+	
 						
 </script>
 <script>
 
-// submit(image) 버튼인 경우
-// form에 onsubmit 속성 부여
 function formCheck() {
-	if ($("#id").val().trim() == '') {
-		alert('아이디를 입력하세요');
-		$("#id").focus();
-		return false;
-	}
-	var con = true;
-	if ($("#id").val().length >= 3) { // 아이디 값이 3자 이상인 경우
-		$.ajax({
-			url:'/MS/user/isDuplicateId.do',
-			data:{id:$("#id").val()},
-			type:'HTML',
-			method:'GET',
-			cache:false,
-			async:false,
-			success:function(data) {
-				//console.log(data);
-				if (data == 'true') {
-					alert('아이디가 중복되었습니다.');
-					$("#id").focus();
-					con = false;
-				}
-			}
-		});
-	} else {
-		alert('아이디는 3자 이상 입력해 주세요');
-		$("#id").focus();
-		return false;
-	}
-	if (con == false) return false;
-	if ($("#pwd").val().trim() == '') {
-		alert('비밀번호를 입력하세요');
-		$("#pwd").focus();
-		return false;
-	}
-	if ($("#name").val().trim() == '') {
-		alert('이름을 입력하세요');
-		$("#name").focus();
-		return false;
-	}
 	// 폼에 있는 모든 데이터를 한번에 읽어오는 방법
 	var data = $("#frm").serialize();
 	//console.log(data);
@@ -141,25 +97,18 @@ function formCheck() {
 		success:function(data) {
 			//console.log(data);
 			if (data == 'true') {
-				alert("정상적으로 등록되었습니다.");
 				// 모든 입력란을 초기화
 				//$("input[type='text'], input[type='password']").val("");
 				//$("#frm")[0].reset();
-				location.href="index.do";
+				location.href="write2.do";
 			} else {
 				alert("등록 실패");
 			}
 		}
 	});
 }
-// 아이디에 keyup이벤트를 걸어서 ajax로 중복여부 체크
-$(function() {
-	$("#submitBtn").click(function() {
-		formCheck();
-	});
-});
-</script>
 
+</script>
 </head>
 <body>
 <form action="insertKakao.do" method="post" id="frm" onsubmit="return false;">
@@ -181,8 +130,6 @@ $(function() {
 		<td><input type="text" name="email" id="email" readonly></td>
 	</tr>
 </table>
-<input type="submit" value="등록" id="submitBtn">
-
 </form>
 
 <form action="write2.do" method="post" id="loginFrm">
