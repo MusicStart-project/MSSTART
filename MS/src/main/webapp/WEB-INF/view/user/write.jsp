@@ -104,7 +104,7 @@ function formCheck() {
 				// 모든 입력란을 초기화
 				//$("input[type='text'], input[type='password']").val("");
 				//$("#frm")[0].reset();
-				location.href="index.do";
+				location.href="/main.do";
 			} else {
 				alert("등록 실패");
 			}
