@@ -252,7 +252,7 @@ var album2 = 1
 	      <h2 class="display-2">Albums</h2>
 	      <div class="album-gallery">
 	        <div class="album-info">
-	          <img class="album-thumbnail" src="img/album1.png" alt="Hollywood's Bleeding Album Cover">
+	          <img class="album-thumbnail" src="img/Hollywood_s-Bleeding_album.jpg" alt="Hollywood's Bleeding Album Cover">
 	          <p class="album-title">Hollywood's Bleeding</p>
 	          <p class="album-year">2019</p>
 	        </div>
@@ -447,7 +447,7 @@ var album2 = 1
           
             <div class="album__info__art">
             
-              <img src="<%=request.getContextPath()%>/img/Hollywood_s-Bleeding_album.jpg" alt="Beerbongs and Bentleys">
+              <img src="<%=request.getContextPath()%>/img/album2.jpg" alt="Beerbongs and Bentleys">
               
             </div>
             
