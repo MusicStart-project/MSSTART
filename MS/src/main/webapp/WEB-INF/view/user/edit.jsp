@@ -108,7 +108,7 @@ function readURL(input) {
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-									<img id="img" src="#" width="260px" height="170px">
+									<img id="img" src="../img/post-malone.jpg" width="260px" height="170px">
                                 </div>
                             </div>
                             <div class="col-2">
