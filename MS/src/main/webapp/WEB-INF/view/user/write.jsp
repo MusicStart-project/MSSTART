@@ -78,8 +78,8 @@ function formCheck() {
 		return false;
 	}
 	if (con == false) return false;
-	if ($("#pwd").val().trim() == '') {
-		alert('비밀번호를 입력하세요');
+	if ($("#pwd").val().trim() == '' || $("#pwd").val().length < 8) {
+		alert('비밀번호를 8자 이상 입력하세요');
 		$("#pwd").focus();
 		return false;
 	}
@@ -104,7 +104,7 @@ function formCheck() {
 				// 모든 입력란을 초기화
 				//$("input[type='text'], input[type='password']").val("");
 				//$("#frm")[0].reset();
-				location.href="/main.do";
+				location.href="/MS/main.do";
 			} else {
 				alert("등록 실패");
 			}

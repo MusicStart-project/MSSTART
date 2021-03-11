@@ -108,7 +108,7 @@ a.title:hover {
         width: 50%;
         height: 50%;
         padding: 16px;
-        border: 16px solid rgb(21, 34, 54);
+        border: 16px solid rgb(50, 50, 50);
         background-color: rgb(255, 255, 255);
         
         z-index:1002;
@@ -548,7 +548,7 @@ var album2 = 1
          border: none;
          height: 100%;
          width: 100%;
-        "src="http://localhost/MS/admin/board/index.do"></iframe>
+        "src="/MS/admin/board/index.do"></iframe>
     <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';" style="position:absolute;right: 1%;"><img src="/MS/img/close_btn.png" width="40px"></a>
 </div>
     
@@ -631,7 +631,7 @@ scene.add(grideHelper);
 	function control(){    
 		controls.enablePan = false;
 		controls.enableZoom = false;
-		controls.rotateSpeed = 0.7;
+		controls.rotateSpeed = -0.7;
 		controls.zoomSpeed = 5;
 		controls.minDistance = 3;
 		controls.maxDistance = 1000;
