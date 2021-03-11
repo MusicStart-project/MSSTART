@@ -116,10 +116,11 @@ var i=1;
                 
                 <div class="track__length" style="font-size:13px">                	
                 	<c:if test="${vo.a_no == 1 }">
-						<p>beerbongs & bentleys</p>
+                		<p>Hollywood's Bleeding</p>
+						
 					</c:if>
 					<c:if test="${vo.a_no == 2 }">
-						<p>hollywood's bleeding</p>
+						<p>Beerbongs & Bentleys</p>
 					</c:if>
 				</div>
                 
