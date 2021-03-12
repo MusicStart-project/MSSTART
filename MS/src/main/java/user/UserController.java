@@ -1,7 +1,9 @@
 package user;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class UserController {
@@ -115,8 +118,42 @@ public class UserController {
 	}
 	
 	@PostMapping("/user/update.do")
-	public void update(UserVo vo, HttpServletResponse res) throws IOException {
-		res.getWriter().print(userService.update(vo));
+	public void update(UserVo vo, HttpServletResponse res,MultipartFile file, HttpServletRequest req) throws IOException {
+		// 파일을 저장
+				if (!file.isEmpty()) { // 사용자가 첨부한 파일이 있으면
+					try {
+						String ext = "";
+						if (file.getOriginalFilename().indexOf(".") > -1 ) { // 파일명에 . 이 포함되어있는 경우
+							ext = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+							System.out.println(ext);
+						}
+						String filename = new Date().getTime()+ext;
+						// request.getRealPath() -> 실제 경로를 리턴
+						String path = req.getRealPath("/upload/");
+						System.out.println(path);
+						//path = "D:\\AI\\workspace\\user\\src\\main\\webapp\\upload\\";
+						file.transferTo(new File(path+filename));
+						// 파일명을 vo에 저장
+						vo.setUser_img(filename);
+						vo.setUser_img_org(file.getOriginalFilename());
+					} catch (Exception e) {
+						System.out.println(e.toString());
+					}
+				}
+				
+				res.setContentType("text/html;charset=utf-8");
+				PrintWriter out = res.getWriter();
+				out.print("<script>");
+				if (userService.update(vo)) {
+					out.print("alert('정상적으로 수정되었습니다.');");
+					out.print("location.href='/MS/user/edit.do?no="+vo.getNo()+"';");
+				} else {
+					out.print("alert('수정실패.');");
+					out.print("history.back();");
+				}
+				out.print("</script>");
+				out.flush();
+			
 	}
 	
 	@GetMapping("/user/delete.do")

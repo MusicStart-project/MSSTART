@@ -69,7 +69,7 @@
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 //document.getElementById('zipcode').value = data.zonecode;
-                $("#zipcode").val(data.zonecode);
+                $("#zipcode1").val(data.zonecode);
                 //document.getElementById("addr1").value = addr;
                 $("#addr1").val(addr);
                 // 커서를 상세주소 필드로 이동한다.
@@ -78,7 +78,46 @@
             }
         }).open();
     }
+$(function() {
+   	$("#submitBtn").click(function() {
+   		var data = $("#frm").serialize();
+   		$.ajax({
+   			url:'/MS/user/update.do',
+   			data:data,
+   			type:'HTML',
+   			method:'POST',
+   			cache:false,
+   			success:function(data) {
+   				//console.log(data);
+   				if (data == 'true') {
+   					alert("정상적으로 수정되었습니다.");
+   					// 모든 입력란을 초기화
+   					//$("input[type='text'], input[type='password']").val("");
+   					//$("#frm")[0].reset();
+   					location.href="index.do";
+   				} else {
+   					alert("등록 실패");
+   				}
+   			}
+   		});
+   	});
+});
 
+
+$(function() {
+    $("#filename").on('change', function(){
+        readURL(this);
+    });
+});
+function readURL(input) {
+    if (input.files && input.files[0]) {
+       var reader = new FileReader();
+       reader.onload = function (e) {
+          $('#user_img').attr('src', e.target.result);
+       }
+       reader.readAsDataURL(input.files[0]);
+    }
+}
 
 </script>
 </head>
@@ -89,16 +128,15 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">My Profile</h2>
-                    <form method="POST">
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-									<img id="img" src="../img/post-malone.jpg" width="260px" height="170px">
+									<img id="user_img" src="<%=request.getContextPath()%>/img/post-malone.jpg" width="260px" height="170px" value="${authUser.user_img })">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group" style="top:147px;">
-                                	<input type="file" id="filename" name="file" class="w100" title="첨부파일을 업로드 해주세요." />	
+                                	<input type="file" id="filename" name="file" class="w100" title="첨부파일을 업로드 해주세요.">	
                                 </div>
                             </div>
                         </div>
@@ -143,7 +181,6 @@
                         <div class="p-t-15">
                             <button class="btn btn--radius-2 btn--blue" type="submit" id ="submitBtn">Submit</button>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>

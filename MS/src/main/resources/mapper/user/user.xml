@@ -94,7 +94,8 @@
 			zipcode = #{zipcode},
 			addr1 = #{addr1},
 			addr2 = #{addr2},
-			pwd = password(#{pwd})
+			user_img = #{user_img}
+			user_img_org = #{user_img_org}
 		WHERE
 			no = #{no}
 	</update>

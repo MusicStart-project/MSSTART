@@ -17,7 +17,21 @@ public class UserVo extends CommonVo{
 	private String addr2;
 	private Timestamp regdate;
 	private int kakao_id;
+	private String user_img;
+	private String user_img_org;
 	
+	public String getUser_img_org() {
+		return user_img_org;
+	}
+	public void setUser_img_org(String user_img_org) {
+		this.user_img_org = user_img_org;
+	}
+	public String getUser_img() {
+		return user_img;
+	}
+	public void setUser_img(String user_img) {
+		this.user_img = user_img;
+	}
 	public int getKakao_id() {
 		return kakao_id;
 	}
