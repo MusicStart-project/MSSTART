@@ -78,30 +78,6 @@
             }
         }).open();
     }
-$(function() {
-   	$("#submitBtn").click(function() {
-   		var data = $("#frm").serialize();
-   		$.ajax({
-   			url:'/MS/user/update.do',
-   			data:data,
-   			type:'HTML',
-   			method:'POST',
-   			cache:false,
-   			success:function(data) {
-   				//console.log(data);
-   				if (data == 'true') {
-   					alert("정상적으로 수정되었습니다.");
-   					// 모든 입력란을 초기화
-   					//$("input[type='text'], input[type='password']").val("");
-   					//$("#frm")[0].reset();
-   					location.href="index.do";
-   				} else {
-   					alert("등록 실패");
-   				}
-   			}
-   		});
-   	});
-});
 
 
 $(function() {
@@ -122,16 +98,17 @@ function readURL(input) {
 </script>
 </head>
 <body>
-<form action="update.do" method="post" id="frm" onsubmit="return false;">
     <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
+                	<form action="update.do" method="post" id="frm" onsubmit="return true;" enctype="multipart/form-data">
+					<input type="hidden" name="no" value="${vo.no }">
                     <h2 class="title">My Profile</h2>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-									<img id="user_img" src="<%=request.getContextPath()%>/img/post-malone.jpg" width="260px" height="170px" value="${authUser.user_img })">
+									<img id="user_img" src="<%=request.getContextPath()%>/img/post-malone.jpg" width="260px" height="170px" value="${vo.user_img })">
                                 </div>
                             </div>
                             <div class="col-2">
@@ -145,7 +122,7 @@ function readURL(input) {
                                 <div class="input-group">
                                     <label class="label">Name</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4" type="text" name="name" id="name" value="${authUser.name }">
+                                        <input class="input--style-4" type="text" name="name" id="name" value="${vo.name }">
                                     </div>
                                 </div>
                             </div>
@@ -157,13 +134,13 @@ function readURL(input) {
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Email</label>
-                                    <input class="input--style-4" type="text" name="email" value="${authUser.email }">
+                                    <input class="input--style-4" type="text" name="email" value="${vo.email }">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Phone Number</label>
-                                    <input class="input--style-4" type="text" name="tel" value="${authUser.tel }">
+                                    <input class="input--style-4" type="text" name="tel" value="${vo.tel }">
                                 </div>
                             </div>
                         </div>
@@ -171,21 +148,22 @@ function readURL(input) {
                             <label class="label">Address</label>
                             <div class="input-group">
                             	<div>
-                            		<input class="input--style-4 zip" id="zipcode1" type="text" name="zipcode" id="zipcode" size="5" value="${authUser.zipcode }">
+                            		<input class="input--style-4 zip" id="zipcode1" type="text" name="zipcode" id="zipcode" size="5" value="${vo.zipcode }">
                             		<input class="input--style-4 zip" id="zipcode2" type="button" value="Zip code" size="20px" onclick="zip_api();"><br>
                             	</div>
-                                <input class="input--style-4 zip" type="text" name="addr1" id="addr1" value="${authUser.addr1 }"><br>
-								<input class="input--style-4 zip" type="text" name="addr2" id="addr2"  value="${authUser.addr2 }">
+                                <input class="input--style-4 zip" type="text" name="addr1" id="addr1" value="${vo.addr1 }"><br>
+								<input class="input--style-4 zip" type="text" name="addr2" id="addr2"  value="${vo.addr2 }">
                             </div>
                         </div>
+                        </form>
                         <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" type="submit" id ="submitBtn">Submit</button>
+                            <button class="btn btn--radius-2 btn--blue" type="submit" id ="submitBtn" onClick="javascript:$('#frm').submit();">Submit</button>
                         </div>
                 </div>
             </div>
         </div>
     </div>
-</form>
+
 <!-- Jquery JS-->
 <script src="<%=request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
 <!-- Vendor JS-->

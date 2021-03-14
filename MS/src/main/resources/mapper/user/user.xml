@@ -93,9 +93,11 @@
 			tel = #{tel},
 			zipcode = #{zipcode},
 			addr1 = #{addr1},
-			addr2 = #{addr2},
-			user_img = #{user_img}
+			addr2 = #{addr2}
+			<if test="user_img != null">
+			,user_img = #{user_img},
 			user_img_org = #{user_img_org}
+			</if>
 		WHERE
 			no = #{no}
 	</update>
