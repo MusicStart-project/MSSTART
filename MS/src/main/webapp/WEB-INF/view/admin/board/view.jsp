@@ -17,7 +17,7 @@
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>게시판</h2>
+					<h2>board</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">

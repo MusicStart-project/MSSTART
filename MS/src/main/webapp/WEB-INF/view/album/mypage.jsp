@@ -48,7 +48,7 @@ var i=1;
           
             <div style="margin:0 auto;">
             
-              <img src="./img/post-malone.jpg" alt="When It's Dark Out "style="border-radius:250px 250px 250px 250px" width="500px"height="400px">
+              <img src="./img/post-malone.jpg" style="border-radius:250px 250px 250px 250px" width="500px"height="400px">
               
             </div>
             

@@ -108,7 +108,7 @@ function readURL(input) {
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-									<img id="user_img" src="<%=request.getContextPath()%>/img/post-malone.jpg" width="260px" height="170px" value="${vo.user_img })">
+									<img id="user_img" src="<%=request.getContextPath()%>/img/post-malone.jpg" width="260px" height="170px" value="${vo.user_img }">
                                 </div>
                             </div>
                             <div class="col-2">

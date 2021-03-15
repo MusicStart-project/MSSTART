@@ -53,7 +53,7 @@ function formCheck() {
 		<div id="container">
 			<div id="content">
 				<div class="con_tit">
-					<h2>공지사항 - [수정]</h2>
+					<h2>Edit</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
@@ -75,7 +75,7 @@ function formCheck() {
 									<tr>
 										<th scope="row"><label for="">*제목</label></th>
 										<td colspan="10">
-											<input type="text" id="title" name="title" class="w100" title="제목을 입력해주세요" value="${vo.title }"/>	
+											<input type="text" style="background:#000000;color:#FFFFFF;border:0" id="title" name="title" class="w100" title="제목을 입력해주세요" value="${vo.title }"/>	
 										</td>
 									</tr>
 									<tr>
@@ -87,7 +87,7 @@ function formCheck() {
 									<tr>
 										<th scope="row"><label for="">첨부파일</label></th>
 										<td colspan="10">
-											<input type="file" id="filename_tmp" name="file" class="w100" title="첨부파일을 업로드 해주세요." />	
+											<input type="file" style="background:#000000;color:#FFFFFF;border:0"id="filename_tmp" name="file" class="w100" title="첨부파일을 업로드 해주세요." />	
 										</td>
 									</tr>
 								</tbody>

@@ -543,7 +543,7 @@ var album2 = 1
     <a href = "javascript:void(0)" onclick = "document.getElementById('album2').style.display='none';" style="position:absolute; top : 20px; right:2%"><img src="/MS/img/close_btn.png" width="40px"></a>
 </div>
 <!-- 보드 작업 -->
-<div id="board" class="white_content">
+<div id="board" class="white_content" style="background-color: rgb(12, 12, 12); opacity:0.8;">
 	<iframe id="iframe" style="position: relative;
          border: none;
          height: 100%;

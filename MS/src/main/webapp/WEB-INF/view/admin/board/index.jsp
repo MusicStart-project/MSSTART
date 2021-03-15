@@ -6,7 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/WEB-INF/view/admin/include/headHtml.jsp" %>
-
+<style>
+body {
+	background-color: rgb(12, 12, 12);
+}
+</style>
 <script>
 function moveWrite() {
 	location.href='write.do';
@@ -24,9 +28,9 @@ function moveWrite() {
 		<!-- S T A R T :: containerArea-->
 		<div id="container">
 			<div id="content">
-				<div class="con_tit">
+				<div class="con_tit" style="color:grey;">
 					
-					<h2>게시판</h2>
+					<h2>Board</h2>
 				</div>
 				<!-- //con_tit -->
 				<div class="con">
