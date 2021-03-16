@@ -67,7 +67,7 @@
 													</c:if>
 													<c:forEach var="vo" items="${clist }">
 													<dl>
-														<dt><strong>${authUser.name }</strong> ${vo.regdate }</dt>
+														<dt><strong>${vo.username }</strong> ${vo.regdate }</dt>
 														<dd>${vo.content }
 															<span class="reEdit">
 																<strong class="btn_in inbtn"><input type="button" class="r_delete" value="삭제" onclick="goDel(${vo.no})"/></strong>

@@ -47,16 +47,20 @@ var i=1;
 	 	 <div class="album__info">
           
             <div style="margin:0 auto;">
-            
+            <c:if test="${uv.user_img eq null }">
               <img src="./img/post-malone.jpg" style="border-radius:250px 250px 250px 250px" width="500px"height="400px">
-              
+            </c:if> 
+            <c:if test="${uv.user_img ne null }">
+              <img src="<%=request.getContextPath()%>/user_img/${uv.user_img}" style="border-radius:250px 250px 250px 250px" width="500px"height="400px">
+            </c:if> 
+            
             </div>
             
          </div>
          
          <div style="color:white;position:relative;text-align:center;">
-         	<h3>${authUser.name}</h3>	
-         	<button style="float:right; position:absolute;top: -200%;left: 64%;background:none;padding:0px 0px;width:45px;height:45px;" onclick="location.href='/MS/user/edit.do?no=${authUser.no}'"><img height="45px"width="45px" src="./img/setting_icon.png"></button>
+         	<h3>${uv.name}</h3>	
+         	<button style="float:right; position:absolute;top: -200%;left: 64%;background:none;padding:0px 0px;width:45px;height:45px;" onclick="location.href='/MS/user/edit.do?no=${uv.no}'"><img height="45px"width="45px" src="./img/setting_icon.png"></button>
          </div>
               
         

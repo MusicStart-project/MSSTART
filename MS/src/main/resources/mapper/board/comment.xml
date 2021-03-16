@@ -3,7 +3,9 @@
 <mapper namespace="comment">
 
 	<select id="selectList" parameterType="int" resultType="board.CommentVo">
-		select * from comment where board_no=#{no}
+		select *,
+		ifnull((select name from user where no=comment.user_no),'관리자') as username 
+		from comment where board_no=#{no}
 	</select>
 	
 	<insert id="insert" parameterType="board.CommentVo">
@@ -23,5 +25,5 @@
 	
 	
 	
-	
+
 </mapper>

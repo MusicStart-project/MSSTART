@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import user.UserService;
 import user.UserVo;
 
 // import album.CommentService;
@@ -30,6 +31,8 @@ public class albumController {
 	private albumService albumService;
 	@Autowired
 	private likedService likedService;
+	@Autowired
+	private UserService userService;
 	
 	/*
 	@Autowired
@@ -89,7 +92,7 @@ public class albumController {
 					System.out.println(ext);
 				}
 				String filename = new Date().getTime()+ext;
-				
+					
 				
 				// request.getRealPath() -> 실제 경로를 리턴
 				String path = req.getRealPath("/upload/");
@@ -215,15 +218,17 @@ public class albumController {
 	}
 	
 	@RequestMapping("/mypage.do")
-	public String mypage(HttpServletRequest req, albumVo vo, likedVo lvo, HttpServletResponse res, HttpSession sess) throws IOException{
+	public String mypage(HttpServletRequest req, albumVo vo, likedVo lvo, UserVo muvo, HttpServletResponse res, HttpSession sess) throws IOException{
 		UserVo uv = (UserVo)sess.getAttribute("authUser");
 		if (uv != null) lvo.setUser_no(uv.getNo());
 		List<albumVo> list = albumService.mypageList(lvo);
 		
+		UserVo uservo = userService.selectOne(muvo);
+		
 		req.setAttribute("list", list);
 		req.setAttribute("vo", vo);
 		req.setAttribute("lvo", lvo);
-
+		req.setAttribute("uv", uservo);
 		
 		return "album/mypage";
 	}

@@ -6,11 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import user.UserVo;
+
 @Service
 public class albumService {
 
 	@Autowired
 	private albumDao albumdao;
+	
 	
 	// 총갯수와 총페이지수를 구하는 메서드
 	public int[] getRowPageCount(albumVo vo) {
@@ -40,6 +43,7 @@ public class albumService {
 		//vo.setStartIdx((vo.getReqPage() - 1) * vo.getPageRow());
 		return albumdao.selectList(vo);
 	}
+	
 	
 	public List<albumVo> albumList(likedVo vo) {
 	

@@ -130,9 +130,10 @@ public class UserController {
 						}
 						String filename = new Date().getTime()+ext;
 						// request.getRealPath() -> 실제 경로를 리턴
-						String path = req.getRealPath("/upload/");
+						String path =  req.getRealPath("/user_img/");
 						System.out.println(path);
-						//path = "D:\\AI\\workspace\\user\\src\\main\\webapp\\upload\\";
+						//path = "/gw0247/tomcat/webapps/MS/img";
+						//path = "C:\\git\\MSSTART\\MS\\src\\main\\webapp\\user_img\\";
 						file.transferTo(new File(path+filename));
 						// 파일명을 vo에 저장
 						vo.setUser_img(filename);
@@ -147,7 +148,7 @@ public class UserController {
 				out.print("<script>");
 				if (userService.update(vo)) {
 					out.print("alert('정상적으로 수정되었습니다.');");
-					out.print("location.href='/MS/user/edit.do?no="+vo.getNo()+"';");
+					out.print("location.href='/MS/mypage.do?no="+vo.getNo()+"';");
 				} else {
 					out.print("alert('수정실패.');");
 					out.print("history.back();");
@@ -200,6 +201,7 @@ public class UserController {
 			 if ((String)sess.getAttribute("url")  != null && !"".equals((String)sess.getAttribute("url"))) {
 					url = (String)sess.getAttribute("url"); // /user/board/index.do
 				}
+			 	url = "/main.do";
 				return "redirect:"+url;
 				
 			} else { // 로그인 실패

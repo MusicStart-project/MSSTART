@@ -115,6 +115,21 @@ a.title:hover {
         overflow: auto;
         
     }
+      .board_content {
+        display: none;
+        position: absolute;
+        top: 25%;
+        left: 22.627%;
+        width: 50%;
+        height: 50%;
+        padding: none;
+        border: 16px solid rgb(50, 50, 50);
+        background-color: rgb(255, 255, 255);
+        
+        z-index:1002;
+        overflow: auto;
+        
+    }
     .album_content {
         display: none;
         position: absolute;
@@ -206,7 +221,7 @@ function mypage(){
 	location.href='user/login.do';
 	</c:if>
 	<c:if test="${!empty authUser }">
-	location.href='/MS/mypage.do';
+	location.href='/MS/mypage.do?no=${authUser.no }';
 	</c:if>
 }
 
@@ -543,13 +558,13 @@ var album2 = 1
     <a href = "javascript:void(0)" onclick = "document.getElementById('album2').style.display='none';" style="position:absolute; top : 20px; right:2%"><img src="/MS/img/close_btn.png" width="40px"></a>
 </div>
 <!-- 보드 작업 -->
-<div id="board" class="white_content" style="background-color: rgb(12, 12, 12); opacity:0.8;">
+<div id="board" class="board_content" style="background-color: rgb(12, 12, 12); opacity:0.8;">
 	<iframe id="iframe" style="position: relative;
          border: none;
          height: 100%;
          width: 100%;
         "src="/MS/admin/board/index.do"></iframe>
-    <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';" style="position:absolute;right: 1%;"><img src="/MS/img/close_btn.png" width="40px"></a>
+    <a href = "javascript:void(0)" onclick = "document.getElementById('board').style.display='none';" style="position:absolute;right: 2%; top:2%;"><img src="/MS/img/close_btn.png" width="40px"></a>
 </div>
     
     <!-- 3D 음향을 위한 오디오테그 추가-->
@@ -745,9 +760,18 @@ scene.add(grideHelper);
              }       
            }                                    
       }
+ // 터치이벤트가 존재하는 브라우저 식별 함수
+ var clickEvent = (function() {
+	  if ('ontouchstart' in document.documentElement === true) {
+	    return 'touchstart';
+	  } else {
+	    return 'click';
+	  }
+	})();
+ console.log(clickEvent);
  
  // 마우스 클릭으로 좌표값에 의한 이벤트
- container.addEventListener( 'click', onClick, false );
+ container.addEventListener( clickEvent, onClick, false );
  function onClick( event ) {
      var x,y;
      x = (event.clientX / window.innerWidth) * 2 - 1;

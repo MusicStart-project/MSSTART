@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,7 +110,12 @@ function readURL(input) {
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
+                                	<c:if test ="${vo.user_img eq null}">
 									<img id="user_img" src="<%=request.getContextPath()%>/img/post-malone.jpg" width="260px" height="170px" value="${vo.user_img }">
+                                	</c:if>
+                                	<c:if test ="${vo.user_img ne null}">
+									<img id="user_img" src="<%=request.getContextPath()%>/user_img/${vo.user_img}" width="260px" height="170px" value="${vo.user_img }">
+                                	</c:if>
                                 </div>
                             </div>
                             <div class="col-2">
