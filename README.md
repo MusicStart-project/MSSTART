@@ -5,7 +5,8 @@
 # 프로젝트 동기
   학원에서 배운 Spring을 이용하여 프로젝트를 구상하는 중 기존 음악 스트리밍 사이트와는 다르게 메인화면에 동적으로 움직이는 3D를 적용하고 싶어 프로젝트를 시작했습니다.
   
- # DB 구성
+ # DB 설계
+ <img src="/pp.png" width="500px" height="500px" title="MS DB ERD" alt="MS DB ERD"></img>
  
  
 
