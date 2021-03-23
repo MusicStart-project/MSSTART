@@ -17,6 +17,13 @@
  # 화면 구성 및 기능
  운영 사이트 (2021-06-14까지) : <http://musicstart.site/MS/main.do/>
  
+ # 디자인 참고 자료
+ * <https://codepen.io/mkiisoft/pen/XWXWXKo/>
+    - @copyright Mariano Zorrilla
+ * <https://codepen.io/jcoulterdesign/pen/azepmX/>
+    - @copyright Jamie Coulter
+ * <https://codepen.io/gfrancis/pen/JBZZoj/>
+    - @copyright Glenn Francis
  
  
  
