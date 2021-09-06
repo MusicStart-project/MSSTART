@@ -16,6 +16,7 @@
  
  # 화면 구성 및 기능
  운영 사이트 (2021-06-14까지) : <http://musicstart.site/MS/main.do>
+ 알수 없는 에러시 새로고침을 부탁드립니다.
  
  # 디자인 참고 자료
  * <https://codepen.io/mkiisoft/pen/XWXWXKo/>
