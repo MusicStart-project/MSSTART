@@ -15,7 +15,7 @@
  <img src="/pp.png" width="500px" height="500px" title="MS DB ERD" alt="MS DB ERD"></img>
  
  # 화면 구성 및 기능
- 운영 사이트 (2021-06-14까지) : <http://musicstart.site/MS/main.do><br>
+ 운영 사이트 (2021-12-08까지) : <http://musicstart.site/MS/main.do><br>
  알수 없는 에러시 새로고침을 부탁드립니다.
  
  # 디자인 참고 자료
